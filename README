@@ -3,3 +3,14 @@ GOALS
 On demand static HTML file generation from git repository
 
 management of the blog
+
+
+FEATURES
+
+* Pretty Print URLS
+    We can pull the url from the file name or perhaps from some header data
+
+* scan directories
+* use the git log data to determine when it was last updated / published
+
+
