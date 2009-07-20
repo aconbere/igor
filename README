@@ -13,4 +13,12 @@ FEATURES
 * scan directories
 * use the git log data to determine when it was last updated / published
 
+/index.html is generated based on the index.html template
+/feed.atom is generated based on the reed.atom template
 
+all other posts are generated from the post.html template with the structure
+
+/<year>/<month>/<day>/<slug>/index.html
+
+where the date is grabbed from git or the header and
+slug comes from header, or slugged first line or filename

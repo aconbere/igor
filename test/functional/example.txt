@@ -1,10 +1,8 @@
-{
-"_template": "main.html",
-"published_on": "2009-01-11",
-"last_updated": "2009-01-11",
-"slug": "this_is_the_example",
-"title": "will default to the title text"
-}
+_template: "main.html" # defaults to main.html
+published_on: "2009-01-11" # defaults to the date added to the repository
+last_modified: "2009-01-11" # defaults to the date last modified
+slug: "this_is_the_example" # defaults to the slugified title
+title: "will default to the title text" # defaults to the first line of content
 
 The first line is title text
 

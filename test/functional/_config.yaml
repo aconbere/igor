@@ -1,0 +1,2 @@
+summary_length: 0 # number of lines to include in a summary, 0 indicates no summary
+output_directory: "~/blog/" # the path to where you want to output your blog
