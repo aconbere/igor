@@ -1,9 +1,9 @@
 {
-'_template': 'main.html', # will default to main.html
-'published_on': '2009-01-11', # will default to the date added to the respository
-'last_updated': '2009-01-11', # will default to the date last modified in the repository
-'slug': 'this_is_the_example', # will default to a slug of the title text
-'title': 'will default to the title text'
+"_template": "main.html",
+"published_on": "2009-01-11",
+"last_updated": "2009-01-11",
+"slug": "this_is_the_example",
+"title": "will default to the title text"
 }
 
 The first line is title text
