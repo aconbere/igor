@@ -25,10 +25,10 @@ class Actor(object):
         return oneOf(cls.roles) + _name + _email + _timestamp + _offset
 
 class Log(object):
+    stdout = PIPE
     def __init__(self, filename):
         self.filename = filename
-        self.stdout = PIPE
-        self.headers = None
+        self.headers = {}
         self.comment = None
 
     def call(self):
@@ -50,14 +50,16 @@ class Log(object):
         return (Actor.grammer() | Ref.grammer())
         
     def retreive_headers(self, headers):
-        return [self.parse_header(p) for p in headers]
+        return dict([self.parse_header(p) for p in headers])
 
     def parse_header(self, header):
         h = self.grammer().parseString(header.strip())
         if h[0] in Ref.refs:
-            return Ref(h[0], h[1])
+            r =  Ref(h[0], h[1])
+            return (r.name, Ref(h[0], h[1]))
         elif h[0] in Actor.roles:
-            return Actor(*h)
+            a = Actor(*h)
+            return (a.role, Actor(*h))
         
     def sections(self, log):
         lines = log.splitlines()
