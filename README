@@ -22,3 +22,7 @@ all other posts are generated from the post.html template with the structure
 
 where the date is grabbed from git or the header and
 slug comes from header, or slugged first line or filename
+
+PLANS
+
+parse file -> take contents and apply transformations to them -> push the contents into jinja

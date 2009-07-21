@@ -1,69 +1,71 @@
 #!/usr/bin/env python
-from __future__ import with_statement
-from os import path, walk
+
+from jinja2 import Environment, FileSystemLoader
+from os import walk, path
+from datetime import datetime
 import simplejson as json
 import yaml
 
-def slugify(string):
-    string = re.sub('\s+', '_', string)
-    string = re.sub('[^\w.-]', '', string)
-    return string.strip('_.- ').lower()
+from utils import slugify, hidden
 
-def remove_section(fd):
-    section = ""
-    l = fd.readline()
 
-    while l != "\n":
-        section += l
+# output directories should look something like
+# /posts/Y/M/D/slug/index.html
+
+
+class ProjectParser(object):
+    def __init__(self, project_path):
+        self.project_path = path.abspath(project_path)
+
+    def parse(self):
+        for (dirpath, dirnames, filenames) in walk(self.project_path):
+            relative_path = path.relpath(dirpath, self.project_path)
+            if not (relative_path.startswith("_") or hidden(relative_path)):
+                for filename in filenames:
+                    if not (filename.startswith("_") or hidden(filename)):
+                        parsed_file = FileParser(path.join(dirpath, filename))
+                        out = render(self.project_path, parsed_file.filename,
+                                     parsed_file.data)
+                        print(out)
+
+class FileParser(object):
+    def __init__(self, filename):
+        self.filename = filename
+        self.data = self._parse(self.filename)        
+
+    def _pop_section(self, fd):
+        section = ""
         l = fd.readline()
 
-    return section.strip()
+        while l != "\n":
+            section += l
+            l = fd.readline()
 
-def remove_header(fd):
-    return remove_section(fd)
+        return section.strip()
 
-def remove_title(fd):
-    return remove_section(fd)
+    def _parse_header(self, header):
+        return yaml.load(header)
 
-def parse_header(header):
-    return yaml.load(header)
-    
-def parse(filename):
-    data = {}
-    with open(filename, 'r') as f:
-        data = parse_header(remove_header(f))
+    def _parse(self, filename):
+        data = {}
+        with open(filename, 'r') as f:
+            data = self._parse_header(self._pop_section(f))
 
-        title = data.get("title") or remove_title(f)
-        slug = data.get("slug") or slugify(title) or slugify(filename)
-        published_on = date.strptime(data.get("published_on"), "%Y-%m-%d")
-        last_modified = date.strptime(data.get("last_modified"), "%Y-%m-%d")
+            title = data.get("title") or pop_section(f)
+            slug = data.get("slug") or slugify(title) or slugify(filename)
+            published_on = datetime.strptime(data.get("published_on"), "%Y-%m-%d")
+            last_modified = datetime.strptime(data.get("last_modified"), "%Y-%m-%d")
 
-        data.update({"title": title,
-                     "slug": slug,
-                     "published_on": published_on,
-                     "last_modified": last_modified,
-                     "content": f.read().strip()})
-    return data
+            data.update({"title": title,
+                         "slug": slug,
+                         "published_on": published_on,
+                         "last_modified": last_modified,
+                         "content": f.read().strip()})
+        return data
 
 def render(project_path, filename, data):
-    from jinja2 import Environment, FileSystemLoader
-
     templates_path = path.abspath(path.join(project_path, '_templates'))
     env = Environment(loader=FileSystemLoader(templates_path))
     _template = data.get("_template") or "main.html"
     template = env.get_template(_template)
     return template.render(**data)
-
-def parse_project(project_path):
-    for (dirpath, dirnames, filenames) in walk(project_path):
-        if not dirpath.startswith("_"):
-            for filename in filenames:
-                if not filename.startswith("_"):
-                    data = parse(filename)
-                    out = render(project_path, filename, data)
-                    new_file_name = 
-    
-
-if __name__ == "__main__":
-    from sys import argv
-    print(render(argv[1], argv[2]))
