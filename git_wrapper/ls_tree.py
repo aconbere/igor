@@ -1,5 +1,6 @@
 from pyparsing import Word, alphas, alphanums, nums, Combine, Suppress, oneOf
 from subprocess import Popen, PIPE
+from os import path
 
 class ListElement(object):
     def __init__(self, id, type, hash, filename):
@@ -27,12 +28,14 @@ class ListElement(object):
 
 class ListTree(object):
     stdout = PIPE
-    def __init__(self):
+    def __init__(self, git_dir):
+        self.git_dir = git_dir
         self.out = None
         self.elements = None
 
     def call(self):
-        cmd = ["git", "ls-tree", "-r", "HEAD"]
+        git_dir_opt = "--git-dir=%s" % path.join(self.git_dir, ".git")
+        cmd = ["git", git_dir_opt, "ls-tree", "-r", "HEAD"]
         p = Popen(cmd, stdout = self.stdout)
         p.wait()
 

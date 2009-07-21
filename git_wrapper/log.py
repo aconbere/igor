@@ -1,7 +1,9 @@
 from pyparsing import Word, alphas, alphanums, nums, Combine, Suppress, oneOf
 from refs import Ref
+from os import path
 
 from subprocess import PIPE, Popen
+from datetime import datetime
 
 class Actor(object):
     roles = ["committer", "author"]
@@ -11,6 +13,7 @@ class Actor(object):
         self.name = name
         self.email = email
         self.timestamp = int(timestamp)
+        self.datetime= datetime.fromtimestamp(self.timestamp)
 
     def __repr__(self):
         return "<Actor: %s, %s, %s, %s>" % (self.role, self.name, self.email,
@@ -26,18 +29,23 @@ class Actor(object):
 
 class Log(object):
     stdout = PIPE
-    def __init__(self, filename):
+
+    def __init__(self, git_dir, filename):
+        self.git_dir = git_dir
         self.filename = filename
         self.headers = {}
         self.comment = None
 
     def call(self):
-        cmd = ["git", "log", "--all", "--diff-filter=A",
+        git_dir_opt = "--git-dir=%s" % path.join(self.git_dir, ".git")
+        cmd = ["git", git_dir_opt, "log", "--all", "--diff-filter=A",
               "--pretty=raw", "--", self.filename]
         p = Popen(cmd, stdout = self.stdout)
         p.wait()
+
         if p.returncode != 0:
             print("freakout!")
+
         else:
             out = p.stdout.read()
             headers, comment = self.sections(out)

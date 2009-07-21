@@ -1,6 +1,5 @@
 import sys
 import os
-sys.path.append("..")
 sys.path.append(".")
 
 from git_wrapper.log import Log, Actor
@@ -16,7 +15,7 @@ def test_log_parsing():
         first run at the parser
     """
 
-    log = Log("fake_file")
+    log = Log("fake/dir", "fake_file")
     headers, comment = log.sections(test_git_log)
     hs = log.retreive_headers(headers)
     check_data = {
@@ -32,8 +31,7 @@ def test_log_parsing():
 
 def test_log_retrieval():
     curdir = os.path.abspath(os.curdir)
-    os.chdir("test/example")
-    l = Log("example.txt")
+    l = Log("test/example", "example.txt")
     l.call()
     test_headers = {
                     "commit": Ref("commit", "4906ae03a875febcdc1fbd6b3d1d8d6f83ff309d"),
@@ -43,5 +41,4 @@ def test_log_retrieval():
                    }
     assert(l.comment == "first commit")
     assert([(k,str(v)) for k,v in l.headers.iteritems()] == [(k, str(v)) for k,v in test_headers.iteritems()])
-    os.chdir(curdir)
     

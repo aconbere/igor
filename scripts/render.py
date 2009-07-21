@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 import sys
+from os import path
 
-sys.path.append(".")
-sys.path.append("..")
-sys.path.append("../..")
+sys.path.append(path.abspath("."))
 
-from parser import ProjectParser
+from blog_parser import ProjectParser
 
 
 def main(project_path, out_path):
