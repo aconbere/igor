@@ -10,9 +10,11 @@ from git_wrapper.log import Log
 
 class ProjectParser(object):
     template_dir = "_templates"
+    posts_dir = "_posts"
 
     def __init__(self, project_path, out_dir):
         self.project_path = path.abspath(project_path)
+        self.posts_path = path.join(self.project_path, self.posts_dir)
         self.out_dir = path.abspath(out_dir)
         self.env = Environment(loader=FileSystemLoader(self.templates_path()))
 
@@ -26,7 +28,7 @@ class ProjectParser(object):
         else:
             makedirs(self.out_dir)
 
-        for (dirpath, dirnames, filenames) in walk(self.project_path):
+        for (dirpath, dirnames, filenames) in walk(self.posts_path):
             relative_path = path.relpath(dirpath, self.project_path)
             if not (relative_path.startswith("_") or hidden(relative_path)):
                 for filename in filenames:
@@ -48,7 +50,7 @@ class ProjectParser(object):
 
 
 class FileParser(object):
-    default_template = "main.html"
+    default_template = "post.html"
     index = "index.html"
 
     def __init__(self, file_path, project_path):
@@ -64,12 +66,11 @@ class FileParser(object):
         section = ""
         l = fd.readline()
 
-
         while l != "\n":
             section += l
             l = fd.readline()
 
-        return section.strip()
+        return section.strip() 
 
     def parse_header(self, header):
         return yaml.load(header)
@@ -83,7 +84,6 @@ class FileParser(object):
         else:
             l = Log(self.project_path, self.relpath)
             headers = l.call().headers
-            print(headers)
             return l.call().headers["author"].datetime
             
 

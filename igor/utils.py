@@ -5,5 +5,5 @@ def slugify(string):
     string = sub('[^\w.-]', '', string)
     return string.strip('_.- ').lower()
 
-def hidden(relative_path):
-    return relative_path.startswith(".") and len(relative_path) > 1
+def hidden(p):
+    return not (p == "." or p == "..") and p.startswith(".")
