@@ -1,3 +1,4 @@
+from os import path
 import yaml
 
 class Config(object):
