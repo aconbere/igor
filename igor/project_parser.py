@@ -12,8 +12,7 @@ class ProjectParser(object):
 
     def __init__(self, project_path, out_dir=None):
         self.config = Config(path.join(project_path, self.config_path))
-        self.out_dir = path.abspath(out_dir) or
-                            self.config.get("output_directory")
+        self.out_dir = path.abspath(out_dir) or self.config.get("output_directory")
 
         if not out_dir:
             raise Exception("output directory required")
