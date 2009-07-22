@@ -6,9 +6,19 @@ sys.path.append(path.abspath("."))
 
 from igor.project_parser import ProjectParser
 
+usage = """\
+igor <project_directory> <output_directory>
+"""
 
-def main(project_path, out_path):
+def main(project_path, out_path = None):
     ProjectParser(project_path, out_path).parse().write()
 
 if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2])
+    if len(sys.argv) == 3:
+        main(sys.argv[1], sys.argv[2])
+
+    elif len(sys.argv) == 2:
+        main(sys.argv[1])
+
+    else:
+        print(usage)

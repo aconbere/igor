@@ -1,6 +1,6 @@
 from utils import slugify
 from os import path, makedirs
-
+from content_processor import BasicProccessor
 
 class Page(object):
     default_template = "post.html"
@@ -10,7 +10,7 @@ class Page(object):
         self.context = context
         self.cached_output = None
 
-    def render(self, env, template = None):
+    def render(self, env, template=None):
         template = template or self.context.get(template) or self.default_template
         t = env.get_template(template)
         self.cached_output = t.render(**self.context)
@@ -44,18 +44,26 @@ class HomePage(Page):
         self.context['posts'] = self.posts
 
 class Post(Page):
+    content_processor = BasicProccessor
+
     def __init__(self, title="", content="", slug="", published_on=None,
                  last_modified=None, filename="", context={}):
         super(Post, self).__init__(context)
 
         self.title = title
-        self.content = content
+
+        self.content = self.apply_content_processor(content)
         self.published_on = published_on
         self.last_modified = last_modified
         self.filename = filename
         self.slug = slug or slugify(title) or slugify(filename)
 
         self.context["post"] = self
+
+    def apply_content_processor(self, content):
+        if self.content_processor:
+            content = self.content_processor(content).render()
+        return content
 
     def out_file_dir(self):
         date_path = self.published_on.strftime("%Y/%m/%d/")

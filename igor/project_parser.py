@@ -3,26 +3,30 @@ from utils import hidden
 from post import HomePage
 from jinja2 import Environment, FileSystemLoader
 from file_parser import FileParser
-from helpers import do_link_to
+from helpers import link_to
+from config import Config
 
 class ProjectParser(object):
     template_dir = "_templates"
     posts_dir = "_posts"
 
-    def __init__(self, project_path, out_dir):
+    def __init__(self, project_path, out_dir=None):
+        self.config = Config(path.join(project_path, self.config_path))
+        self.out_dir = path.abspath(out_dir) or
+                            self.config.get("output_directory")
+
+        if not out_dir:
+            raise Exception("output directory required")
+
         self.project_path = path.abspath(project_path)
         self.posts_path = path.join(self.project_path, self.posts_dir)
-        self.out_dir = path.abspath(out_dir)
         self.env = Environment(loader=FileSystemLoader(self.templates_path()))
-        self.env.globals["posts"] = []
-        self.env.filters["link_to"] = do_link_to
+        self.posts = []
 
     def templates_path(self):
         return path.abspath(path.join(self.project_path, self.template_dir))
 
     def parse(self, rebuild=False):
-        print("filters\n\n")
-        print(self.env.filters)
         print("beginning parsing %s" % self.posts_path)
 
         if path.exists(self.out_dir):
@@ -41,13 +45,20 @@ class ProjectParser(object):
 
                         post = FileParser(self.project_path,
                                           relative_file_path).parse()
-                        self.env.globals["posts"].append(post)
+                        self.posts.append(post)
         return self
 
+    def set_globals(self):
+        self.env.globals["link_to"] = link_to
+        self.env.globals['posts'] = self.posts
+        self.env.globals['config'] = self.config
+
     def write(self):
-        self.posts.sort(lambda x,y: x.published_on > y.published_on)
+        self.posts.sort(
+            lambda x,y: x.published_on > y.published_on)
+        self.set_globals()
 
-        HomePage(self.posts[:10]).write(self.env, self.out_dir)
-
+        HomePage(self.posts[10]).write(self.env,
+                                       self.out_dir)
         for post in self.posts:
             post.write(self.env, self.out_dir)
