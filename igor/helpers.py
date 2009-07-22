@@ -8,6 +8,6 @@ def link_to(env, slug):
         f_posts = [p for p in posts if p.slug == slug]
 
         if f_posts:
-            return path.join(env.globals['config'].blog_uri,
+            return path.join(env.globals['config'].get("blog_uri"),
                              f_posts[0].out_file_dir())
     return ""

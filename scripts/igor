@@ -10,7 +10,7 @@ usage = """\
 igor <project_directory> <output_directory>
 """
 
-def main(project_path, out_path = None):
+def main(project_path, out_path = ""):
     ProjectParser(project_path, out_path).parse().write()
 
 if __name__ == "__main__":
