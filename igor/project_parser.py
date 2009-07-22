@@ -11,7 +11,7 @@ class ProjectParser(object):
     posts_dir = "_posts"
 
     def __init__(self, project_path, out_dir=None):
-        self.config = Config(path.join(project_path, self.config_path))
+        self.config = Config(path.join(project_path))
         self.out_dir = path.abspath(out_dir) or self.config.get("output_directory")
 
         if not out_dir:
