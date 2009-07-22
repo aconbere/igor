@@ -22,4 +22,15 @@ Igor installs a simple command line script to run it
 
 * NOTE this is a pretty dumb script right now and will delete anything you point the outdir to, so be careful
 
+TODO
+====
 
+* apply markup to contents of files based on file extensions
+    markup
+    textile
+    restructured text
+
+* write the actual git hook
+* build tools for linking to documents
+* atom publishing
+* helpers abound
