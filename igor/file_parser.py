@@ -1,58 +1,10 @@
-from os import walk, path, makedirs
+from os import path
 from datetime import datetime
 
 import yaml
 
-from jinja2 import Environment, FileSystemLoader
-
 from git_wrapper.log import Log
-from utils import hidden
-from post import Post, HomePage
-
-class ProjectParser(object):
-    template_dir = "_templates"
-    posts_dir = "_posts"
-
-    def __init__(self, project_path, out_dir):
-        self.project_path = path.abspath(project_path)
-        self.posts_path = path.join(self.project_path, self.posts_dir)
-        self.out_dir = path.abspath(out_dir)
-        self.env = Environment(loader=FileSystemLoader(self.templates_path()))
-        self.posts = []
-
-    def templates_path(self):
-        return path.abspath(path.join(self.project_path, self.template_dir))
-
-    def parse(self, rebuild=False):
-        print("beginning parsing %s" % self.posts_path)
-
-        if path.exists(self.out_dir):
-            if rebuild:
-                rmdir(out_dir)
-        else:
-            makedirs(self.out_dir)
-
-        for (dirpath, dirnames, filenames) in walk(self.posts_path):
-            relative_path = path.relpath(dirpath, self.posts_path)
-            if not (relative_path.startswith("_") or hidden(relative_path)):
-                for filename in filenames:
-                    if not (filename.startswith("_") or hidden(filename)):
-                        r = path.join(dirpath, filename)
-                        relative_file_path = path.relpath(r, self.project_path)
-
-                        post = FileParser(self.project_path,
-                                          relative_file_path).parse()
-                        self.posts.append(post)
-        return self
-
-    def write(self):
-        self.posts.sort(lambda x,y: x.published_on > y.published_on)
-
-        HomePage(self.posts[:10]).write(self.env, self.out_dir)
-
-        for post in self.posts:
-            post.write(self.env, self.out_dir)
-
+from post import Post
 
 class FileParser(object):
     default_template = "post.html"
