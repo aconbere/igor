@@ -3,7 +3,7 @@ import os
 
 sys.path.append(".")
 
-from utils import hidden, slugify
+from igor.utils import hidden, slugify
 
 def test_hidden_on_special_paths():
     special_paths = [".", ".."]

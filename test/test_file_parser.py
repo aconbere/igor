@@ -2,11 +2,11 @@ import sys
 import os
 sys.path.append(".")
 
-from blog_parser import FileParser
+from igor.blog_parser import FileParser
 
 
 def test_initialize_file_parser():
-    fp = FileParser("test/example/example.txt", "test/example")
+    fp = FileParser("examples/basic/", "_posts/example.txt")
     assert(fp)
     return fp
 

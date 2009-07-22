@@ -1,28 +1,3 @@
-GOALS
-
-On demand static HTML file generation from git repository
-
-management of the blog
+Igor is a static blog generator akin to Jekyll [1], at it's essence is a script that runs against a given git repository and outpus a nice directory of html files.
 
 
-FEATURES
-
-* Pretty Print URLS
-    We can pull the url from the file name or perhaps from some header data
-
-* scan directories
-* use the git log data to determine when it was last updated / published
-
-/index.html is generated based on the index.html template
-/feed.atom is generated based on the reed.atom template
-
-all other posts are generated from the post.html template with the structure
-
-/<year>/<month>/<day>/<slug>/index.html
-
-where the date is grabbed from git or the header and
-slug comes from header, or slugged first line or filename
-
-PLANS
-
-parse file -> take contents and apply transformations to them -> push the contents into jinja

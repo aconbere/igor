@@ -2,7 +2,7 @@ import sys
 import os
 sys.path.append(".")
 
-from git_wrapper.ls_tree import ListTree, ListElement
+from igor.git_wrapper.ls_tree import ListTree, ListElement
 
 def test_list_item_parsing():
     test_element = ListElement("100644", "blob", "ddec4c671efebd5b61b219d2de49c828f6a4d956", "_gitignore")
@@ -16,7 +16,7 @@ def test_list_parsing():
 100644 blob 33436dc95ca1755a459a4dd9f7992b45008f3837    example.txt
     """
 
-    l = ListTree("test/example")
+    l = ListTree("examples/basic/")
     elements = l.parse_list(test_list)
     assert_data = [
         ListElement("100644", "blob", "902edab1599d6bcb08854e004362a6af2889ffbb", "_config.yaml"),
@@ -26,6 +26,6 @@ def test_list_parsing():
     assert([str(s) for s in elements] == [str(s) for s in assert_data])
 
 def test_list_retrieval():
-    l = ListTree("test/example")
+    l = ListTree("examples/basic")
     l.call()
     assert(len(l.elements) > 0)
