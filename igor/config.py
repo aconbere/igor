@@ -13,7 +13,7 @@ class Config(object):
         config_path = path.join(self.project_path, self.config_path)
 
         if path.exists(config_path):
-            self.config = defauls.update(self.read(config_path))
+            self.config = defaults.update(self.read(config_path))
         else:
             with open(config, 'w') as f:
                 f.write(yaml.dump(self.defaults), default_flow_style=False)
