@@ -1,0 +1,3 @@
+Yaml >= 3.0
+Jinja >= 2.0
+pyparsing >= 1.5
