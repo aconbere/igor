@@ -1,7 +1,7 @@
 import yaml
 
 class Config(object):
-    config_path "_config.yaml"
+    config_path = "_config.yaml"
 
     defaults = {"summary_length": 0,
                 "output_directory": "~blog",
