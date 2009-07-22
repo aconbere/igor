@@ -13,8 +13,6 @@ class ProjectParser(object):
     def __init__(self, project_path, out_dir=""):
         self.config = Config(path.join(project_path))
 
-        print(out_dir)
-
         if out_dir:
             self.out_dir = out_dir
         elif self.config.get("output_directory"):
@@ -32,14 +30,15 @@ class ProjectParser(object):
     def templates_path(self):
         return path.abspath(path.join(self.project_path, self.template_dir))
 
-    def parse(self, rebuild=False):
-        print("beginning parsing %s" % self.posts_path)
-
+    def prepare_output_directory(self, rebuild=False):
         if path.exists(self.out_dir):
             if rebuild:
                 rmdir(out_dir)
         else:
             makedirs(self.out_dir)
+
+    def parse(self, rebuild=False):
+        print("beginning parsing %s" % self.posts_path)
 
         for (dirpath, dirnames, filenames) in walk(self.posts_path):
             relative_path = path.relpath(dirpath, self.posts_path)
@@ -60,6 +59,7 @@ class ProjectParser(object):
         self.env.globals['config'] = self.config
 
     def write(self):
+        self.prepare_output_directory()
         self.posts.sort(
             lambda x,y: x.published_on > y.published_on)
         self.set_globals()

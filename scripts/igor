@@ -1,24 +1,140 @@
 #!/usr/bin/env python
 import sys
 from os import path
+import optparse
+from optparse import OptionParser
 
 sys.path.append(path.abspath("."))
 
 from igor.project_parser import ProjectParser
 
-usage = """\
-igor <project_directory> <output_directory>
-"""
+version = "1.0"
 
-def main(project_path, out_path = ""):
-    ProjectParser(project_path, out_path).parse().write()
+parser = OptionParser(
+    usage = "igor COMMAND [OPTIONS]",
+    version = version,
+    add_help_option = False,
+    )
+
+parser.add_option(
+    '-h', '--help',            
+    dest='help',               
+    action='store_true',       
+    help='Show help') 
+
+parser.add_option(
+    '-v', '--verbose',
+    dest='verbose',
+    action='count',
+    default=0,
+    help='Give more output')
+
+parser.add_option(
+    '-q', '--quiet',
+    dest='quiet',
+    action='count',
+    default=0,
+    help='Give less output')
+
+parser.add_option(
+    '--log',
+    dest='log',
+    metavar='FILENAME',
+    help='Log file where a complete (maximum verbosity) record will be kept')
+
+
+_commands = {}
+
+class Command(object):
+    name = None
+    usage = None
+
+    def __init__(self):
+        assert self.name
+        self.parser = optparse.OptionParser(
+            usage=self.usage,
+            prog='%s %s' % (sys.argv[0], self.name),
+            version=parser.version)
+        _commands[self.name] = self
+
+    def main(self, complete_args, args, initial_options):
+        options, args = self.parser.parse_args(args)
+        self.run(options, args)
+
+class HelpCommand(Command):
+    name = 'help'
+    usage = '%prog'
+    summary = 'Show available commands'
+
+    def run(self, options, args):
+        if args:
+            command = args[0]
+            if command not in _commands:
+                raise Exception('No command with the name: %s' % command)
+
+            command = _commands[command]
+            command.parser.print_help()
+            return
+
+        parser.print_help()
+
+        print('\nCommands available:')
+        commands = list(set(_commands.values()))
+        commands.sort(key=lambda x: x.name)
+        for command in commands:
+            print '  %s: %s' % (command.name, command.summary)
+
+HelpCommand()
+
+class InitCommand(Command):
+    name = "init"
+    usage = "%prog [OPTIONS] INITIAL_REPOSITORY"
+    summary = "Initialize a directory for use as an Igor project"
+
+    def run(self, options, args):
+        if not args:
+            print(self.usage)
+        directory = args[0]
+        if path.exists(directory):
+            print("Directory %s already exists" % directory)
+        makedirs(path)
+
+InitCommand()
+
+class PublishCommand(Command):
+    name = "publish"
+    usage = "%prog [OPTIONS] PROJECT_DIRECTORY [OUTPUT_DIRECTORY]"
+    summary = "Publish a site given an igor repository"
+    
+    def run(self, options, args):
+        if not args:
+            print(self.usage)
+
+        project_dir = args[0]
+        output_dir = ""
+
+        if len(args) == 2:
+            output_dir  = args[1]
+
+        ProjectParser(project_dir, output_dir).parse().write()
+
+PublishCommand()
+
+
+def main(initial_args = None):
+    if initial_args is None:
+        initial_args = sys.argv[1:]
+    options, args = parser.parse_args(initial_args)
+    if options.help and not args:
+        args = ['help']
+    if not args:
+        parser.error("You must give a command")
+    command = args[0].lower()
+    if command not in _commands:
+        parser.error("No command by the name")
+    command = _commands[command]
+    return command.main(initial_args, args[1:], options)
+        
 
 if __name__ == "__main__":
-    if len(sys.argv) == 3:
-        main(sys.argv[1], sys.argv[2])
-
-    elif len(sys.argv) == 2:
-        main(sys.argv[1])
-
-    else:
-        print(usage)
+    main()
