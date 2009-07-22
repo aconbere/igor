@@ -10,11 +10,14 @@ class ProjectParser(object):
     template_dir = "_templates"
     posts_dir = "_posts"
 
-    def __init__(self, project_path, out_dir=None):
+    def __init__(self, project_path, out_dir=""):
         self.config = Config(path.join(project_path))
-        self.out_dir = path.abspath(out_dir) or self.config.get("output_directory")
 
-        if not out_dir:
+        if out_dir:
+            self.out_dir = path.abspath(out_dir)
+        elif: self.config.get("output_directory"):
+            self.out_dir = self.config.get("output_directory")
+        else:
             raise Exception("output directory required")
 
         self.project_path = path.abspath(project_path)
