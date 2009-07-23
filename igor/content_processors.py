@@ -50,8 +50,14 @@ class TextileProccessor(ContentProcessor):
         return textile.textile(content)
 MarkdownProcessor()
 
-def process(content, extension=""):
+def markup(extension):
+
     if extension in _processors:
-        return _processors[extension].process(content)
+        processor = _processors[extension]
     else:
-        return _processors[".txt"].process(content)
+        processor = _processors[".txt"]
+
+    def process(content):
+        return processor.process(content)
+
+    return process
