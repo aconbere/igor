@@ -1,14 +1,16 @@
-from os import walk, path, makedirs
-from utils import hidden
+from os import walk, path, makedirs, removedirs
+from utils import hidden, compare_post_dates
 from post import HomePage
 from jinja2 import Environment, FileSystemLoader
 from file_parser import FileParser
 from helpers import link_to
 from config import Config
+from shutil import copytree, rmtree
 
 class ProjectParser(object):
     template_dir = "_templates"
     posts_dir = "_posts"
+    media_dir = "_media"
 
     def __init__(self, project_path, out_dir=""):
         self.config = Config(path.join(project_path))
@@ -33,9 +35,20 @@ class ProjectParser(object):
     def prepare_output_directory(self, rebuild=False):
         if path.exists(self.out_dir):
             if rebuild:
-                rmdir(out_dir)
+                rmtree(out_dir)
         else:
             makedirs(self.out_dir)
+
+    def collect_media(self):
+        print("copying media...")
+        media_path = path.join(self.project_path, self.media_dir)
+        out_path = path.join(self.out_dir, "media")
+        try:
+            copytree(media_path, out_path)
+        except OSError:
+            rmtree(out_path)
+            copytree(media_path, out_path)
+            
 
     def parse(self, rebuild=False):
         print("beginning parsing %s" % self.posts_path)
@@ -60,11 +73,14 @@ class ProjectParser(object):
 
     def write(self):
         self.prepare_output_directory()
-        self.posts.sort(
-            lambda x,y: x.published_on > y.published_on)
+        self.posts.sort(compare_post_dates)
+        
         self.set_globals()
 
+        ps = sorted(self.posts, compare_post_dates)
+        print(ps)
         HomePage(self.posts[:10]).write(self.env,
                                        self.out_dir)
         for post in self.posts:
             post.write(self.env, self.out_dir)
+        self.collect_media()

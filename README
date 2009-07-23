@@ -25,12 +25,7 @@ Igor installs a simple command line script to run it
 TODO
 ====
 
-* apply markup to contents of files based on file extensions
-    markup
-    textile
-    restructured text
-
 * write the actual git hook
+
 * atom publishing
-* helpers abound
-* handle media dirs etc.
+* archive links

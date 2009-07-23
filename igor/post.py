@@ -35,6 +35,12 @@ class Page(object):
             f.write(out)
         return self
 
+    def __repr__(self):
+        if self.slug:
+            return "<Post: %s>" % self.slug
+        else:
+            return "<Post: %s>"
+
 class HomePage(Page):
     default_template = "main.html"
 
