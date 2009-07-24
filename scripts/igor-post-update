@@ -1,15 +1,23 @@
 #!/usr/bin/env python
-from subprocess import call
+import sys
+from subprocess import check_call
 from shutil import rmtree
+from os import path
 
 from igor.project_parser import ProjectParser
 
+if len(sys.argv) < 2:
+    print("Needs a repository path")
+    sys.exit(1)
+
+git_repository = sys.argv[1]
+
 tmp_path = "/tmp/igor.git"
-git_repository = ""
-publish_path = "/var/www"
+
+if path.exists(tmp_path):
+    rmtree(tmp_path)
 
 cmd = ["git", "clone", "-q", "--depth", "1", git_repository, tmp_path]
+check_call(cmd)
 
-p = ProjectParser(tmp_path, publish_path).write()
-
-rmtree(tmp_path)
+p = ProjectParser(tmp_path).write()

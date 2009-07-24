@@ -97,7 +97,7 @@ class InitCommand(Command):
                             "_media/js",
                             "_media/img",]
     files = {
-        "config.yaml": """\
+        "_config.yaml": """\
 summary_length: 0 # number of lines to include in a summary, 0 indicates no summary
 publish_directory: "~/blog/" # the path to where you want to output your blog
 blog_uri: "/" # uri to the root of your blog, used to construct links""",
@@ -147,7 +147,9 @@ to start using igor, add any text file to /your/blog/_posts/ or edit this one.""
     </div>
 </body>
 
-</html>"""
+</html>""",
+"_media/css/base.css": "# add css here",
+"_media/js/base.js": "# add js here".
     }
 
     def run(self, options, args):

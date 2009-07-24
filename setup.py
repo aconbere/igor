@@ -6,5 +6,5 @@ setup(name="igor",
       author_email = "aconbere@conbere.org",
       license = "bsd",
       packages=["igor", "igor.git", "igor.templates"],
-      scripts=["scripts/igor"]
+      scripts=["scripts/igor", "scripts/igor-post-update"]
      )
