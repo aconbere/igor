@@ -14,7 +14,7 @@ Run
 
 Igor installs a simple command line script to run it
 
-> igor path/to/git/repo path/to/output/dir
+> igor publish path/to/git/repo path/to/output/dir
 ... beginning parsing path/to/git/repo/_posts
 ... publishing index.html
 ... publishing 2009/01/11/post1/index.html
@@ -25,7 +25,6 @@ Igor installs a simple command line script to run it
 TODO
 ====
 
-* write the actual git hook
-
+* igor init for building out an igor install
 * atom publishing
 * archive links
