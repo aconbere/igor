@@ -2,7 +2,7 @@ import sys
 import os
 sys.path.append(".")
 
-from igor.git_wrapper.ls_tree import ListTree, ListElement
+from igor.git.ls_tree import ListTree, ListElement
 
 def test_list_item_parsing():
     test_element = ListElement("100644", "blob", "ddec4c671efebd5b61b219d2de49c828f6a4d956", "_gitignore")
