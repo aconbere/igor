@@ -1,3 +1,5 @@
+from __future__ import with_statement
+
 from os import walk, path, makedirs, removedirs
 from jinja2 import Environment, FileSystemLoader
 from shutil import copytree, rmtree

@@ -1,3 +1,4 @@
+from __future__ import with_statement
 from os import path, makedirs
 
 def render_template(doc, env, template_path):
