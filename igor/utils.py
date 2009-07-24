@@ -19,8 +19,8 @@ def relpath(longPath, basePath):
        if longPath == basePath:
            return "."
        i = len(basePath)
-       if not basePath.endswith(os.path.sep):
-           i += len(os.path.sep)
+       if not basePath.endswith(path.sep):
+           i += len(path.sep)
        return longPath[i:]
     else:
         return path.relpath(longPath, basePath)
