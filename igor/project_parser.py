@@ -1,86 +1,91 @@
 from os import walk, path, makedirs, removedirs
-from utils import hidden, compare_post_dates
-from post import HomePage
 from jinja2 import Environment, FileSystemLoader
-from file_parser import FileParser
-from helpers import link_to
-from config import Config
 from shutil import copytree, rmtree
+
+from documents import HomePage, Post
+from config import Config
+from utils import hidden
+from publish import publish
+
+from templates.functions import functions
+from templates.filters import filters
 
 class ProjectParser(object):
     template_dir = "_templates"
     posts_dir = "_posts"
     media_dir = "_media"
 
-    def __init__(self, project_path, out_dir=""):
+    def __init__(self, project_path, publish_dir=""):
         self.config = Config(path.join(project_path))
 
-        if out_dir:
-            self.out_dir = out_dir
-        elif self.config.get("output_directory"):
-            self.out_dir = self.config.get("output_directory")
-        else:
+        publish_dir = publish_dir or self.config.get("publish_directory")
+        if not publish_dir:
             raise Exception("output directory required")
 
-        self.out_dir = path.abspath(path.expanduser(self.out_dir))
+        self.publish_dir = path.abspath(path.expanduser(publish_dir))
 
         self.project_path = path.abspath(project_path)
         self.posts_path = path.join(self.project_path, self.posts_dir)
-        self.env = Environment(loader=FileSystemLoader(self.templates_path()))
+        self.templates_path = path.abspath(path.join(self.project_path,
+                                           self.template_dir))
+        self.media_path = path.abspath(path.join(self.project_path,
+                                           self.media_dir))
         self.posts = []
 
-    def templates_path(self):
-        return path.abspath(path.join(self.project_path, self.template_dir))
+    def set_environment(self):
+        self.env = Environment(loader=FileSystemLoader(self.templates_path))
+        [self.env.globals.__setitem__(f.func_name, f) for f in functions]
+        [self.env.filters.__setitem__(f.func_name, f) for f in filters]
+        self.env.globals['posts'] = self.posts
+        self.env.globals['config'] = self.config
 
     def prepare_output_directory(self, rebuild=False):
-        if path.exists(self.out_dir):
+        if path.exists(self.publish_dir):
             if rebuild:
-                rmtree(out_dir)
+                rmtree(publish_dir)
         else:
-            makedirs(self.out_dir)
+            makedirs(self.publish_dir)
 
-    def collect_media(self):
+    def copy_media(self):
         print("copying media...")
         media_path = path.join(self.project_path, self.media_dir)
-        out_path = path.join(self.out_dir, "media")
+        out_path = path.join(self.publish_dir, "media")
         try:
             copytree(media_path, out_path)
         except OSError:
             rmtree(out_path)
             copytree(media_path, out_path)
-            
 
-    def parse(self, rebuild=False):
-        print("beginning parsing %s" % self.posts_path)
+    def collect_post_files(self):
+        """
+        digs through a directory looksing for text files and directories
+        that don't start in . or _
+        """
+        print("Collecting posts...")
+        posts = []
 
         for (dirpath, dirnames, filenames) in walk(self.posts_path):
             relative_path = path.relpath(dirpath, self.posts_path)
             if not (relative_path.startswith("_") or hidden(relative_path)):
                 for filename in filenames:
                     if not (filename.startswith("_") or hidden(filename)):
-                        r = path.join(dirpath, filename)
-                        relative_file_path = path.relpath(r, self.project_path)
+                        file = path.join(self.posts_path, dirpath, filename)
+                        posts.append(file)
+        return posts
 
-                        post = FileParser(self.project_path,
-                                          relative_file_path).parse()
-                        self.posts.append(post)
-        return self
+    def get_posts(self):
+        self.posts = [Post(p, self.project_path) for p in self.collect_post_files()]
+        return self.posts
 
-    def set_globals(self):
-        self.env.globals["link_to"] = link_to
-        self.env.globals['posts'] = self.posts
-        self.env.globals['config'] = self.config
+    def write(self, rebuild=False):
+        self.set_environment()
+        self.get_posts()
+        self.prepare_output_directory(rebuild)
 
-    def write(self):
-        self.prepare_output_directory()
-        self.posts.sort(compare_post_dates)
-        
-        self.set_globals()
-
-        ps = sorted(self.posts, compare_post_dates)
-        print(ps)
-        HomePage(self.posts[:10]).write(self.env,
-                                       self.out_dir)
+        print(self.posts)
         for post in self.posts:
-            post.write(self.env, self.out_dir)
-        self.collect_media()
+            publish(post, self.env, self.publish_dir)
+
+        home_page = HomePage(self.posts)
+        publish(home_page, self.env, self.publish_dir)
+        self.copy_media()

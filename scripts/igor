@@ -7,8 +7,7 @@ from optparse import OptionParser
 sys.path.append(path.abspath("."))
 
 from igor.project_parser import ProjectParser
-
-version = "1.0"
+from igor import version
 
 parser = OptionParser(
     usage = "igor COMMAND [OPTIONS]",
@@ -22,25 +21,25 @@ parser.add_option(
     action='store_true',       
     help='Show help') 
 
-parser.add_option(
-    '-v', '--verbose',
-    dest='verbose',
-    action='count',
-    default=0,
-    help='Give more output')
-
-parser.add_option(
-    '-q', '--quiet',
-    dest='quiet',
-    action='count',
-    default=0,
-    help='Give less output')
-
-parser.add_option(
-    '--log',
-    dest='log',
-    metavar='FILENAME',
-    help='Log file where a complete (maximum verbosity) record will be kept')
+#parser.add_option(
+#    '-v', '--verbose',
+#    dest='verbose',
+#    action='count',
+#    default=0,
+#    help='Give more output')
+#
+#parser.add_option(
+#    '-q', '--quiet',
+#    dest='quiet',
+#    action='count',
+#    default=0,
+#    help='Give less output')
+#
+#parser.add_option(
+#    '--log',
+#    dest='log',
+#    metavar='FILENAME',
+#    help='Log file where a complete (maximum verbosity) record will be kept')
 
 
 _commands = {}
@@ -116,7 +115,7 @@ class PublishCommand(Command):
         if len(args) == 2:
             output_dir  = args[1]
 
-        ProjectParser(project_dir, output_dir).parse().write()
+        ProjectParser(project_dir, output_dir).write()
 
 PublishCommand()
 

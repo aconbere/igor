@@ -5,6 +5,6 @@ setup(name="igor",
       author="Anders Conbere",
       author_email = "aconbere@conbere.org",
       license = "bsd",
-      packages=["igor", "igor.git_wrapper"],
+      packages=["igor", "igor.git", "igor.templates"],
       scripts=["scripts/igor"]
      )

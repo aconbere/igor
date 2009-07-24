@@ -1,0 +1,15 @@
+#!/usr/bin/env python
+from subprocess import call
+from shutil import rmtree
+
+from igor.project_parser import ProjectParser
+
+tmp_path = "/tmp/igor.git"
+git_repository = ""
+publish_path = "/var/www"
+
+cmd = ["git", "clone", "-q", "--depth", "1", git_repository, tmp_path]
+
+p = ProjectParser(tmp_path, publish_path).write()
+
+rmtree(tmp_path)

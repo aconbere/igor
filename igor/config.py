@@ -5,7 +5,7 @@ class Config(object):
     config_path = "_config.yaml"
 
     defaults = {"summary_length": 0,
-                "output_directory": "~blog",
+                "publish_directory": "~blog",
                 "blog_uri": "/"}
 
     def __init__(self, project_path):

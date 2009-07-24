@@ -1,7 +1,11 @@
 from os import path
-from utils import slugify
-from content_processors import markup
+from datetime import datetime
+
 import yaml
+from git.log import Log
+
+from markup import markup
+from utils import slugify, compare_post_dates
 
 documents = {}
 
@@ -13,12 +17,15 @@ class Document(object):
 
         documents[id] = self
 
+    def __repr__(self):
+        return "<%s: %s %s>" % (self.type, self.id, self.ref)
+
 class File(Document):
     _cached_contents = None
 
     def ref_data(self, ref):
         _, filename = path.split(ref)
-        ext = path.splitext(ref)
+        _, ext = path.splitext(ref)
         return (filename, ext)
 
     def contents(self, force=False):
@@ -30,6 +37,7 @@ class File(Document):
 
 class PostParser(object):
     def pop_section(self, lines):
+        lines.reverse()
         section = []
         if lines:
             l = lines.pop()
@@ -38,15 +46,19 @@ class PostParser(object):
                 section.append(l)
                 l = lines.pop()
 
-        return ("\n".join(section).strip(), lines) 
+        lines.reverse()
+        return ("\n".join(section).strip(), lines)
 
     def parse_headers(self, header):
-        return yaml.load(header)
+        headers = yaml.load(header) or {}
+        published_on = headers.get("published_on")
+        if published_on:
+            headers['published_on'] = datetime.strptime(published_on, "%Y-%m-%d")
+        return headers
 
     def parse(self, contents):
         headers = {}
         lines = contents.splitlines()
-        lines.reverse()
 
         top, rest = self.pop_section(lines)
 
@@ -61,29 +73,40 @@ class PostParser(object):
 
         return (headers, title, "\n".join(rest))
 
-    # consider moving this sort of stuff to
-    # a meta data processor
-    def get_published_date(self, data):
-        datestr = data.get("published_on")
-
-        if datestr:
-            return datetime.strptime(datestr, "%Y-%m-%d")
-
-        else:
-            l = Log(self.project_path, self.relative_file_path)
-            headers = l.call().headers
-            return l.call().headers["author"].datetime
 
 class Post(File, PostParser):
-    def __init__(self, ref):
-        self.ref = ref
+    template = "post.html"
+    index = "index.html"
+
+    def __init__(self, ref, project_path="."):
+        self.project_path = path.abspath(project_path)
+        self.ref = path.abspath(ref)
 
         self.filename, self.ext = self.ref_data(self.ref)
-        self.headers, title, body = self.parse(self.contents())
-        self.body = self.markup_content(body)
+        self.headers, title, self.raw_body = self.parse(self.contents())
+        self.body = self.markup_content(self.raw_body)
         self.title = self.headers.get('title') or title
         self.slug = self.headers.get('slug') or slugify(self.title) or slugify(self.filename)
+        self.published_on = self.headers.get('published_on') or self.published_date(self.project_path)
         super(Post, self).__init__(ref, self.slug)
 
     def markup_content(self, content):
         return markup(self.ext)(content)
+
+    # consider moving this sort of stuff to
+    # a meta data processor
+    def published_date(self, project_path=""):
+        project_path = project_path or self.project_path
+        rel_path = path.relpath(self.ref, project_path)
+        l = Log(project_path, rel_path)
+        return l.call().headers['author'].datetime
+
+class HomePage(Document):
+    template = "main.html"
+    index = "index.html"
+
+    def __init__(self, posts):
+        super(HomePage, self).__init__("", "home")
+        self.headers = {}
+        posts.sort(compare_post_dates)
+        self.posts = posts[:10]

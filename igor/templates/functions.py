@@ -1,6 +1,8 @@
 from jinja2 import environmentfunction
 from os import path
 
+functions = []
+
 @environmentfunction
 def link_to(env, slug):
     posts = env.globals.get("posts")
@@ -11,3 +13,4 @@ def link_to(env, slug):
             return path.join(env.globals['config'].get("blog_uri"),
                              f_posts[0].out_file_dir())
     return ""
+functions.append(link_to)
