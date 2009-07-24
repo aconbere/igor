@@ -7,7 +7,7 @@ import yaml
 from git.log import Log
 
 from markup import markup
-from utils import slugify, compare_post_dates
+from utils import slugify, compare_post_dates, relpath
 
 documents = {}
 
@@ -99,7 +99,7 @@ class Post(File, PostParser):
     # a meta data processor
     def published_date(self, project_path=""):
         project_path = project_path or self.project_path
-        rel_path = path.relpath(self.ref, project_path)
+        rel_path = relpath(self.ref, project_path)
         l = Log(project_path, rel_path)
         return l.call().headers['author'].datetime
 

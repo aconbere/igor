@@ -6,7 +6,7 @@ from shutil import copytree, rmtree
 
 from documents import HomePage, Post
 from config import Config
-from utils import hidden
+from utils import hidden, relpath
 from publish import publish
 
 from templates.functions import functions
@@ -67,7 +67,7 @@ class ProjectParser(object):
         posts = []
 
         for (dirpath, dirnames, filenames) in walk(self.posts_path):
-            relative_path = path.relpath(dirpath, self.posts_path)
+            relative_path = relpath(dirpath, self.posts_path)
             if not (relative_path.startswith("_") or hidden(relative_path)):
                 for filename in filenames:
                     if not (filename.startswith("_") or hidden(filename)):
