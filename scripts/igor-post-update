@@ -21,3 +21,4 @@ cmd = ["git", "clone", "-q", "--depth", "1", git_repository, tmp_path]
 check_call(cmd)
 
 p = ProjectParser(tmp_path).write()
+rmtree(tmp_path)

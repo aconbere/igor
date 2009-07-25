@@ -6,7 +6,7 @@ def render_template(doc, env, template_path):
     return template.render(doc=doc, **doc.headers)
 
 def post_directory(post, date_format="%Y/%m/%d"):
-    return post.published_on.strftime(date_format)
+    return path.join(post.published_on.strftime(date_format), post.slug)
 
 def publish(doc, env, publish_dir):
     out = render_template(doc, env, doc.template)
