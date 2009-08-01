@@ -40,8 +40,7 @@ class ProjectParser(object):
         [self.env.filters.__setitem__(f.func_name, f) for f in filters]
         self.env.globals['posts'] = self.posts
         self.env.globals['documents'] = documents
-        self.env.globals['config'] = self.config
-        self.env.globals['blog_title'] = self.config.get('blog_title')
+        self.env.globals.update(self.config)
 
     def prepare_output_directory(self, rebuild=False):
         if path.exists(self.publish_dir):

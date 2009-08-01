@@ -3,28 +3,36 @@ from __future__ import with_statement
 from os import path
 import yaml
 
-class Config(object):
+class Config(dict):
     config_path = "_config.yaml"
 
-    defaults = {"summary_length": 0,
+    defaults = {
+                "blog_title": "Welcome to Igor",
                 "publish_directory": "~/blog",
-                "blog_uri": "/",
-                "blog_title": "Welcome to Igor"}
+                "blog_url": "/",
+                "media_url": "http://media.blog.com",
+                "summary_length": 0,
+               }
 
     def __init__(self, project_path):
         self.project_path = project_path
         config_path = path.join(self.project_path, self.config_path)
-        self.config = self.defaults
+        self.data = self.defaults
 
         if path.exists(config_path):
-            self.config.update(self.read(config_path))
+            self.data.update(self.read(config_path))
         else:
-            with open(self.config_path, 'w') as f:
-                f.write(yaml.dump(self.defaults, default_flow_style=False))
+            self.write(self.config_path)
 
-    def get(self, key):
-        return self.config.get(key)
+        super(Config, self).__init__(self.defaults)
 
     def read(self, filename):
-        with open(filename, 'r') as f:
-            return yaml.load(f.read())
+        try:
+            with open(filename, 'r') as f:
+                return yaml.load(f.read())
+        except IOError:
+            return {}
+
+    def write(self, filename):
+        with open(self.config_path, 'w') as f:
+            f.write(yaml.dump(self.data, default_flow_style=False))
