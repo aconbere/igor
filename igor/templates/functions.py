@@ -7,7 +7,7 @@ functions = []
 def link_to(env, slug):
     docs = env.globals.get("documents")
     if docs:
-        f_docs = [d for d in docs if d.slug == slug]
+        f_docs = [d for k,d in docs.iteritems() if k == slug]
 
         if f_docs:
             return path.join(env.globals['config'].config.get("blog_uri"),
