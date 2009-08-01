@@ -5,12 +5,12 @@ functions = []
 
 @environmentfunction
 def link_to(env, slug):
-    posts = env.globals.get("posts")
-    if posts:
-        f_posts = [p for p in posts if p.slug == slug]
+    docs = env.globals.get("documents")
+    if docs:
+        f_docs = [d for d in docs if d.slug == slug]
 
-        if f_posts:
+        if f_docs:
             return path.join(env.globals['config'].config.get("blog_uri"),
-                             f_posts[0].publish_directory())
+                             f_docs[0].publish_directory())
     return ""
 functions.append(link_to)

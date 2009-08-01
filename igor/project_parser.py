@@ -4,7 +4,7 @@ from os import walk, path, makedirs, removedirs
 from jinja2 import Environment, FileSystemLoader
 from shutil import copytree, rmtree
 
-from documents import HomePage, Post
+from documents import HomePage, Post, documents
 from config import Config
 from utils import hidden, relpath
 from publish import publish
@@ -39,6 +39,7 @@ class ProjectParser(object):
         [self.env.globals.__setitem__(f.func_name, f) for f in functions]
         [self.env.filters.__setitem__(f.func_name, f) for f in filters]
         self.env.globals['posts'] = self.posts
+        self.env.globals['documents'] = documents
         self.env.globals['config'] = self.config
         self.env.globals['blog_title'] = self.config.get('blog_title')
 
@@ -119,12 +120,13 @@ class ProjectParser(object):
 
     def write(self, rebuild=False):
         self.get_posts()
+        home_page = HomePage(self.posts)
+
         self.prepare_output_directory(rebuild)
         self.set_environment()
 
         for post in self.posts:
             publish(post, self.env, self.publish_dir)
 
-        home_page = HomePage(self.posts)
         publish(home_page, self.env, self.publish_dir)
         self.copy_media()
