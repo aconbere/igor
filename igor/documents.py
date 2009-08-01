@@ -115,3 +115,6 @@ class HomePage(Document):
         self.headers = {}
         posts.sort(compare_post_dates)
         self.posts = posts[:10]
+
+    def publish_directory(self, date_format=""):
+        return ""
