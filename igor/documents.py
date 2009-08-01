@@ -103,6 +103,9 @@ class Post(File, PostParser):
         l = Log(project_path, rel_path)
         return l.call().headers['author'].datetime
 
+    def publish_directory(self, date_format = "%Y/%m/%d"):
+        return path.join(self.published_on.strftime(date_format), self.slug)
+
 class HomePage(Document):
     template = "main.html"
     index = "index.html"

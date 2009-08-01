@@ -64,7 +64,7 @@ class ProjectParser(object):
         that don't start in . or _
         """
         print("Collecting posts...")
-        posts = []jjjj
+        posts = []
 
         for (dirpath, dirnames, filenames) in walk(self.posts_path):
             relative_path = relpath(dirpath, self.posts_path)
@@ -120,7 +120,6 @@ class ProjectParser(object):
         self.get_posts()
         self.prepare_output_directory(rebuild)
         self.set_environment()
-        print(self.env.globals.config)
 
         for post in self.posts:
             publish(post, self.env, self.publish_dir)

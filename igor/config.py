@@ -13,7 +13,6 @@ class Config(object):
     def __init__(self, project_path):
         self.project_path = project_path
         config_path = path.join(self.project_path, self.config_path)
-        print(config_path)
         self.config = self.defaults
 
         if path.exists(config_path):
