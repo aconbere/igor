@@ -8,7 +8,8 @@ class Config(object):
 
     defaults = {"summary_length": 0,
                 "publish_directory": "~/blog",
-                "blog_uri": "/"}
+                "blog_uri": "/",
+                "blog_title": "Welcome to Igor"}
 
     def __init__(self, project_path):
         self.project_path = project_path

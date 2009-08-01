@@ -7,10 +7,14 @@ def render_template(doc, env, template_path):
 
 def publish(doc, env, publish_dir):
     out = render_template(doc, env, doc.template)
-    publish_path = path.join(publish_dir, doc.publish_directory())
+    publish_dir = path.join(publish_dir, doc.publish_directory())
 
-    if not path.exists(publish_path):
-        makedirs(publish_path) 
+    if not path.exists(publish_dir):
+        makedirs(publish_dir) 
 
-    with open(path.join(publish_path, doc.index), 'w') as f:
+    publish_path = path.join(publish_dir, doc.index)
+
+    print("... publishing: %s to %s" % (doc.slug, publish_path))
+
+    with open(publish_path, 'w') as f:
         f.write(out)

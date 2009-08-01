@@ -41,6 +41,9 @@ class ProjectParser(object):
         self.env.globals['posts'] = self.posts
         self.env.globals['config'] = self.config
         self.env.globals['blog_title'] = self.config.get('blog_title')
+        print(self.config.get('blog_title'))
+        print(self.config.config.get('blog_title'))
+        print(self.env.globals)
 
     def prepare_output_directory(self, rebuild=False):
         if path.exists(self.publish_dir):

@@ -113,6 +113,7 @@ class HomePage(Document):
     def __init__(self, posts):
         super(HomePage, self).__init__("", "home")
         self.headers = {}
+        self.slug = "home"
         posts.sort(compare_post_dates)
         self.posts = posts[:10]
 
