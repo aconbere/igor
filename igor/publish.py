@@ -2,7 +2,6 @@ from __future__ import with_statement
 from os import path, makedirs
 
 def render_template(doc, env, template_path):
-    print(env.globals)
     template = env.get_template(template_path)
     return template.render(doc=doc, **doc.headers)
 
