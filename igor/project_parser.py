@@ -64,7 +64,7 @@ class ProjectParser(object):
         that don't start in . or _
         """
         print("Collecting posts...")
-        posts = []
+        posts = []jjjj
 
         for (dirpath, dirnames, filenames) in walk(self.posts_path):
             relative_path = relpath(dirpath, self.posts_path)
@@ -79,12 +79,49 @@ class ProjectParser(object):
         self.posts = [Post(p, self.project_path) for p in self.collect_post_files()]
         return self.posts
 
+    def organize_posts_by_date(self, posts):
+        # org[<year>][<month>][<day>]
+        org = {}
+
+        for post in posts:
+            year = post.published_on.year
+            month = post.published_on.month
+            day = post.published_on.day
+
+            if org.has_key(year):
+                if org[year].has_key(month):
+                    if org[year][month].has_key(day):
+                        org[year][month][day].append(post)
+                    else:
+                        org[year][month][day] = []
+                        org[year][month][day].append(post)
+                else:
+                    org[year][month] = {}
+                    org[year][month][day] = []
+                    org[year][month][day].append(post)
+            else:
+                org[year] = {}
+                org[year][month] = {}
+                org[year][month][day] = []
+                org[year][month][day].append(post)
+
+        return org
+
+    def flatten_org(self):
+        docs = []
+        for y, ms in org:
+            for m, ds in m:
+                for d in m:
+                    docs + d
+        return docs
+
+
     def write(self, rebuild=False):
-        self.set_environment()
         self.get_posts()
         self.prepare_output_directory(rebuild)
+        self.set_environment()
+        print(self.env.globals.config)
 
-        print(self.posts)
         for post in self.posts:
             publish(post, self.env, self.publish_dir)
 

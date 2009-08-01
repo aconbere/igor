@@ -25,6 +25,5 @@ Igor installs a simple command line script to run it
 TODO
 ====
 
-* igor init for building out an igor install
 * atom publishing
 * archive links
