@@ -66,6 +66,8 @@ def markup(extension):
     else:
         processor = _processors[".txt"]
 
+    print("... building html with %s" % processor.__clas__.__name__)
+
     def process(content):
         return processor.process(content)
 
