@@ -18,6 +18,15 @@ class MarkupProcesor(object):
     def process(self, content):
         return content
 
+class NullProcessor(MarkupProcesor):
+    extensions = [".txt", ""]
+    description = "Does nothing to the text"
+
+    def process(self, content):
+        return content
+NullProcessor()
+    
+
 class BasicProcessor(MarkupProcesor):
     """
     inserts paragraphs where there were double spaces
@@ -28,7 +37,7 @@ class BasicProcessor(MarkupProcesor):
     def process(self, content):
         parts = content.split("\n\n")
         return "<p>" + "</p><p>".join(parts) + "</p>"
-BasicProcessor()
+#BasicProcessor()
 
 class MarkdownProcessor(MarkupProcesor):
     """
