@@ -53,7 +53,7 @@ class PostParser(object):
 
     def parse_time(self, time):
         try:
-            return datetime.strptime(time, format)
+            return datetime.strptime(time, "%Y-%m-%d")
         except ValueError:
             try:
                 return datetime.strptime(time, "%Y-%m-%d %H:%M:%S")
