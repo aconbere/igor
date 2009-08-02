@@ -51,11 +51,19 @@ class PostParser(object):
         lines.reverse()
         return ("\n".join(section).strip(), lines)
 
+    def parse_time(self, time):
+        try:
+            return datetime.strptime(time, format)
+        except ValueError:
+            try:
+                return datetime.strptime(time, "%Y-%m-%d %H:%M:%S")
+            except ValueError:
+                return datetime.now()
+
     def parse_headers(self, header):
         headers = yaml.load(header) or {}
         published_on = headers.get("published_on")
-        if published_on:
-            headers['published_on'] = datetime.strptime(published_on, "%Y-%m-%d")
+        headers['published_on'] = self.parse_time(published_on)
         return headers
 
     def parse(self, contents):
