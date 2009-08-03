@@ -12,7 +12,6 @@ def join(base, ext):
     else:
         return path.join(base, ext)
 
-
 @environmentfunction
 def link_to(env, slug):
     docs = env.globals.get("documents")
@@ -30,6 +29,7 @@ def now():
     return datetime.now
 functions.append(now)
 
+@environmentfunction
 def tag_uri(env, post):
     blog_url = env.globals.get('blog_url')
     o = urlparse(blog_url)
