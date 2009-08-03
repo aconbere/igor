@@ -138,7 +138,7 @@ class Post(File, PostParser):
 class Collection(Document):
     index = "index.html"
     template = "collection.html"
-    self.slug = "collection"
+    slug = "collection"
     headers = {}
 
     def __init__(self, posts):
@@ -153,9 +153,9 @@ class Collection(Document):
 class HomePage(Collection):
     template = "main.html"
     index = "index.html"
-    self.slug = "home"
+    slug = "home"
 
 class Feed(Document):
     template = "main.atom"
     template = "feed.atom"
-    self.slug = "feed"
+    slug = "feed"
