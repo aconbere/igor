@@ -7,9 +7,11 @@ class Config(dict):
     config_path = "_config.yaml"
 
     defaults = {
+                "author": "",
+                "email": "author@example.com",
                 "blog_title": "Welcome to Igor",
                 "publish_directory": "~/blog",
-                "blog_url": "/",
+                "blog_url": "http://example.com/",
                 "media_url": "http://media.blog.com",
                 "summary_length": 0,
                }

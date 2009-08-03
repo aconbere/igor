@@ -101,14 +101,6 @@ class Post(File, PostParser):
         self.title = self.headers.get('title') or title
         self.slug = self.headers.get('slug') or slugify(self.title) or slugify(self.filename)
         self.published_on = self.headers.get('published_on') or self.published_date(self.project_path)
-        self.uuid = self.headers.get("uuid")
-
-        # we want uuid's for atom files
-        if not self.uuid:
-            self.uuid = uuid4()
-            self.headers['uuid'] = self.uuid
-            self.write()
-
         super(Post, self).__init__(ref, self.slug)
 
     def markup_content(self, content):

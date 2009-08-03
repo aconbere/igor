@@ -2,6 +2,7 @@ from jinja2 import environmentfunction
 from os import path
 from urlparse import urljoin
 from datetime import datetime
+from time import mktime
 
 functions = []
 
@@ -29,3 +30,11 @@ def now():
     return datetime.now
 functions.append(now)
 
+def tag_uri(env, post):
+    blog_url = env.globals.get('blog_url')
+    o = urlparse(blog_url)
+    date = post.published_on.strftime("%Y-%m-%d")
+    timestamp = mktime(post.published_on.timetuple())
+    path = "tag:%s,%s:%s" (o.netloc.replace("#", "/"), date, timestamp)
+    return path
+functions.append(tag_uri)
