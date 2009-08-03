@@ -36,6 +36,6 @@ def tag_uri(env, post):
     o = urlparse(blog_url)
     date = post.published_on.strftime("%Y-%m-%d")
     timestamp = mktime(post.published_on.timetuple())
-    path = "tag:%s,%s:%s" (o.netloc.replace("#", "/"), date, timestamp)
+    path = "tag:%s,%s:%s" % (o.netloc.replace("#", "/"), date, timestamp)
     return path
 functions.append(tag_uri)
