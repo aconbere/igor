@@ -3,6 +3,7 @@ from os import path
 from urlparse import urljoin
 from datetime import datetime
 from time import mktime
+from urlparse import urlparse
 
 functions = []
 
