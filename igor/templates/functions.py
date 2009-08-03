@@ -1,6 +1,7 @@
 from jinja2 import environmentfunction
 from os import path
 from urlparse import urljoin
+from datetime import datetime
 
 functions = []
 
@@ -23,3 +24,8 @@ def link_to(env, slug):
             return join(blog_uri, doc.publish_directory())
     return ""
 functions.append(link_to)
+
+def now():
+    return datetime.now
+functions.append(now)
+
