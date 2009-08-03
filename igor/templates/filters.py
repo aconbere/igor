@@ -1,5 +1,5 @@
 import sys
-sys.append("..")
+sys.path.append("..")
 
 from rfc3339 import rfc3339
 
