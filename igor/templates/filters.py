@@ -1,7 +1,4 @@
-import sys
-sys.path.append("..")
-
-from rfc3339 import rfc3339
+from igor.rfc3339 import rfc3339
 
 filters = []
 
