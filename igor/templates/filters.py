@@ -6,7 +6,7 @@ def date(value, format='%H:%M / %d-%m-%Y'):
     return value.strftime(format)
 filters.append(date)
 
-def rfc3339(value):
+def rfc_date(value):
     return rfc3339(value)
 filters.append(rfc3339)
     
