@@ -155,7 +155,7 @@ class HomePage(Collection):
     index = "index.html"
     slug = "home"
 
-class Feed(Document):
+class Feed(Collection):
     template = "main.atom"
     template = "feed.atom"
     slug = "feed"
