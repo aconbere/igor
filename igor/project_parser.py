@@ -4,7 +4,7 @@ from os import walk, path, makedirs, removedirs
 from jinja2 import Environment, FileSystemLoader
 from shutil import copytree, rmtree
 
-from documents import HomePage, Post, documents
+from documents import HomePage, Post, documents, Feed
 from config import Config
 from utils import hidden, relpath
 from publish import publish
