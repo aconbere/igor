@@ -2,6 +2,7 @@ from __future__ import with_statement
 
 from os import path
 from datetime import datetime
+from uuid import uuid4
 
 import yaml
 from git.log import Log
@@ -89,22 +90,33 @@ class Post(File, PostParser):
     index = "index.html"
 
     def __init__(self, ref, project_path="."):
+        self.summary_cached = None
+
         self.project_path = path.abspath(project_path)
         self.ref = path.abspath(ref)
-
         self.filename, self.ext = self.ref_data(self.ref)
         self.headers, title, self.raw_body = self.parse(self.contents())
         self.body = self.markup_content(self.raw_body)
+
         self.title = self.headers.get('title') or title
         self.slug = self.headers.get('slug') or slugify(self.title) or slugify(self.filename)
         self.published_on = self.headers.get('published_on') or self.published_date(self.project_path)
+        self.uuid = self.headers.get("uuid")
+
+        # we want uuid's for atom files
+        if not self.uuid:
+            self.uuid = uuid4()
+            self.headers['uuid'] = self.uuid
+            self.write()
+
         super(Post, self).__init__(ref, self.slug)
 
     def markup_content(self, content):
         return markup(self.ext)(content)
 
-    # consider moving this sort of stuff to
-    # a meta data processor
+    def summary(self, length):
+        return self.summary_cached or self.markup_content("\n".join(self.raw_body.splitlines()[:length]))
+    
     def published_date(self, project_path=""):
         project_path = project_path or self.project_path
         rel_path = relpath(self.ref, project_path)
@@ -114,16 +126,36 @@ class Post(File, PostParser):
     def publish_directory(self, date_format = "%Y/%m/%d"):
         return path.join(self.published_on.strftime(date_format), self.slug)
 
-class HomePage(Document):
-    template = "main.html"
+    def write(self):
+        with open(self.ref, 'w') as f:
+            header_content = yaml.dump(headers, default_flow_style=False)
+            contents = "%s\n%s\n\n%s" % (header_content,
+                                         self.title,
+                                         self.raw_body)
+            f.write(contents)
+        return self
+
+class Collection(Document):
     index = "index.html"
+    template = "collection.html"
+    self.slug = "collection"
+    headers = {}
 
     def __init__(self, posts):
-        self.slug = "home"
-        super(HomePage, self).__init__("", self.slug)
-        self.headers = {}
+        super(Collection, self).__init__("", self.slug)
+
         posts.sort(compare_post_dates)
-        self.posts = posts[:10]
+        self.posts = posts
 
     def publish_directory(self, date_format=""):
         return ""
+        
+class HomePage(Collection):
+    template = "main.html"
+    index = "index.html"
+    self.slug = "home"
+
+class Feed(Document):
+    template = "main.atom"
+    template = "feed.atom"
+    self.slug = "feed"

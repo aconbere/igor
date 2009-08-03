@@ -119,7 +119,9 @@ class ProjectParser(object):
 
     def write(self, rebuild=False):
         self.get_posts()
+
         home_page = HomePage(self.posts)
+        atom_feed = Feed(self.posts)
 
         self.prepare_output_directory(rebuild)
         self.set_environment()
@@ -128,4 +130,5 @@ class ProjectParser(object):
             publish(post, self.env, self.publish_dir)
 
         publish(home_page, self.env, self.publish_dir)
+        publish(atom_feed, self.env, self.publish_dir)
         self.copy_media()
