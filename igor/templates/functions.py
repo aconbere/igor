@@ -27,7 +27,7 @@ def link_to(env, slug):
 functions.append(link_to)
 
 def now():
-    return datetime.now
+    return datetime.now()
 functions.append(now)
 
 @environmentfunction
