@@ -128,7 +128,7 @@ class Post(File, PostParser):
 
     def write(self):
         with open(self.ref, 'w') as f:
-            header_content = yaml.dump(headers, default_flow_style=False)
+            header_content = yaml.dump(self.headers, default_flow_style=False)
             contents = "%s\n%s\n\n%s" % (header_content,
                                          self.title,
                                          self.raw_body)
