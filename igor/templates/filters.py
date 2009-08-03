@@ -8,5 +8,5 @@ filters.append(date)
 
 def rfc_date(value):
     return rfc3339(value)
-filters.append(rfc3339)
+filters.append(rfc_date)
     
