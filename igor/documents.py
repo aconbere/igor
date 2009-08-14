@@ -175,7 +175,7 @@ class Feed(Collection):
 
 class Archive(Collection):
     template = "archive.html"
-    index = "index.html"
+    index = "arvhive.html"
 
 def write(doc, env, publish_dir):
     out = render_template(doc, env, doc.template)
