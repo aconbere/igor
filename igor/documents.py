@@ -39,7 +39,7 @@ class File(Document):
         else:
             return self._cached_contents
 
-class PostParser(object):
+class HeaderParser(object):
     def pop_section(self, lines):
         lines.reverse()
         section = []
@@ -87,8 +87,20 @@ class PostParser(object):
 
         return (headers, title, "\n".join(rest))
 
+def parse_post(ref, project_path):
+    if is_git_project(project_path):
+        return GitPost(ref, project_path)
+    else:
+        return Post(ref, project_path)
 
-class Post(File, PostParser):
+class Post(File, HeaderParser):
+    """
+    This class represents a document that will become a post in our blog. As
+    such it makes certain assumptions about the kind of file it's been handed.
+    It assumes that the file is formatted such that it has a header, title and
+    body seperated by two newline characters, and at the current point in time
+    it assumes that the file is part of a git project.
+    """
     template = "post.html"
     index = "index.html"
 
@@ -103,7 +115,10 @@ class Post(File, PostParser):
 
         self.title = self.headers.get('title') or title
         self.slug = self.headers.get('slug') or slugify(self.title) or slugify(self.filename)
-        self.published_on = self.headers.get('published_on') or self.published_date(self.project_path)
+        self.git_log = Log(self.project_path, relpath(self.ref, self.project_path)).call()
+        self.published_on = self.headers.get('published_on') or self.published_date()
+
+
         super(Post, self).__init__(ref, self.slug)
 
     def markup_content(self, content):
@@ -112,11 +127,14 @@ class Post(File, PostParser):
     def summary(self, length):
         return self.summary_cached or self.markup_content("\n".join(self.raw_body.splitlines()[:length]))
     
-    def published_date(self, project_path=""):
-        project_path = project_path or self.project_path
-        rel_path = relpath(self.ref, project_path)
-        l = Log(project_path, rel_path)
-        return l.call().headers['author'].datetime
+    def published_date(self):
+        return self.git_log.headers['author'].datetime
+
+    def author(self):
+        return self.git_log.headers['author'].name
+
+    def author_email(self):
+        return self.git_log.headers['author'].email
 
     def publish_directory(self, date_format = "%Y/%m/%d"):
         return path.join(self.published_on.strftime(date_format), self.slug)

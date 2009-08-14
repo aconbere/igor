@@ -7,7 +7,7 @@ class Config(dict):
     config_path = "_config.yaml"
 
     defaults = {
-                "author": "",
+                "author": "author",
                 "email": "author@example.com",
                 "blog_title": "Welcome to Igor",
                 "publish_directory": "~/blog",
@@ -26,7 +26,10 @@ class Config(dict):
         else:
             self.write(self.config_path)
 
-        super(Config, self).__init__(self.defaults)
+        if self.data['publish_directory']:
+            self.data['publish_directory'] = path.abspath(path.expanduser(self.data['publish_directory']))
+
+        super(Config, self).__init__(self.data)
 
     def read(self, filename):
         try:

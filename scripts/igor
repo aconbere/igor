@@ -74,15 +74,20 @@ class InitCommand(Command):
 
     standard_directories = ["_posts",
                             "_templates",
-                            "_media",
-                            "_media/css",
-                            "_media/js",
-                            "_media/img",]
+                            "media",
+                            "media/css",
+                            "media/js",
+                            "media/img",]
     files = {
-        "_config.yaml": """\
-summary_length: 0 # number of lines to include in a summary, 0 indicates no summary
+        "_config.yaml": """
+author: ""
+email: ""
+blog_title: ""
+blog_url: "/" # uri to the root of your blog, used to construct links
+media_url: "/" # uri to static media host
 publish_directory: "~/blog/" # the path to where you want to output your blog
-blog_uri: "/" # uri to the root of your blog, used to construct links""",
+summary_length: 0 # number of lines to include in a summary, 0 indicates no summary
+""",
 
         "_posts/welcome.txt": """\
 Welcome to your Igor blog
@@ -130,8 +135,39 @@ to start using igor, add any text file to /your/blog/_posts/ or edit this one.""
 </body>
 
 </html>""",
-"_media/css/base.css": "# add css here",
-"_media/js/base.js": "# add js here",
+        "_templates/main.atom": """\
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>{{ blog_title }} - Feed</title>
+    <link href="{{ blog_url }}"/>
+
+    <updated>{{ now()|rfc_date }}</updated>
+
+    <author>
+        <name>{{ author }}</name>
+        <email>{{ email }}</email>
+    </author>
+
+    <id>{{ blog_url }}</id>
+    <link rel="self" href="{{ blog_url }}feed.atom" />
+
+    {% for post in doc.posts %}
+    <entry>
+        <title><![CDATA[{{ post.title }}]]></title>
+        <link rel="alternate" href="{{ link_to(post.slug) }}"/>
+        <id>{{ tag_uri(post) }}</id>
+        <updated>{{ post.published_on|rfc_date }}</updated>
+        <published>{{ post.published_on|rfc_date }}</published>
+        <summary type="html"><![CDATA[{{ post.summary(summary_length) }}]]></summary>
+        <content type="html"><![CDATA[{{ post.body }}]]></content>
+    </entry>
+    {% endfor %}
+</feed>
+""",
+        "_templates/archive.html": """\
+""",
+"media/css/base.css": "# add css here",
+"media/js/base.js": "# add js here",
     }
 
     def run(self, options, args):

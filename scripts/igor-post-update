@@ -6,10 +6,6 @@ from os import path
 
 from igor.tools import publish
 
-if len(sys.argv) < 2:
-    print("Needs a repository path")
-    sys.exit(1)
-
 git_repository = sys.argv[1]
 
 tmp_path = "/tmp/igor.git"

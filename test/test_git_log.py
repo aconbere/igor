@@ -36,7 +36,7 @@ def test_log_parsing():
 
 def test_log_retrieval():
     curdir = os.path.abspath(os.curdir)
-    l = Log("examples/basic", "_posts/example.txt")
+    l = Log("examples/init", "_posts/welcome.txt")
     l.call()
     test_headers = {
                     "commit": Ref("commit",
@@ -49,6 +49,6 @@ def test_log_retrieval():
                                        "1000")
                    }
     assert(l.comment)
-    header_keys = ["commit", "committer", "tree", "parent", "author"]
+    header_keys = ["commit", "committer", "tree", "author"]
     assert([k for k,v in l.headers.iteritems()] == header_keys)
     

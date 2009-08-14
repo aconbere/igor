@@ -13,16 +13,19 @@ import template_tools
 
 template_dir = "_templates"
 posts_dir = "_posts"
-media_dir = "_media"
+media_dir = "media"
 
 def prepare_paths(source, destination):
     source = path.abspath(path.expanduser(source))
+    if destination:
+        destination = path.abspath(path.expanduser(destination))
+
     return {
         "source": source,
-        "destination": path.abspath(path.expanduser(destination)),
+        "destination": destination,
         "posts": path.join(source, posts_dir),
         "templates": path.join(source, template_dir),
-        "media": path.join(source, media_dir)
+        "media": path.join(source, media_dir),
         }
 
 def prepare_destination(destination, rebuild=False):
@@ -31,6 +34,7 @@ def prepare_destination(destination, rebuild=False):
     if path.exists(destination):
         if rebuild:
             rmtree(destination)
+            makedirs(destination)
     else:
         makedirs(destination)
 
@@ -41,8 +45,7 @@ def find_files(start_path, extensions=[".txt"]):
     """
     for (dirpath, dirnames, filenames) in walk(start_path):
         relative_path = relpath(dirpath, start_path)
-        print(relative_path)
-        if not (relative_path.startswith("_") or hidden(relative_path)):
+        if not (relative_path.startswith("_") or hidden(relative_path)) and relative_path not in [".", ".."]:
             for filename in filenames:
                 ext, name = path.splitext(filename)
                 if not (filename.startswith("_") or hidden(filename)) and (ext in extensions):
@@ -70,11 +73,14 @@ def copy(source, destination):
         copytree(source, destination)
 
 def copy_supporting_files(start_path, destination):
+    special_directories = [".", ".."]
     for (dirpath, dirnames, filenames) in walk(start_path):
         relative_path = relpath(dirpath, start_path)
-        if not (relative_path.startswith("_") or hidden(relative_path)):
-            print("copying %s" % relative_path)
-            copy(path.join(start_path, dirpath), path.join(destination, dirpath))
+        if not (relative_path.startswith("_") or hidden(relative_path)) and (relative_path not in special_directories):
+            source = path.join(start_path, dirpath)
+            dest = path.join(destination, relative_path)
+            print("copying: %s to: %s" % (source, dest))
+            copy(path.join(start_path, dirpath), path.join(destination, relative_path))
 
 def organize_by_date(posts):
     # org[<year>][<month>][<day>]
@@ -116,9 +122,7 @@ def publish(source, destination):
     config = Config(paths['source'])
     paths['destination'] = paths['destination'] or config.get("publish_directory")
     prepare_destination(paths['destination'])
-
     env = environment(paths['templates'], global_context=config)
-
     posts = find_posts(paths['posts'], markup.extensions())
     docs = posts + [HomePage(posts), Feed(posts), Archive(posts)]
     [write(doc, env, paths['destination']) for doc in docs]
