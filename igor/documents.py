@@ -9,6 +9,7 @@ from git.log import Log
 
 from markup import markup
 from utils import slugify, compare_post_dates, relpath
+from template_tools import render_template
 
 documents = {}
 
@@ -64,7 +65,9 @@ class PostParser(object):
     def parse_headers(self, header):
         headers = yaml.load(header) or {}
         published_on = headers.get("published_on")
-        headers['published_on'] = self.parse_time(published_on)
+
+        if published_on:
+            headers['published_on'] = self.parse_time(published_on)
         return headers
 
     def parse(self, contents):
@@ -151,3 +154,21 @@ class Feed(Collection):
     template = "main.atom"
     index = "feed.atom"
     slug = "feed"
+
+class Archive(Collection):
+    template = "archive.html"
+    index = "index.html"
+
+def write(doc, env, publish_dir):
+    out = render_template(doc, env, doc.template)
+    publish_dir = path.join(publish_dir, doc.publish_directory())
+
+    if not path.exists(publish_dir):
+        makedirs(publish_dir) 
+
+    publish_path = path.join(publish_dir, doc.index)
+
+    print("... publishing: %s to %s" % (doc.slug, publish_path))
+
+    with open(publish_path, 'w') as f:
+        f.write(out)

@@ -8,6 +8,9 @@ sys.path.append(path.abspath("."))
 
 from igor.project_parser import ProjectParser
 from igor import version
+from igor import tools
+from igor.documents import Post, HomePage, Feed, Archive
+from igor import markup
 
 parser = OptionParser(
     usage = "igor COMMAND [OPTIONS]",
@@ -20,27 +23,6 @@ parser.add_option(
     dest='help',               
     action='store_true',       
     help='Show help') 
-
-#parser.add_option(
-#    '-v', '--verbose',
-#    dest='verbose',
-#    action='count',
-#    default=0,
-#    help='Give more output')
-#
-#parser.add_option(
-#    '-q', '--quiet',
-#    dest='quiet',
-#    action='count',
-#    default=0,
-#    help='Give less output')
-#
-#parser.add_option(
-#    '--log',
-#    dest='log',
-#    metavar='FILENAME',
-#    help='Log file where a complete (maximum verbosity) record will be kept')
-
 
 _commands = {}
 
@@ -149,7 +131,7 @@ to start using igor, add any text file to /your/blog/_posts/ or edit this one.""
 
 </html>""",
 "_media/css/base.css": "# add css here",
-"_media/js/base.js": "# add js here".
+"_media/js/base.js": "# add js here",
     }
 
     def run(self, options, args):
@@ -177,19 +159,17 @@ class PublishCommand(Command):
     name = "publish"
     usage = "%prog [OPTIONS] PROJECT_DIRECTORY [OUTPUT_DIRECTORY]"
     summary = "Publish a site given an igor repository"
-    
+
     def run(self, options, args):
         if not args:
             print(self.usage)
 
-        project_dir = args[0]
-        output_dir = ""
+        source = args[0]
+        destination = ""
 
-        if len(args) == 2:
-            output_dir  = args[1]
-
-        ProjectParser(project_dir, output_dir).write()
-
+        if len(args) >= 2:
+            destination  = args[1]
+        tools.publish(source, destination)
 PublishCommand()
 
 
@@ -207,6 +187,5 @@ def main(initial_args = None):
     command = _commands[command]
     return command.main(initial_args, args[1:], options)
         
-
 if __name__ == "__main__":
     main()

@@ -1,4 +1,4 @@
-_processors = {}
+processors = {}
 
 class MarkupProcesor(object):
     """
@@ -12,7 +12,7 @@ class MarkupProcesor(object):
         assert self.description
 
         for extension in self.extensions:
-            _processors[extension] = self
+            processors[extension] = self
 
 
     def process(self, content):
@@ -25,19 +25,6 @@ class NullProcessor(MarkupProcesor):
     def process(self, content):
         return content
 NullProcessor()
-    
-
-class BasicProcessor(MarkupProcesor):
-    """
-    inserts paragraphs where there were double spaces
-    """
-    extensions = [".txt", ""]
-    description = "inserts paragraphs where there were double spaces"
-
-    def process(self, content):
-        parts = content.split("\n\n")
-        return "<p>" + "</p><p>".join(parts) + "</p>"
-#BasicProcessor()
 
 class MarkdownProcessor(MarkupProcesor):
     """
@@ -57,18 +44,18 @@ class TextileProcessor(MarkupProcesor):
     def process(self, content):
         import textile
         return textile.textile(content)
-MarkdownProcessor()
+TextileProcessor()
 
 def markup(extension):
-
-    if extension in _processors:
-        processor = _processors[extension]
+    if extension in processors:
+        processor = processors[extension]
     else:
-        processor = _processors[".txt"]
-
+        processor = processors[".txt"]
 
     def process(content):
-        print("... building html with %s" % processor.__class__.__name__)
         return processor.process(content)
 
     return process
+
+def extensions():
+    return processors.iterkeys()

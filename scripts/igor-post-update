@@ -4,7 +4,7 @@ from subprocess import check_call
 from shutil import rmtree
 from os import path
 
-from igor.project_parser import ProjectParser
+from igor.tools import publish
 
 if len(sys.argv) < 2:
     print("Needs a repository path")
@@ -20,5 +20,5 @@ if path.exists(tmp_path):
 cmd = ["git", "clone", "-q", "--depth", "1", git_repository, tmp_path]
 check_call(cmd)
 
-p = ProjectParser(tmp_path).write()
+publish(tmp_path)
 rmtree(tmp_path)
