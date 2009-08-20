@@ -43,17 +43,17 @@ def find_files(start_path, extensions=[".txt"]):
     digs through a directory looksing for text files and directories
     that don't start in . or _
     """
-    for (dirpath, dirnames, filenames) in walk(start_path):
-        relative_path = relpath(dirpath, start_path)
-        if not (relative_path.startswith("_") or hidden(relative_path)):
-            for filename in filenames:
-                name, ext = path.splitext(filename)
-                if not (filename.startswith("_") or hidden(filename)) and (ext in extensions):
-                    file = path.join(start_path, relative_path, filename)
-                    yield file
+    for file in list_files(start_path):
+        name, ext= path.splitext(file)
+        if not (file.startswith("_") or file.startswith(".")) and (ext in extensions):
+            filename = path.join(start_path, file)
+            yield filename
 
 def find_posts(start_path, prefix="_posts", extensions=[".txt"]):
-    return [Post(p, start_path) for p in find_files(path.join(start_path, prefix), markup.processors.iterkeys())]
+    print("start_path: %s" % start_path)
+    print(list(find_files(path.join(start_path, prefix), extensions)))
+
+    return [Post(p, start_path) for p in find_files(path.join(start_path, prefix), extensions)] 
 
 def environment(templates_path, functions=[], filters=[], global_context={}):
     env = Environment(loader=FileSystemLoader(templates_path))
@@ -121,7 +121,7 @@ def publish(source, destination=""):
     posts_path = path.join(paths['destination'], config.get("posts_prefix"))
     prepare_destination(paths['destination'])
 
-    posts = find_posts(paths['source'], prefix=posts_dir, extensions=markup.extensions())
+    posts = find_posts(paths['source'], prefix=posts_dir, extensions=list(markup.extensions()))
     docs = posts + [HomePage(posts), Feed(posts), Archive(posts)]
 
     context = {'documents': documents}

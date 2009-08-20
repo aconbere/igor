@@ -28,7 +28,7 @@ def test_find_files():
         assert(ext in extensions, "File was not of type found in extensions filter")
 
 def test_find_posts():
-    ps = list(find_posts("./examples/init/_posts", extensions = [".txt", ".mkd"]))
+    ps = list(find_posts("./examples/init/", prefix="_posts", extensions = [".txt", ".mkd"]))
     assert(len(ps) > 1, "No posts returned")
 
 def test_environment():
