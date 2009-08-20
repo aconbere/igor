@@ -30,8 +30,7 @@ def prepare_paths(source, destination=""):
         }
 
 def prepare_destination(destination, rebuild=False):
-    if not destination:
-        raise Exception("Destination directory required")
+    assert(destination, "Destination directory required")
     if path.exists(destination):
         if rebuild:
             rmtree(destination)
@@ -120,9 +119,6 @@ def publish(source, destination=""):
     assert(paths['destination'], "A destination directory is required")
 
     posts_path = path.join(paths['destination'], config.get("posts_prefix"))
-    print(paths['destination'])
-    print(config.get("posts_prefix"))
-    print(posts_path)
     prepare_destination(paths['destination'])
 
     posts = find_posts(paths['source'], prefix=posts_dir, extensions=markup.extensions())

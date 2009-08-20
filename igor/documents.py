@@ -87,6 +87,10 @@ class HeaderParser(object):
 
         return (headers, title, "\n".join(rest))
 
+    def title_from_filename(self, filename):
+        title, ext = path.splitext(filename)
+        return slugify(title)
+
 class Post(File, HeaderParser):
     """
     This class represents a document that will become a post in our blog. As
@@ -108,7 +112,7 @@ class Post(File, HeaderParser):
         self.body = self.markup_content(self.raw_body)
 
         self.title = self.headers.get('title') or title
-        self.slug = self.headers.get('slug') or slugify(self.title) or slugify(self.filename)
+        self.slug = self.headers.get('slug') or slugify(self.title) or self.title_from_filename(self.filename)
         self.git_log = Log(self.project_path, relpath(self.ref, self.project_path)).call()
         self.published_on = self.headers.get('published_on') or self.published_date()
 
@@ -170,6 +174,7 @@ class Feed(Collection):
 class Archive(Collection):
     template = "archive.html"
     index = "arvhive.html"
+    slug = "archive"
 
 def write(doc, env, publish_dir):
     out = render_template(doc, env, doc.template)
