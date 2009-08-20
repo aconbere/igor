@@ -21,9 +21,9 @@ def test_prepare_paths():
 def test_find_files():
     extensions = [".txt", ".mkd"]
     files = list(find_files(path.abspath("./examples/basic/_posts"), extensions=extensions))
-    assert(len(files) > 0, "No files returned")
+    assert(len(files) >= 1, "No files returned")
     for file in files:
-        ext, name = path.splitext(file)
+        name, ext = path.splitext(file)
         assert(path.exists(file), "File does not exist")
         assert(ext in extensions, "File was not of type found in extensions filter")
 

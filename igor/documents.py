@@ -1,6 +1,6 @@
 from __future__ import with_statement
 
-from os import path
+from os import path, makedirs
 from datetime import datetime
 from uuid import uuid4
 
@@ -86,12 +86,6 @@ class HeaderParser(object):
             title = top
 
         return (headers, title, "\n".join(rest))
-
-def parse_post(ref, project_path):
-    if is_git_project(project_path):
-        return GitPost(ref, project_path)
-    else:
-        return Post(ref, project_path)
 
 class Post(File, HeaderParser):
     """
