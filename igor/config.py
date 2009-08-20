@@ -11,6 +11,7 @@ class Config(dict):
                 "email": "author@example.com",
                 "blog_title": "Welcome to Igor",
                 "publish_directory": "~/blog",
+                "posts_prefix": "",
                 "blog_url": "http://example.com/",
                 "media_url": "http://media.blog.com",
                 "summary_length": 0,
@@ -21,10 +22,8 @@ class Config(dict):
         config_path = path.join(self.project_path, self.config_path)
         self.data = self.defaults
 
-        if path.exists(config_path):
-            self.data.update(self.read(config_path))
-        else:
-            self.write(self.config_path)
+        assert(path.exists(config_path), "Config file not found")
+        self.data.update(self.read(config_path))
 
         if self.data['publish_directory']:
             self.data['publish_directory'] = path.abspath(path.expanduser(self.data['publish_directory']))

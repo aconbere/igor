@@ -80,12 +80,13 @@ class InitCommand(Command):
                             "media/img",]
     files = {
         "_config.yaml": """
-author: ""
-email: ""
-blog_title: ""
+author: "Igor"
+email: "igor@examples.com"
+blog_title: "Welcome to Igor"
+publish_directory: "~/blog/" # the path to where you want to output your blog
+posts_prefix: "" # this adds a prefix before the blog output (allows for a seperate site structure in front of the blog)
 blog_url: "/" # uri to the root of your blog, used to construct links
 media_url: "/" # uri to static media host
-publish_directory: "~/blog/" # the path to where you want to output your blog
 summary_length: 0 # number of lines to include in a summary, 0 indicates no summary
 """,
 

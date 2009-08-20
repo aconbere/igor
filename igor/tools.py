@@ -6,7 +6,7 @@ from shutil import copytree, rmtree
 
 from documents import HomePage, Post, Feed, Archive, write
 from config import Config
-from utils import hidden, relpath, list_dirs, list_files
+from utils import hidden, relpath, list_dirs, list_files, copy_tree, copy_file
 import markup
 
 import template_tools
@@ -68,12 +68,12 @@ def config(project_path):
 def copy_supporting_files(start_path, destination):
     for file in list_files(start_path):
         if not (file.startswith("_") or file.startswith(".")):
-            print("copying: %s to: %s" % (source, dest))
+            print("copying: %s to: %s" % (file, destination))
             copy_file(path.join(start_path, file), path.join(destination, file))
 
-    for dir in list_dirs(start_path, hidden=False):
+    for dir in list_dirs(start_path):
         if not (dir.startswith("_") or dir.startswith(".")):
-            print("copying: %s to: %s" % (source, dest))
+            print("copying: %s to: %s" % (dir, destination))
             copy_tree(path.join(start_path, dir), path.join(destination, dir))
 
 def organize_by_date(posts):
@@ -115,9 +115,10 @@ def publish(source, destination):
     paths = prepare_paths(source, destination)
     config = Config(paths['source'])
     paths['destination'] = paths['destination'] or config.get("publish_directory")
+    posts_path = path.join(paths['destination'], config.get("posts_prefix"))
     prepare_destination(paths['destination'])
     env = environment(paths['templates'], global_context=config)
     posts = find_posts(paths['source'], prefix=posts_dir, extensions=markup.extensions())
     docs = posts + [HomePage(posts), Feed(posts), Archive(posts)]
-    [write(doc, env, paths['destination']) for doc in docs]
+    [write(doc, env,posts_path) for doc in docs]
     copy_supporting_files(paths['source'], paths['destination'])

@@ -1,6 +1,6 @@
 from re import sub
-from os import path, listdir
-from shutil import copytree, copy2
+from os import path, listdir, remove
+from shutil import copytree, copy2, rmtree
 
 def slugify(string):
     string = sub('\s+', '_', string)
@@ -37,14 +37,14 @@ def copy_file(source, destination):
     try:
         copy2(source, destination)
     except OSError:
-        
-        
+        remove(destination)
+        copy2(source, destination)
 
 def filter_dirs(source, filter):
-    return [f for f in listdir(dirname) if filter(f)]
+    return [f for f in listdir(source) if filter(f)]
 
 def list_dirs(source):
-    return filter_dirs(source, lambda f: path.isdir(os.path.join(source, f)))
+    return filter_dirs(source, lambda f: path.isdir(path.join(source, f)))
 
 def list_files(source):
-    return filter_dirs(source, lambda f: path.isfile(os.path.join(source, f)))
+    return filter_dirs(source, lambda f: path.isfile(path.join(source, f)))

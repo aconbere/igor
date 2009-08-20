@@ -38,7 +38,7 @@ def test_environment():
     assert(env.globals['a'] == 'b')
 
 def test_config():
-    cfg = config("./examples/basic/_config.yaml")
+    cfg = config("./examples/basic/")
     assert(cfg['publish_directory'])
     assert(cfg['blog_title'])
     assert(cfg['author']) # consider grabbing this from git
