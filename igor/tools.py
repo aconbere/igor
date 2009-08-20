@@ -122,6 +122,7 @@ def publish(source, destination=""):
     posts = find_posts(paths['source'], prefix=posts_dir, extensions=list(markup.extensions()))
     docs = posts + [HomePage(posts), Feed(posts), Archive(posts)]
 
+    print(config)
     context = {'documents': documents}
     context.update(config)
 

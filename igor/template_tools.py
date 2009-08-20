@@ -30,7 +30,7 @@ def link_to(env, slug):
         f_docs = [d for k,d in docs.iteritems() if k == slug]
         if f_docs:
             doc = f_docs[0]
-            blog_url = join(env.globals['blog_url'], env.globals.get('posts_prefix'))
+            blog_url = join(env.globals['blog_url'], env.globals['posts_prefix'])
             return join(blog_url, doc.publish_directory())
     return ""
 functions.append(link_to)
