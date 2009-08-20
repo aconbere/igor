@@ -50,8 +50,6 @@ def find_files(start_path, extensions=[".txt"]):
             yield filename
 
 def find_posts(start_path, prefix="_posts", extensions=[".txt"]):
-    print("start_path: %s" % start_path)
-    print(list(find_files(path.join(start_path, prefix), extensions)))
 
     return [Post(p, start_path) for p in find_files(path.join(start_path, prefix), extensions)] 
 
