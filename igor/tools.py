@@ -4,7 +4,7 @@ from os import walk, path, makedirs, removedirs
 from jinja2 import Environment, FileSystemLoader
 from shutil import copytree, rmtree
 
-from documents import HomePage, Post, Feed, Archive, write
+from documents import HomePage, Post, Feed, Archive, write, documents
 from config import Config
 from utils import hidden, relpath, list_dirs, list_files, copy_tree, copy_file
 import markup
@@ -117,8 +117,10 @@ def publish(source, destination):
     paths['destination'] = paths['destination'] or config.get("publish_directory")
     posts_path = path.join(paths['destination'], config.get("posts_prefix"))
     prepare_destination(paths['destination'])
-    env = environment(paths['templates'], global_context=config)
     posts = find_posts(paths['source'], prefix=posts_dir, extensions=markup.extensions())
     docs = posts + [HomePage(posts), Feed(posts), Archive(posts)]
+    context = {'documents': documents}
+    context.update(config)
+    env = environment(paths['templates'], global_context=context)
     [write(doc, env,posts_path) for doc in docs]
     copy_supporting_files(paths['source'], paths['destination'])
