@@ -24,7 +24,7 @@ class Actor(object):
         _name = Combine(Word(alphanums) + " " + Word(alphanums))
         _email = Suppress("<") + Word(alphanums + "!#$%&'*+-/=?^_`{|}~@.") + Suppress(">")
         _timestamp = Word(nums)
-        _offset = Combine("-" + Word(nums))
+        _offset = Combine(Word("-+") + Word(nums))
         return oneOf(cls.roles) + _name + _email + _timestamp + _offset
 
 class Log(object):

@@ -6,7 +6,7 @@ sys.path.append(".")
 from igor.tools import prepare_paths, find_files, find_posts, environment, config
 
 def test_prepare_paths():
-    paths = prepare_paths("./examples/basic", "/tmp/basic")
+    paths = prepare_paths("./examples/init", "/tmp/init")
 
     assert(paths['source'], "source path was not properly constructed")
     assert(paths['destination'], "destination path was not properly constructed")
@@ -20,7 +20,7 @@ def test_prepare_paths():
 
 def test_find_files():
     extensions = [".txt", ".mkd"]
-    files = list(find_files(path.abspath("./examples/basic/_posts"), extensions=extensions))
+    files = list(find_files(path.abspath("./examples/init/_posts"), extensions=extensions))
     assert(len(files) >= 1, "No files returned")
     for file in files:
         name, ext = path.splitext(file)
@@ -28,17 +28,17 @@ def test_find_files():
         assert(ext in extensions, "File was not of type found in extensions filter")
 
 def test_find_posts():
-    ps = list(find_posts("./examples/basic/_posts", extensions = [".txt", ".mkd"]))
+    ps = list(find_posts("./examples/init/_posts", extensions = [".txt", ".mkd"]))
     assert(len(ps) > 1, "No posts returned")
 
 def test_environment():
-    env = environment("./examples/basic/_templates")
+    env = environment("./examples/init/_templates")
     assert(env)
-    env = environment("./examples/basic/_templates", global_context = {'a': 'b'})
+    env = environment("./examples/init/_templates", global_context = {'a': 'b'})
     assert(env.globals['a'] == 'b')
 
 def test_config():
-    cfg = config("./examples/basic/")
+    cfg = config("./examples/init/")
     assert(cfg['publish_directory'])
     assert(cfg['blog_title'])
     assert(cfg['author']) # consider grabbing this from git
