@@ -15,8 +15,9 @@ template_dir = "_templates"
 posts_dir = "_posts"
 media_dir = "media"
 
-def prepare_paths(source, destination):
+def prepare_paths(source, destination=""):
     source = path.abspath(path.expanduser(source))
+
     if destination:
         destination = path.abspath(path.expanduser(destination))
 
@@ -111,16 +112,25 @@ def flatten_org():
                 docs + d
     return docs
 
-def publish(source, destination):
+def publish(source, destination=""):
     paths = prepare_paths(source, destination)
     config = Config(paths['source'])
+
     paths['destination'] = paths['destination'] or config.get("publish_directory")
+    assert(paths['destination'], "A destination directory is required")
+
     posts_path = path.join(paths['destination'], config.get("posts_prefix"))
+    print(paths['destination'])
+    print(config.get("posts_prefix"))
+    print(posts_path)
     prepare_destination(paths['destination'])
+
     posts = find_posts(paths['source'], prefix=posts_dir, extensions=markup.extensions())
     docs = posts + [HomePage(posts), Feed(posts), Archive(posts)]
+
     context = {'documents': documents}
     context.update(config)
+
     env = environment(paths['templates'], global_context=context)
-    [write(doc, env,posts_path) for doc in docs]
+    [write(doc, env, posts_path) for doc in docs]
     copy_supporting_files(paths['source'], paths['destination'])
