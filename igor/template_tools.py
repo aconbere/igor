@@ -5,6 +5,7 @@ from urlparse import urljoin
 from datetime import datetime
 from time import mktime
 from urlparse import urlparse
+from documents import Document
 
 filters = []
 functions = []
@@ -25,14 +26,14 @@ def join(base, ext):
 
 @environmentfunction
 def link_to(env, slug):
-    docs = env.globals.get("documents")
+    docs = Document.filter(slug)
+
     if docs:
-        f_docs = [d for k,d in docs.iteritems() if k == slug]
-        if f_docs:
-            doc = f_docs[0]
-            blog_path = join(env.globals['posts_prefix'], doc.publish_directory())
-            blog_url = join(env.globals['blog_url'], blog_path)
-            return blog_url
+        doc = docs[0]
+        blog_path = join(env.globals['posts_prefix'], doc.publish_directory())
+        blog_url = join(env.globals['blog_url'], blog_path)
+        return blog_url
+
     return ""
 functions.append(link_to)
 

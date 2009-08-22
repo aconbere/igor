@@ -4,7 +4,7 @@ from os import walk, path, makedirs, removedirs
 from jinja2 import Environment, FileSystemLoader
 from shutil import copytree, rmtree
 
-from documents import HomePage, Post, Feed, Archive, write, documents
+from documents import HomePage, Post, Feed, Archive, Document
 from config import Config
 from utils import hidden, relpath, list_dirs, list_files, copy_tree, copy_file
 import markup
@@ -123,7 +123,7 @@ def publish(source, destination=""):
     docs = posts + [HomePage(posts), Feed(posts), Archive(posts)]
 
     print(config)
-    context = {'documents': documents}
+    context = {'documents': Document.all()}
     context.update(config)
 
     env = environment(paths['templates'], global_context=context)

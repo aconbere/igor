@@ -11,18 +11,40 @@ from markup import markup
 from utils import slugify, compare_post_dates, relpath
 from template_tools import render_template
 
-documents = {}
-
 class Document(object):
+    documents = {}
+
     def __init__(self, ref, id):
         self.type = self.__class__.__name__.lower()
         self.ref = ref
         self.id = id
 
-        documents[id] = self
+        self.documents[id] = self
 
     def __repr__(self):
         return "<%s: %s %s>" % (self.type, self.id, self.ref)
+
+    @classmethod
+    def all(cls):
+        return cls.documents
+
+    @classmethod
+    def filter(cls):
+        return [d for k,d in cls.documents.iteritems() if k == slug]
+
+    def publish(self, env, publish_dir):
+        out = render_template(self, env, self.template)
+        publish_dir = path.join(publish_dir, self.publish_directory())
+
+        if not path.exists(publish_dir):
+            makedirs(publish_dir) 
+
+        publish_path = path.join(publish_dir, self.out_file)
+
+        print("... publishing: %s to %s" % (self.slug, publish_path))
+
+        with open(publish_path, 'w') as f:
+            f.write(out)
 
 class File(Document):
     _cached_contents = None
@@ -100,7 +122,7 @@ class Post(File, HeaderParser):
     it assumes that the file is part of a git project.
     """
     template = "post.html"
-    index = "index.html"
+    out_file = "index.html"
 
     def __init__(self, ref, project_path="."):
         self.summary_cached = None
@@ -147,7 +169,7 @@ class Post(File, HeaderParser):
         return self
 
 class Collection(Document):
-    index = "index.html"
+    out_file = "index.html"
     template = "collection.html"
     slug = "collection"
     headers = {}
@@ -163,29 +185,16 @@ class Collection(Document):
         
 class HomePage(Collection):
     template = "main.html"
-    index = "index.html"
+    out_file = "index.html"
     slug = "home"
 
 class Feed(Collection):
     template = "main.atom"
-    index = "feed.atom"
+    out_file = "feed.atom"
     slug = "feed"
 
 class Archive(Collection):
     template = "archive.html"
-    index = "arvhive.html"
+    out_file = "arvhive.html"
     slug = "archive"
 
-def write(doc, env, publish_dir):
-    out = render_template(doc, env, doc.template)
-    publish_dir = path.join(publish_dir, doc.publish_directory())
-
-    if not path.exists(publish_dir):
-        makedirs(publish_dir) 
-
-    publish_path = path.join(publish_dir, doc.index)
-
-    print("... publishing: %s to %s" % (doc.slug, publish_path))
-
-    with open(publish_path, 'w') as f:
-        f.write(out)
