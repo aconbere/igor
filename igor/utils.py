@@ -2,29 +2,48 @@ from re import sub
 from os import path, listdir, remove
 from shutil import copytree, copy2, rmtree
 
+"""
+Mostly this module includes files for wrapping copying, listing and filtering
+files, these are for the most part just tools included in the standard
+distribution, and non tested.
+
+slugify is a little less like that and is in fact tested.
+"""
+
 def slugify(string):
     string = sub('\s+', '_', string)
     string = sub('[^\w.-]', '', string)
     return string.strip('_.- ').lower()
 
 def hidden(p):
+    """
+    useful when using os.walk and relpath and want to know if a relative path is hidden.
+    """
     return not (p == "." or p == "..") and p.startswith(".")
 
-def compare_post_dates(p1, p2):
-    return cmp(p2.published_on, p1.published_on)
+def relpath(long_path, base_path):
+    """
+    Emulates the bahaviour of path.relpath in py26 for use in cases where
+    py26 or greater is unavailable. See documentation at.
 
-def relpath(longPath, basePath):
+    
+    """
     if not hasattr(path, "relpath"):
-       if not longPath.startswith(basePath):
+
+       if not long_path.startswith(base_path):
            raise RuntimeError("Unexpected arguments")
+
        if longPath == basePath:
            return "."
+
        i = len(basePath)
-       if not basePath.endswith(path.sep):
+
+       if not base_path.endswith(path.sep):
            i += len(path.sep)
-       return longPath[i:]
+
+       return long_path[i:]
     else:
-        return path.relpath(longPath, basePath)
+        return path.relpath(long_path, base_path)
 
 def copy_tree(source, destination):
     try:

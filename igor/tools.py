@@ -11,32 +11,10 @@ import markup
 
 import template_tools
 
-template_dir = "_templates"
-posts_dir = "_posts"
-media_dir = "media"
-
-def prepare_paths(source, destination=""):
-    source = path.abspath(path.expanduser(source))
-
-    if destination:
-        destination = path.abspath(path.expanduser(destination))
-
-    return {
-        "source": source,
-        "destination": destination,
-        "posts": path.join(source, posts_dir),
-        "templates": path.join(source, template_dir),
-        "media": path.join(source, media_dir),
-        }
-
-def prepare_destination(destination, rebuild=False):
-    assert(destination, "Destination directory required")
-    if path.exists(destination):
-        if rebuild:
-            rmtree(destination)
-            makedirs(destination)
-    else:
-        makedirs(destination)
+"""
+This is the main module for igor, and provide the primary higher level tools
+for actually publishing posts.
+"""
 
 def find_files(start_path, extensions=[".txt"]):
     """
@@ -49,19 +27,12 @@ def find_files(start_path, extensions=[".txt"]):
             filename = path.join(start_path, file)
             yield filename
 
-def find_posts(start_path, prefix="_posts", extensions=[".txt"]):
-
-    return [Post(p, start_path) for p in find_files(path.join(start_path, prefix), extensions)] 
-
-def environment(templates_path, functions=[], filters=[], global_context={}):
-    env = Environment(loader=FileSystemLoader(templates_path))
-    [env.globals.__setitem__(f.func_name, f) for f in functions + template_tools.functions]
-    [env.filters.__setitem__(f.func_name, f) for f in filters + template_tools.filters]
-    env.globals.update(global_context)
-    return env
-
-def config(project_path):
-    return Config(project_path)
+def make_posts(start_path, extensions=[".txt"]):
+    """
+    A simple wrapper around find_files, that filters on the markup extensions
+    and returns each file to the Post class
+    """
+    return [Post(p, start_path) for p in find_files(start_path, extensions)] 
 
 def copy_supporting_files(start_path, destination):
     for file in list_files(start_path):
@@ -74,58 +45,20 @@ def copy_supporting_files(start_path, destination):
             print("copying: %s to: %s" % (dir, destination))
             copy_tree(path.join(start_path, dir), path.join(destination, dir))
 
-def organize_by_date(posts):
-    # org[<year>][<month>][<day>]
-    org = {}
-
-    for post in posts:
-        year = post.published_on.year
-        month = post.published_on.month
-        day = post.published_on.day
-
-        if org.has_key(year):
-            if org[year].has_key(month):
-                if org[year][month].has_key(day):
-                    org[year][month][day].append(post)
-                else:
-                    org[year][month][day] = []
-                    org[year][month][day].append(post)
-            else:
-                org[year][month] = {}
-                org[year][month][day] = []
-                org[year][month][day].append(post)
-        else:
-            org[year] = {}
-            org[year][month] = {}
-            org[year][month][day] = []
-            org[year][month][day].append(post)
-    return org
-
-def flatten_org():
-    docs = []
-    for y, ms in org:
-        for m, ds in m:
-            for d in m:
-                docs + d
-    return docs
-
 def publish(source, destination=""):
-    paths = prepare_paths(source, destination)
-    config = Config(paths['source'])
+    """
+    Publishes all the posts found in _posts to destination
+    """
+    config = Config(source, destination)
 
-    paths['destination'] = paths['destination'] or config.get("publish_directory")
-    assert(paths['destination'], "A destination directory is required")
+    posts = make_posts(config.posts_dir, extensions=list(markup.extensions()))
+    HomePage(posts)
+    Feed(posts)
+    Archive(posts)
 
-    posts_path = path.join(paths['destination'], config.get("posts_prefix"))
-    prepare_destination(paths['destination'])
+    context = dict(documents = Document.all(), **config)
 
-    posts = find_posts(paths['source'], prefix=posts_dir, extensions=list(markup.extensions()))
-    docs = posts + [HomePage(posts), Feed(posts), Archive(posts)]
+    publisher = Publisher(config.destination, config.templates_dir, context)
+    [publisher.publish(d) for d in Document.all()]
 
-    print(config)
-    context = {'documents': Document.all()}
-    context.update(config)
-
-    env = environment(paths['templates'], global_context=context)
-    [write(doc, env, posts_path) for doc in docs]
-    copy_supporting_files(paths['source'], paths['destination'])
+    copy_supporting_files(config.source, config.destination)

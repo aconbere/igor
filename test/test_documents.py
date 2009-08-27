@@ -50,3 +50,6 @@ def test_home_page():
     p = Post(file, "./examples/init")
     h = HomePage([p])
     assert(h)
+
+def test_post_compare():
+    assert(False)

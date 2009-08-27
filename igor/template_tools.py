@@ -7,6 +7,11 @@ from time import mktime
 from urlparse import urlparse
 from documents import Document
 
+"""
+template_tools are a selection of filters and functions I found useful to
+inject into the jinja environment global context.
+"""
+
 filters = []
 functions = []
 
@@ -51,6 +56,6 @@ def tag_uri(env, post):
     return path
 functions.append(tag_uri)
 
-def render_template(doc, env, template_path):
+def render_template(env, template_path, context={}):
     template = env.get_template(template_path)
-    return template.render(doc=doc, **doc.headers)
+    return template.render(**context)

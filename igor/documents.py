@@ -32,20 +32,6 @@ class Document(object):
     def filter(cls):
         return [d for k,d in cls.documents.iteritems() if k == slug]
 
-    def publish(self, env, publish_dir):
-        out = render_template(self, env, self.template)
-        publish_dir = path.join(publish_dir, self.publish_directory())
-
-        if not path.exists(publish_dir):
-            makedirs(publish_dir) 
-
-        publish_path = path.join(publish_dir, self.out_file)
-
-        print("... publishing: %s to %s" % (self.slug, publish_path))
-
-        with open(publish_path, 'w') as f:
-            f.write(out)
-
 class File(Document):
     _cached_contents = None
 
@@ -168,6 +154,9 @@ class Post(File, HeaderParser):
             f.write(contents)
         return self
 
+    def __cmp__(self, p2):
+        return cmp(p2.published_on, self.published_on)
+
 class Collection(Document):
     out_file = "index.html"
     template = "collection.html"
@@ -197,4 +186,39 @@ class Archive(Collection):
     template = "archive.html"
     out_file = "arvhive.html"
     slug = "archive"
+
+    def organize_by_date(self, posts):
+        # org[<year>][<month>][<day>]
+        org = {}
+
+        for post in posts:
+            year = post.published_on.year
+            month = post.published_on.month
+            day = post.published_on.day
+
+            if org.has_key(year):
+                if org[year].has_key(month):
+                    if org[year][month].has_key(day):
+                        org[year][month][day].append(post)
+                    else:
+                        org[year][month][day] = []
+                        org[year][month][day].append(post)
+                else:
+                    org[year][month] = {}
+                    org[year][month][day] = []
+                    org[year][month][day].append(post)
+            else:
+                org[year] = {}
+                org[year][month] = {}
+                org[year][month][day] = []
+                org[year][month][day].append(post)
+        return org
+
+    def flatten_org(self):
+        docs = []
+        for y, ms in org:
+            for m, ds in m:
+                for d in m:
+                    docs + d
+        return docs
 
