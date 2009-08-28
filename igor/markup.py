@@ -1,6 +1,6 @@
 processors = {}
 
-class MarkupProcesor(object):
+class MarkupProcessor(object):
     """
     Accepts a block of text as it's input, and applies "render" to it
     """
@@ -18,7 +18,7 @@ class MarkupProcesor(object):
     def process(self, content):
         return content
 
-class NullProcessor(MarkupProcesor):
+class NullProcessor(MarkupProcessor):
     extensions = [".txt", ""]
     description = "Does nothing to the text"
 
@@ -26,7 +26,7 @@ class NullProcessor(MarkupProcesor):
         return content
 NullProcessor()
 
-class MarkdownProcessor(MarkupProcesor):
+class MarkdownProcessor(MarkupProcessor):
     """
     inserts paragraphs where there were double spaces
     """
@@ -38,7 +38,7 @@ class MarkdownProcessor(MarkupProcesor):
         return markdown.markdown(content) 
 MarkdownProcessor()
 
-class TextileProcessor(MarkupProcesor):
+class TextileProcessor(MarkupProcessor):
     extensions = [".textile"]
 
     def process(self, content):

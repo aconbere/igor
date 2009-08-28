@@ -8,8 +8,7 @@ import yaml
 from git.log import Log
 
 from markup import markup
-from utils import slugify, compare_post_dates, relpath
-from template_tools import render_template
+from utils import slugify, relpath
 
 class Document(object):
     documents = {}
@@ -166,7 +165,7 @@ class Collection(Document):
     def __init__(self, posts):
         super(Collection, self).__init__("", self.slug)
 
-        posts.sort(compare_post_dates)
+        posts.sort()
         self.posts = posts
 
     def publish_directory(self, date_format=""):

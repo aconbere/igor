@@ -1,9 +1,8 @@
 from __future__ import with_statement
 
 from os import walk, path, makedirs, removedirs
-from jinja2 import Environment, FileSystemLoader
-from shutil import copytree, rmtree
 
+from shutil import copytree, rmtree
 from documents import HomePage, Post, Feed, Archive, Document
 from config import Config
 from utils import hidden, relpath, list_dirs, list_files, copy_tree, copy_file

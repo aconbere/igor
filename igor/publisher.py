@@ -11,9 +11,9 @@ class Publisher(object):
     The publisher incorperates the instantiation of the tools needed to publish
     documents it's not complicated but useful.
     """
-    def __init__(self, dest, template_dir, context={}):
-        self.destination = destination
-        self.template_dir = templates_dir
+    def __init__(self, dest, templates_dir, context={}):
+        self.destination = dest
+        self.templates_dir = templates_dir
 
     def prepare_dir(self, dir, rebuild=False):
         if path.exists(dir):
@@ -45,7 +45,7 @@ class Publisher(object):
         out = render_template(env, doc.template, context=context)
 
         publish_dir = self.prepare_dir(path.join(self.destination,
-                                                 doc.publish_directory())
+                                                 doc.publish_directory()))
 
         publish_path = path.join(publish_dir, doc.out_file)
 

@@ -40,7 +40,6 @@ def test_post():
     assert(p.filename == "welcome.txt")
     assert(p.ext == ".txt")
     assert(p.title == "Welcome to your Igor blog")
-    print(p.raw_body)
     assert(p.raw_body.startswith("to start using igor"))
     assert(p.ref == file)
     assert(p.published_date())

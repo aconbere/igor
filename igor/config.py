@@ -13,16 +13,15 @@ class Config(dict):
     config_file = "_config.yaml"
 
     defaults = {
-                "author": "author",
-                "email": "author@example.com",
+                "author": "John Doe",
+                "email": "jdoe@example.com",
                 "blog_title": "Welcome to Igor",
                 "publish_directory": "~/blog",
-                "posts_prefix": "",
                 "blog_url": "http://example.com/",
-                "media_url": "http://media.blog.com",
-                "summary_length": 0,
-                "templates_prefix" = "_templates",
-                "posts_prefix" = "_posts",
+                "media_url": "http://media.example.com/",
+                "summary_length": 10,
+                "templates_prefix": "_templates",
+                "posts_prefix": "_posts",
                }
 
     def __init__(self, source, destination):
@@ -32,13 +31,13 @@ class Config(dict):
         self.data.update(self.read(path.join(self.source, self.config_file)))
         self.destination = self.data['publish_directory'] or self.abspath(destination)
         self.data['publish_directory'] = self.destination
-        self.posts_dir = path.join(self.source, self.posts_prefix),
-        self.templates_dir = path.join(self.source, self.templates_prefix),
+        self.posts_dir = path.join(self.source, self.data['posts_prefix']),
+        self.templates_dir = path.join(self.source, self.data['templates_prefix']),
 
         super(Config, self).__init__(self.data)
 
-    def abspath(self, path):
-        return path.abspath(path.expanduser(path))
+    def abspath(self, p):
+        return path.abspath(path.expanduser(p))
 
     def read(self, filename):
         try:

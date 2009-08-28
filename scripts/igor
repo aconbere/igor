@@ -2,17 +2,18 @@
 from __future__ import with_statement
 
 import sys
+import yaml
+
 from os import path, makedirs
-import optparse
 from optparse import OptionParser
 
 sys.path.append(path.abspath("."))
 
-from igor.project_parser import ProjectParser
+from igor.documents import Post, HomePage, Feed, Archive
 from igor import version
 from igor import tools
-from igor.documents import Post, HomePage, Feed, Archive
 from igor import markup
+from igor.config import Config
 
 parser = OptionParser(
     usage = "igor COMMAND [OPTIONS]",
@@ -34,7 +35,7 @@ class Command(object):
 
     def __init__(self):
         assert self.name
-        self.parser = optparse.OptionParser(
+        self.parser = OptionParser(
             usage=self.usage,
             prog='%s %s' % (sys.argv[0], self.name),
             version=parser.version)
@@ -81,17 +82,7 @@ class InitCommand(Command):
                             "media/js",
                             "media/img",]
     files = {
-        "_config.yaml": """
-author: "Igor"
-email: "igor@examples.com"
-blog_title: "Welcome to Igor"
-publish_directory: "~/blog/" # the path to where you want to output your blog
-posts_prefix: "" # this adds a prefix before the blog output (allows for a seperate site structure in front of the blog)
-blog_url: "/" # uri to the root of your blog, used to construct links
-media_url: "/" # uri to static media host
-summary_length: 0 # number of lines to include in a summary, 0 indicates no summary
-""",
-
+        "_config.yaml": yaml.dump(Config.defaults, default_flow_style=False),
         "_posts/welcome.txt": """\
 Welcome to your Igor blog
 
