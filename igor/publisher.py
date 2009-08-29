@@ -5,6 +5,9 @@ from os import path, makedirs
 from jinja2 import Environment, FileSystemLoader
 
 import template_tools
+from template_tools import functions as template_functions,\
+                           filters as template_filters,\
+                           render_template
 
 class Publisher(object):
     """
@@ -14,6 +17,7 @@ class Publisher(object):
     def __init__(self, dest, templates_dir, context={}):
         self.destination = dest
         self.templates_dir = templates_dir
+        self.env = self.environment()
 
     def prepare_dir(self, dir, rebuild=False):
         if path.exists(dir):
@@ -28,9 +32,9 @@ class Publisher(object):
         """
         Instantiates and prepares the jinja environment
         """
-        env = Environment(loader=FileSystemLoader(self.template_dir))
-        [env.globals.__setitem__(f.func_name, f) for f in functions + template_tools.functions]
-        [env.filters.__setitem__(f.func_name, f) for f in filters + template_tools.filters]
+        env = Environment(loader=FileSystemLoader(self.templates_dir))
+        [env.globals.__setitem__(f.func_name, f) for f in functions + template_functions]
+        [env.filters.__setitem__(f.func_name, f) for f in filters + template_filters]
         env.globals.update(context)
         return env
 
@@ -42,14 +46,16 @@ class Publisher(object):
         and should be incorperated into the Publisher.
         """
         context = dict(doc=doc, **doc.headers)
-        out = render_template(env, doc.template, context=context)
+        out = render_template(self.env, doc.template, context=context)
 
         publish_dir = self.prepare_dir(path.join(self.destination,
                                                  doc.publish_directory()))
 
         publish_path = path.join(publish_dir, doc.out_file)
 
-        print("... publishing: %s to %s" % (self.slug, publish_path))
+        print("... publishing: %s to %s" % (doc.slug, publish_path))
 
         with open(publish_path, 'w') as f:
             f.write(out) 
+
+        return self

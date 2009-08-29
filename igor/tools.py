@@ -26,12 +26,13 @@ def find_files(start_path, extensions=[".txt"]):
             filename = path.join(start_path, file)
             yield filename
 
-def make_posts(start_path, extensions=[".txt"]):
+def make_posts(start_path, prefix, extensions=[".txt"]):
     """
     A simple wrapper around find_files, that filters on the markup extensions
     and returns each file to the Post class
     """
-    return [Post(p, start_path) for p in find_files(start_path, extensions)] 
+    posts_path = path.join(start_path, prefix)
+    return [Post(p, start_path) for p in find_files(posts_path, extensions)] 
 
 def copy_supporting_files(start_path, destination):
     for file in list_files(start_path):
@@ -50,10 +51,10 @@ def publish(source, destination=""):
     """
     config = Config(source, destination)
 
-    posts = make_posts(config.posts_dir, extensions=list(markup.extensions()))
-    HomePage(posts)
-    Feed(posts)
-    Archive(posts)
+    posts = make_posts(config.source, config.posts_prefix,
+                       extensions=list(markup.extensions()))
+
+    HomePage(posts), Feed(posts), Archive(posts)
 
     context = dict(documents = Document.all(), **config)
 

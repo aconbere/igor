@@ -15,9 +15,10 @@ def test_find_files():
         assert(ext in extensions)
 
 def test_make_posts():
-    ps = list(make_posts("./examples/init/_posts/",
+    ps = list(make_posts("./examples/init/",
+              "_posts",
               extensions = [".txt", ".mkd"]))
-    assert(len(ps) > 1)
+    assert(len(ps) >= 1)
 
 def test_publish():
     assert(False)
