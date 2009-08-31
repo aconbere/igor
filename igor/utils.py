@@ -33,7 +33,7 @@ def relpath(long_path, base_path):
        if not long_path.startswith(base_path):
            raise RuntimeError("Unexpected arguments")
 
-       if longPath == basePath:
+       if long_path == base_path:
            return "."
 
        i = len(basePath)
