@@ -50,5 +50,4 @@ And you could run this script yourself every time your make an update, and eithe
 
 ##TODO##
 
-* atom publishing
 * archive links
