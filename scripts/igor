@@ -174,6 +174,7 @@ to start using igor, add any text file to /your/blog/_posts/ or edit this one.""
             print("Directory %s already exists" % out_path)
             sys.exit(1)
 
+        print("Initializing new igor project: %s" % out_path)
         makedirs(out_path)
 
         for directory in self.standard_directories:
