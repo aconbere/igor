@@ -1,7 +1,6 @@
-Igor is a static blog generator akin to Jekyll [1], at it's essence is a script that runs against a given git repository and outpus a nice directory of html files.
+Igor is a static blog generator akin to Jekyll , at it's essence is a script that runs against a given git repository and outpus a nice directory of html files.
 
-Install
-=======
+##Install##
 
 To install igor simply run
 
@@ -9,21 +8,47 @@ To install igor simply run
 > cd igor
 > sudo python setup.py install
 
-Run
-===
+##Overview##
 
-Igor installs a simple command line script to run it
+Igor is a publishing tool, it set's up a couple of simple directories. A simple config file and some templates to generate the output html... and let's you rip!
 
-> igor publish path/to/git/repo path/to/output/dir
-... beginning parsing path/to/git/repo/_posts
-... publishing index.html
-... publishing 2009/01/11/post1/index.html
-... publishing 2009/07/21/post2/index.html
+By default it expects that you'll be publishing plain text files into a directory _posts that you'll be pushing the output of those text files (with some or no markup applied) into templates defined in _templates/ And that you'll eventually be publishing each of those documents as blog posts in a directory of your choosing.
 
-* NOTE this is a pretty dumb script right now and will delete anything you point the outdir to, so be careful
+All the output is set up so that any web server should be able to easily render your blog to readers as static content. And that the urls will be web friendly. Features include generating an atom feed of the posts as well as an archive. The goal is to provide a simple set of tools for parsing text files, converting them to posts and acting on them in sensible fashions.
 
-TODO
-====
+##Starting Out##
+
+Getting starting with Igor is pretty easy.
+
+    > igor init path/to/new/blog
+    ... Initializing new igor project: /path/to/new/blog
+
+This will create a new directory in the path that you give. In it you'll find a couple files and directories. Right off the bat you should go ahead and open up the _config.yaml file.
+
+_config.yaml is both a location for some specific variables used by igor when publishing your blog. As well as a location for any other global variables you want to use in your templates.
+
+_posts/ is a location for every post you want to publish. Simply start new file
+
+    > vim _posts/my_file.mkd
+
+Start the file with a title add two newlines and then start writing and publishing is equally easy.
+
+    > igor publish . /path/to/output
+
+
+##Making this easy##
+
+Igor installs a simple command line script to publish an igor project
+
+    > igor publish path/to/git/repo path/to/output/dir
+    ... beginning parsing path/to/git/repo/_posts
+    ... publishing index.html
+    ... publishing 2009/01/11/post1/index.html
+    ... publishing 2009/07/21/post2/index.html
+
+And you could run this script yourself every time your make an update, and either keep this on your server, or copy the output to the server. But that seems like a lot of work, so igor also provides a simple git hook igor-post-update. And all you need to do get this to be automated is to setup a bare git repository, install the igor-post-update script as the repositories post-update hook. And then push an igor project to it.
+
+##TODO##
 
 * atom publishing
 * archive links
