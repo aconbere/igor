@@ -17,34 +17,28 @@ class Document(object):
         self.type = self.__class__.__name__.lower()
         self.ref = ref
         self.id = id
-
         self.documents[id] = self
 
     def __repr__(self):
         return "<%s: %s %s>" % (self.type, self.id, self.ref)
 
     @classmethod
+    def clear(cls):
+        cls.documents = {}
+        return cls.all()
+
+    @classmethod
     def all(cls):
         return cls.documents
 
     @classmethod
-    def filter(cls):
+    def list(cls):
+        return cls.documents.itervalues()
+
+    @classmethod
+    def filter(cls, slug):
         return [d for k,d in cls.documents.iteritems() if k == slug]
 
-class File(Document):
-    _cached_contents = None
-
-    def ref_data(self, ref):
-        _, filename = path.split(ref)
-        _, ext = path.splitext(ref)
-        return (filename, ext)
-
-    def contents(self, force=False):
-        if not self._cached_contents or force:
-            with open(self.ref, 'r') as f:
-                return f.read()
-        else:
-            return self._cached_contents
 
 class HeaderParser(object):
     def pop_section(self, lines):
@@ -94,11 +88,7 @@ class HeaderParser(object):
 
         return (headers, title, "\n".join(rest))
 
-    def title_from_filename(self, filename):
-        title, ext = path.splitext(filename)
-        return slugify(title)
-
-class Post(File, HeaderParser):
+class Post(Document):
     """
     This class represents a document that will become a post in our blog. As
     such it makes certain assumptions about the kind of file it's been handed.
@@ -108,6 +98,7 @@ class Post(File, HeaderParser):
     """
     template = "post.html"
     out_file = "index.html"
+    _cached_contents = None
 
     def __init__(self, ref, project_path="."):
         self.summary_cached = None
@@ -115,22 +106,37 @@ class Post(File, HeaderParser):
         self.project_path = path.abspath(project_path)
         self.ref = path.abspath(ref)
         self.filename, self.ext = self.ref_data(self.ref)
-        self.headers, title, self.raw_body = self.parse(self.contents())
+        self.headers, title, self.raw_body = HeaderParser().parse(self.contents())
         self.body = self.markup_content(self.raw_body)
 
         self.title = self.headers.get('title') or title
         self.slug = self.headers.get('slug') or slugify(self.title) or self.title_from_filename(self.filename)
         self.git_log = Log(self.project_path, relpath(self.ref, self.project_path)).call()
         self.published_on = self.headers.get('published_on') or self.published_date()
-
-
         super(Post, self).__init__(ref, self.slug)
+
+
+    def ref_data(self, ref):
+        _, filename = path.split(ref)
+        _, ext = path.splitext(ref)
+        return (filename, ext)
+
+    def contents(self, force=False):
+        if not self._cached_contents or force:
+            with open(self.ref, 'r') as f:
+                return f.read()
+        else:
+            return self._cached_contents
 
     def markup_content(self, content):
         return markup(self.ext)(content)
 
     def summary(self, length):
         return self.summary_cached or self.markup_content("\n".join(self.raw_body.splitlines()[:length]))
+
+    def title_from_filename(self, filename):
+        title, ext = path.splitext(filename)
+        return slugify(title)
     
     def published_date(self):
         return self.git_log.headers['author'].datetime
@@ -155,36 +161,48 @@ class Post(File, HeaderParser):
 
     def __cmp__(self, p2):
         return cmp(p2.published_on, self.published_on)
-
-class Collection(Document):
-    out_file = "index.html"
-    template = "collection.html"
-    slug = "collection"
-    headers = {}
-
-    def __init__(self, posts):
-        super(Collection, self).__init__("", self.slug)
-
-        posts.sort()
-        self.posts = posts
-
-    def publish_directory(self, date_format=""):
-        return ""
         
-class HomePage(Collection):
+class HomePage(Document):
     template = "main.html"
     out_file = "index.html"
     slug = "home"
 
-class Feed(Collection):
+    def __init__(self, posts):
+        super(HomePage, self).__init__("", self.slug)
+        posts.sort()
+        self.posts = posts
+        self.headers = {}
+
+    def publish_directory(self):
+        return ""
+
+class Feed(Document):
     template = "main.atom"
     out_file = "feed.atom"
     slug = "feed"
 
-class Archive(Collection):
+    def __init__(self, posts):
+        super(Feed, self).__init__("", self.slug)
+        posts.sort()
+        self.posts = posts
+        self.headers = {}
+
+    def publish_directory(self):
+        return ""
+
+class Archive(Document):
     template = "archive.html"
     out_file = "arvhive.html"
     slug = "archive"
+
+    def __init__(self, posts):
+        super(Archive, self).__init__("", self.slug)
+        posts.sort()
+        self.posts = posts
+        self.headers = {}
+
+    def publish_directory(self):
+        return ""
 
     def organize_by_date(self, posts):
         # org[<year>][<month>][<day>]

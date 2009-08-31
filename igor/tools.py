@@ -5,6 +5,7 @@ from os import walk, path, makedirs, removedirs
 from shutil import copytree, rmtree
 from documents import HomePage, Post, Feed, Archive, Document
 from config import Config
+from publisher import Publisher
 from utils import hidden, relpath, list_dirs, list_files, copy_tree, copy_file
 import markup
 
@@ -51,14 +52,16 @@ def publish(source, destination=""):
     """
     config = Config(source, destination)
 
-    posts = make_posts(config.source, config.posts_prefix,
+    posts = make_posts(config.source, config['posts_prefix'],
                        extensions=list(markup.extensions()))
 
     HomePage(posts), Feed(posts), Archive(posts)
 
-    context = dict(documents = Document.all(), **config)
+    context = dict(documents = Document.list(), **config)
 
-    publisher = Publisher(config.destination, config.templates_dir, context)
-    [publisher.publish(d) for d in Document.all()]
+    publisher = Publisher(config.publish_directory, config.templates_dir, context)
+    print(list(Document.list()))
+    [publisher.publish(d) for d in Document.list()]
 
     copy_supporting_files(config.source, config.destination)
+    return True

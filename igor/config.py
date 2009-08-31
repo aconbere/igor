@@ -16,7 +16,8 @@ class Config(dict):
                 "author": "John Doe",
                 "email": "jdoe@example.com",
                 "blog_title": "Welcome to Igor",
-                "publish_directory": "~/blog",
+                "destination": "/tmp/igor",
+                "publish_prefix": "",
                 "blog_url": "http://example.com/",
                 "media_url": "http://media.example.com/",
                 "summary_length": 10,
@@ -29,8 +30,17 @@ class Config(dict):
 
         self.source = self.abspath(source)
         self.data.update(self.read(path.join(self.source, self.config_file)))
-        self.destination = self.data['publish_directory'] or self.abspath(destination)
-        self.data['publish_directory'] = self.destination
+
+        if destination:
+            self.destination = self.abspath(destination)
+        elif self.data['destination']:
+            self.destination = self.abspath(self.data['destination'])
+        else:
+            self.destination = self.abspath("")
+        self.data['destination'] = self.destination
+
+        self.publish_directory = path.join(self.destination,
+                                           self.data['publish_prefix'])
         self.posts_dir = path.join(self.source, self.data['posts_prefix']),
         self.templates_dir = path.join(self.source, self.data['templates_prefix']),
 

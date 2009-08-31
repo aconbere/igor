@@ -17,7 +17,8 @@ class Publisher(object):
     def __init__(self, dest, templates_dir, context={}):
         self.destination = dest
         self.templates_dir = templates_dir
-        self.env = self.environment()
+        self.context = context
+        self.env = self.environment(context=context)
 
     def prepare_dir(self, dir, rebuild=False):
         if path.exists(dir):

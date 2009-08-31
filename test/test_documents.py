@@ -3,7 +3,7 @@ import os
 
 sys.path.append(".")
 
-from igor.documents import Document, File, Post, HomePage, HeaderParser
+from igor.documents import Document, Post, HomePage, HeaderParser
 from igor.utils import slugify
 
 def test_document():
@@ -12,14 +12,11 @@ def test_document():
     assert(d.id == 10)
     assert(d.type == "document")
 
-def test_file():
-    f = File("./examples/init/_posts/welcome.txt", 10)
-    filename, ext = f.ref_data(f.ref)
-    assert(filename == "welcome.txt")
-    assert(ext == ".txt")
-
-    contents = f.contents()
-    assert(len(contents) > 0)
+def test_document_refs():
+    d = Document("ref", 10)
+    f = "./examples/init/_posts/welcome.txt"
+    p = Post(f, "./examples/init")
+    assert(p in Document.list())
 
 def test_post_parser_pop_section():
     p = HeaderParser()
@@ -35,17 +32,19 @@ def test_post_parser_parse():
     assert(body == "and content")
 
 def test_post():
-    file = "./examples/init/_posts/welcome.txt"
-    p = Post(file, "./examples/init")
+    f = "./examples/init/_posts/welcome.txt"
+    p = Post(f, "./examples/init")
     assert(p.filename == "welcome.txt")
     assert(p.ext == ".txt")
     assert(p.title == "Welcome to your Igor blog")
     assert(p.raw_body.startswith("to start using igor"))
-    assert(p.ref == file)
+    assert(p.ref == f)
     assert(p.published_date())
+    assert(isinstance(p.headers, dict))
 
 def test_home_page():
-    file = "./examples/init/_posts/welcome.txt"
-    p = Post(file, "./examples/init")
+    f = "./examples/init/_posts/welcome.txt"
+    p = Post(f, "./examples/init")
     h = HomePage([p])
     assert(h)
+    assert(isinstance(h.headers, dict))
