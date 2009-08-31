@@ -35,7 +35,7 @@ def link_to(env, slug):
 
     if docs:
         doc = docs[0]
-        blog_path = join(env.globals['posts_prefix'], doc.publish_directory())
+        blog_path = join(env.globals['publish_prefix'], doc.publish_directory())
         blog_url = join(env.globals['blog_url'], blog_path)
         return blog_url
 
