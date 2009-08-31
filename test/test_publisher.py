@@ -11,7 +11,7 @@ test_template_dir = "./examples/init/_templates"
 test_context = {} 
 
 def test_publisher():
-    p = Publisher(test_dest, test_template_dir, test_context)
     post = Post("./examples/init/_posts/welcome.txt", "./examples/init")
-    p.publish(post)
+    p = Publisher([post], test_dest, test_template_dir, test_context)
+    assert(p.publish())
     assert(path.exists(path.join(test_dest, post.publish_directory())))

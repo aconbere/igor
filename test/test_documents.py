@@ -3,20 +3,19 @@ import os
 
 sys.path.append(".")
 
-from igor.documents import Document, Post, HomePage, HeaderParser
+from igor.documents import Document, Post, HomePage, HeaderParser,\
+                           find_document
 from igor.utils import slugify
 
 def test_document():
-    d = Document("ref", 10)
-    assert(d.ref == "ref")
-    assert(d.id == 10)
+    d = Document("slug")
+    assert(d.slug == "slug")
     assert(d.type == "document")
 
-def test_document_refs():
-    d = Document("ref", 10)
+def test_find_document():
     f = "./examples/init/_posts/welcome.txt"
     p = Post(f, "./examples/init")
-    assert(p in Document.list())
+    find_document([p], "welcome")
 
 def test_post_parser_pop_section():
     p = HeaderParser()
@@ -38,7 +37,7 @@ def test_post():
     assert(p.ext == ".txt")
     assert(p.title == "Welcome to your Igor blog")
     assert(p.raw_body.startswith("to start using igor"))
-    assert(p.ref == f)
+    assert(p.ref == os.path.abspath(f))
     assert(p.published_date())
     assert(isinstance(p.headers, dict))
 

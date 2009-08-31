@@ -5,7 +5,7 @@ from urlparse import urljoin
 from datetime import datetime
 from time import mktime
 from urlparse import urlparse
-from documents import Document
+from documents import find_document
 
 """
 template_tools are a selection of filters and functions I found useful to
@@ -31,15 +31,15 @@ def join(base, ext):
 
 @environmentfunction
 def link_to(env, slug):
-    docs = Document.filter(slug)
+    doc = find_document(env.globals['documents'], slug)
 
-    if docs:
-        doc = docs[0]
+    if doc:
         blog_path = join(env.globals['publish_prefix'], doc.publish_directory())
         blog_url = join(env.globals['blog_url'], blog_path)
         return blog_url
 
-    return ""
+    else:
+        return ""
 functions.append(link_to)
 
 def now():

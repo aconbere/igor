@@ -14,11 +14,12 @@ class Publisher(object):
     The publisher incorperates the instantiation of the tools needed to publish
     documents it's not complicated but useful.
     """
-    def __init__(self, dest, templates_dir, context={}):
-        self.destination = dest
+    def __init__(self, documents, destination, templates_dir, context={}):
+        self.documents = documents
+        self.destination = destination
         self.templates_dir = templates_dir
-        self.context = context
-        self.env = self.environment(context=context)
+        self.context = dict(documents = documents, **context)
+        self.env = self.environment(context=self.context)
 
     def prepare_dir(self, dir, rebuild=False):
         if path.exists(dir):
@@ -39,7 +40,7 @@ class Publisher(object):
         env.globals.update(context)
         return env
 
-    def publish(self, doc):
+    def publish_document(self, doc):
         """
         Write a document (of type Document) out to file.
 
@@ -59,4 +60,7 @@ class Publisher(object):
         with open(publish_path, 'w') as f:
             f.write(out) 
 
-        return self
+        return doc
+
+    def publish(self):
+        return [self.publish_document(doc) for doc in self.documents]

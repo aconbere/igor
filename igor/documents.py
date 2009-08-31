@@ -10,35 +10,25 @@ from git.log import Log
 from markup import markup
 from utils import slugify, relpath
 
-class Document(object):
-    documents = {}
+def find_document(docs, slug):
+    for d in docs:
+        if d.slug == slug:
+            return d
 
-    def __init__(self, ref, id):
+class Document(object):
+    def __init__(self, slug):
         self.type = self.__class__.__name__.lower()
-        self.ref = ref
-        self.id = id
-        self.documents[id] = self
+        self.slug = slug
+        self.headers = {}
+
+    def publish_directory(self):
+        """
+        by default publish to the destination root
+        """
+        return ""
 
     def __repr__(self):
         return "<%s: %s %s>" % (self.type, self.id, self.ref)
-
-    @classmethod
-    def clear(cls):
-        cls.documents = {}
-        return cls.all()
-
-    @classmethod
-    def all(cls):
-        return cls.documents
-
-    @classmethod
-    def list(cls):
-        return cls.documents.itervalues()
-
-    @classmethod
-    def filter(cls, slug):
-        return [d for k,d in cls.documents.iteritems() if k == slug]
-
 
 class HeaderParser(object):
     def pop_section(self, lines):
@@ -113,8 +103,7 @@ class Post(Document):
         self.slug = self.headers.get('slug') or slugify(self.title) or self.title_from_filename(self.filename)
         self.git_log = Log(self.project_path, relpath(self.ref, self.project_path)).call()
         self.published_on = self.headers.get('published_on') or self.published_date()
-        super(Post, self).__init__(ref, self.slug)
-
+        super(Post, self).__init__(self.slug)
 
     def ref_data(self, ref):
         _, filename = path.split(ref)
@@ -161,48 +150,28 @@ class Post(Document):
 
     def __cmp__(self, p2):
         return cmp(p2.published_on, self.published_on)
+
+class Collection(Document):
+    def __init__(self, posts):
+        posts.sort()
+        self.posts = posts
+        self.headers = {}
+        super(Collection, self).__init__(self.slug)
         
-class HomePage(Document):
+class HomePage(Collection):
     template = "main.html"
     out_file = "index.html"
     slug = "home"
 
-    def __init__(self, posts):
-        super(HomePage, self).__init__("", self.slug)
-        posts.sort()
-        self.posts = posts
-        self.headers = {}
-
-    def publish_directory(self):
-        return ""
-
-class Feed(Document):
+class Feed(Collection):
     template = "main.atom"
     out_file = "feed.atom"
     slug = "feed"
 
-    def __init__(self, posts):
-        super(Feed, self).__init__("", self.slug)
-        posts.sort()
-        self.posts = posts
-        self.headers = {}
-
-    def publish_directory(self):
-        return ""
-
-class Archive(Document):
+class Archive(Collection):
     template = "archive.html"
     out_file = "arvhive.html"
     slug = "archive"
-
-    def __init__(self, posts):
-        super(Archive, self).__init__("", self.slug)
-        posts.sort()
-        self.posts = posts
-        self.headers = {}
-
-    def publish_directory(self):
-        return ""
 
     def organize_by_date(self, posts):
         # org[<year>][<month>][<day>]
@@ -238,4 +207,3 @@ class Archive(Document):
                 for d in m:
                     docs + d
         return docs
-

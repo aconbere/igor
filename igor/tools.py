@@ -55,13 +55,9 @@ def publish(source, destination=""):
     posts = make_posts(config.source, config['posts_prefix'],
                        extensions=list(markup.extensions()))
 
-    HomePage(posts), Feed(posts), Archive(posts)
+    documents = posts + [HomePage(posts), Feed(posts), Archive(posts)]
 
-    context = dict(documents = Document.list(), **config)
-
-    publisher = Publisher(config.publish_directory, config.templates_dir, context)
-    print(list(Document.list()))
-    [publisher.publish(d) for d in Document.list()]
-
+    publisher = Publisher(documents, config.publish_directory, config.templates_dir, config)
+    publisher.publish()
     copy_supporting_files(config.source, config.destination)
     return True

@@ -24,7 +24,6 @@ def test_make_posts():
 def test_publish():
     from shutil import rmtree
     rmtree("/tmp/igor.test")
-    Document.clear()
     published = publish("./examples/init", "/tmp/igor.test")
     assert(published)
     assert(path.exists("/tmp/igor.test"))
