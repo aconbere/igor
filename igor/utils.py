@@ -36,7 +36,7 @@ def relpath(long_path, base_path):
        if long_path == base_path:
            return "."
 
-       i = len(basePath)
+       i = len(base_path)
 
        if not base_path.endswith(path.sep):
            i += len(path.sep)
