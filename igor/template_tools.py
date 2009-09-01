@@ -48,7 +48,7 @@ functions.append(now)
 
 @environmentfunction
 def tag_uri(env, post):
-    blog_url = env.globals.get('blog_url')
+    blog_url = env.globals['blog_url']
     o = urlparse(blog_url)
     date = post.published_on.strftime("%Y-%m-%d")
     timestamp = mktime(post.published_on.timetuple())

@@ -50,14 +50,14 @@ def publish(source, destination=""):
     """
     Publishes all the posts found in _posts to destination
     """
-    config = Config(source, destination)
+    config = Config(source, destination).data()
 
-    posts = make_posts(config.source, config['posts_prefix'],
+    posts = make_posts(config['source'], config['posts_prefix'],
                        extensions=list(markup.extensions()))
 
     documents = posts + [HomePage(posts), Feed(posts), Archive(posts)]
 
-    publisher = Publisher(documents, config.publish_directory, config.templates_dir, config)
+    publisher = Publisher(documents, config['publish_dir'], config['templates_dir'], config)
     publisher.publish()
-    copy_supporting_files(config.source, config.destination)
+    copy_supporting_files(config['source'], config['destination'])
     return True
