@@ -35,8 +35,13 @@ class Publisher(object):
         Instantiates and prepares the jinja environment
         """
         env = Environment(loader=FileSystemLoader(self.templates_dir))
-        [env.globals.__setitem__(f.func_name, f) for f in functions + template_functions]
-        [env.filters.__setitem__(f.func_name, f) for f in filters + template_filters]
+
+        for f in functions + template_functions:
+            env.globals[f.func_name] = f
+
+        for f in filters + template_filters:
+            env.filters[f.func_name] = f
+
         env.globals.update(context)
         return env
 

@@ -1,5 +1,9 @@
 processors = {}
 
+def register(cls, extensions):
+    for ext in extensions:
+        processors[ext] = cls
+
 class MarkupProcessor(object):
     """
     Accepts a block of text as it's input, and applies "render" to it
@@ -7,24 +11,21 @@ class MarkupProcessor(object):
     extensions = []
     description = "Applies no methods to the content"
 
-    def __init__(self):
+    def __init__(self, content):
         assert self.extensions
         assert self.description
+        self.content = content
 
-        for extension in self.extensions:
-            processors[extension] = self
-
-
-    def process(self, content):
-        return content
+    def process(self):
+        return self.content
 
 class NullProcessor(MarkupProcessor):
     extensions = [".txt", ""]
     description = "Does nothing to the text"
 
-    def process(self, content):
-        return content
-NullProcessor()
+    def process(self):
+        return self.content
+register(NullProcessor, NullProcessor.extensions)
 
 class MarkdownProcessor(MarkupProcessor):
     """
@@ -33,18 +34,18 @@ class MarkdownProcessor(MarkupProcessor):
     extensions = [".markdown", ".md", ".mdown", ".mkd", ".mkdn"]
     description = "inserts paragraphs where there were double spaces"
 
-    def process(self, content):
+    def process(self):
         import markdown
-        return markdown.markdown(content) 
-MarkdownProcessor()
+        return markdown.markdown(self.content) 
+register(MarkdownProcessor, MarkdownProcessor.extensions)
 
 class TextileProcessor(MarkupProcessor):
     extensions = [".textile"]
 
-    def process(self, content):
+    def process(self):
         import textile
-        return textile.textile(content)
-TextileProcessor()
+        return textile.textile(self.content)
+register(TextileProcessor, TextileProcessor.extensions)
 
 def markup(extension):
     if extension in processors:
@@ -53,7 +54,7 @@ def markup(extension):
         processor = processors[".txt"]
 
     def process(content):
-        return processor.process(content)
+        return processor(content).process()
 
     return process
 
