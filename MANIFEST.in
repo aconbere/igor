@@ -1,3 +1,2 @@
-include *.py, *.txt
+include *.py, *.txt, *.vhost
 exclude *.swp, *.swo, .git, .gitignore
-graft examples
