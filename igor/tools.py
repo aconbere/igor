@@ -7,6 +7,7 @@ from documents import HomePage, Post, Feed, Archive, Document
 from config import Config
 from publisher import Publisher
 from utils import hidden, relpath, list_dirs, list_files, copy_tree, copy_file
+from vcs import 
 import markup
 
 import template_tools
@@ -33,7 +34,14 @@ def make_posts(start_path, prefix, extensions=[".txt"]):
     and returns each file to the Post class
     """
     posts_path = path.join(start_path, prefix)
-    return [Post(p, start_path) for p in find_files(posts_path, extensions)] 
+    vcs_cls = get_vcs(vcs_type(start_path))
+
+    def make_post(f):
+        text_file = TextFile(f)
+        vcs = vcs_cls(start_path, f)
+        return Post(text_file, vcs)
+    
+    return [make_post(f) for f in find_files(posts_path, extensions)] 
 
 def copy_supporting_files(start_path, destination):
     for file in list_files(start_path):

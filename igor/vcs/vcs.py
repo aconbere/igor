@@ -24,4 +24,18 @@ def get_vcs(type):
 def register(type, cls):
     systems[type] = cls
 
+class BaseVCS(object):
+    def __init__(self, project_path, file_path):
+        self.project_path = project_path
+        self.file_path = file_path
+
+    def publish_date():
+        raise Exception("publish_date not implimented")
+
+    def author():
+        raise Exception("publish_date not implimented")
+
+    def author_email():
+        raise Exception("publish_date not implimented")
+
 register("git", Git)
