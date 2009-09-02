@@ -7,7 +7,6 @@ from documents import HomePage, Post, Feed, Archive, Document
 from config import Config
 from publisher import Publisher
 from utils import hidden, relpath, list_dirs, list_files, copy_tree, copy_file
-from vcs import 
 import markup
 
 import template_tools

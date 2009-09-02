@@ -139,7 +139,7 @@ class Post(Document):
             return self._summary_cached
     
     def published_date(self):
-        header_published_date = self.text_file.headers.get('published_on'):
+        header_published_date = self.text_file.headers.get('published_on')
         return header_published_date or self.vcs.published_date()
 
     def author(self):
