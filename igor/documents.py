@@ -30,7 +30,13 @@ class Document(object):
     def __repr__(self):
         return "<%s: %s %s>" % (self.type, self.id, self.ref)
 
-class HeaderParser(object):
+class TextFile(object):
+    def __init__(self, file_path):
+        self.file_path = path.abspath(file_path)
+        _, self.filename = path.split(file_path)
+        _, self.ext = path.splitext(file_path)
+        self.headers, self.title, self.body = self.parse(self.read())
+
     def pop_section(self, lines):
         lines.reverse()
         section = []
@@ -78,6 +84,23 @@ class HeaderParser(object):
 
         return (headers, title, "\n".join(rest))
 
+    def read(self, force=False):
+        if not self._cached_contents or force:
+            with open(self.ref, 'r') as f:
+                return f.read()
+        else:
+            return self._cached_contents
+
+    def write(self):
+        with open(self.file_path, 'w') as f:
+            header_content = yaml.dump(self.headers, default_flow_style=False)
+            contents = "%s\n%s\n\n%s" % (header_content,
+                                         self.title,
+                                         self.raw_body)
+            f.write(contents)
+        return self
+
+
 class Post(Document):
     """
     This class represents a document that will become a post in our blog. As
@@ -88,65 +111,47 @@ class Post(Document):
     """
     template = "post.html"
     out_file = "index.html"
-    _cached_contents = None
+    _summary_cached = None
+    _markup_cached = None
 
-    def __init__(self, ref, project_path="."):
-        self.summary_cached = None
+    def __init__(self, text_file, vcs):
+        self.text_file = text_file
+        self.vcs = vcs
+        super(Post, self).__init__(self.slug())
 
-        self.project_path = path.abspath(project_path)
-        self.ref = path.abspath(ref)
-        self.filename, self.ext = self.ref_data(self.ref)
-        self.headers, title, self.raw_body = HeaderParser().parse(self.contents())
-        self.body = self.markup_content(self.raw_body)
+    def title(self):
+        return self.text_file.headers.get('title') or self.text_file.title
 
-        self.title = self.headers.get('title') or title
-        self.slug = self.headers.get('slug') or slugify(self.title) or self.title_from_filename(self.filename)
-        self.git_log = Log(self.project_path, relpath(self.ref, self.project_path)).call()
-        self.published_on = self.headers.get('published_on') or self.published_date()
-        super(Post, self).__init__(self.slug)
+    def slug(self):
+        title, _ = path.splitext(filename)
+        return self.text_file.headers.get('slug') or slugify(self.title) or slugify(title)
 
-    def ref_data(self, ref):
-        _, filename = path.split(ref)
-        _, ext = path.splitext(ref)
-        return (filename, ext)
-
-    def contents(self, force=False):
-        if not self._cached_contents or force:
-            with open(self.ref, 'r') as f:
-                return f.read()
+    def body(self):
+        if not self._markup_cached:
+            return markup(self.text_file.ext)(self.text_file.body)
         else:
-            return self._cached_contents
-
-    def markup_content(self, content):
-        return markup(self.ext)(content)
+            return self._markup_cached
 
     def summary(self, length):
-        return self.summary_cached or self.markup_content("\n".join(self.raw_body.splitlines()[:length]))
-
-    def title_from_filename(self, filename):
-        title, ext = path.splitext(filename)
-        return slugify(title)
+        if not self._summary_cached:
+            return markup(self.text_file.ext)("\n".join(self.text_file.body.splitlines()[:length]))
+        else:
+            return self._summary_cached
     
     def published_date(self):
-        return self.git_log.headers['author'].datetime
+        header_published_date = self.text_file.headers.get('published_on'):
+        return header_published_date or self.vcs.published_date()
 
     def author(self):
-        return self.git_log.headers['author'].name
+        headers_author = self.text_file.headers.get('author')
+        return header_author or self.vcs.author()
 
     def author_email(self):
-        return self.git_log.headers['author'].email
+        header_email = self.text_file.headers.get('email')
+        return header_email or self.vcs.author_email()
 
     def publish_directory(self, date_format = "%Y/%m/%d"):
-        return path.join(self.published_on.strftime(date_format), self.slug)
-
-    def write(self):
-        with open(self.ref, 'w') as f:
-            header_content = yaml.dump(self.headers, default_flow_style=False)
-            contents = "%s\n%s\n\n%s" % (header_content,
-                                         self.title,
-                                         self.raw_body)
-            f.write(contents)
-        return self
+        return path.join(self.published_date().strftime(date_format), self.slug())
 
     def __cmp__(self, p2):
         return cmp(p2.published_on, self.published_on)
