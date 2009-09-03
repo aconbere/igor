@@ -1,6 +1,6 @@
 from git import Git
 
-systems = {None: BaseVCS}
+systems = {}
 
 def type(project_path):
     dirs = list_dirs(project_path)
@@ -25,7 +25,7 @@ def get(type):
 def register(type, cls):
     systems[type] = cls
 
-class BaseVCS(object):
+class NullVCS(object):
     def __init__(self, text_file, project_path):
         self.text_file = text_file
         self.project_path = path.abspath(path.expanduser(project_path))
@@ -38,5 +38,5 @@ class BaseVCS(object):
 
     def published_date(self):
         return datetime.now()
-
+register("none", NullVCS)
 register("git", Git)

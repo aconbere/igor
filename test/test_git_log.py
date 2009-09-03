@@ -2,8 +2,8 @@ import sys
 import os
 sys.path.append(".")
 
-from igor.git.log import Log, Actor
-from igor.git.refs import Ref
+from igor.vcs.git.log import Log, Actor
+from igor.vcs.git.refs import Ref
 
 def test_log_parsing():
     test_git_log = """commit 108717603c6e6170e21c3b5334969acdd07843cb
