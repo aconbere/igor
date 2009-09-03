@@ -36,9 +36,8 @@ def make_posts(start_path, prefix, extensions=[".txt"]):
     vcs_cls = get_vcs(vcs_type(start_path))
 
     def make_post(f):
-        text_file = TextFile(f)
-        vcs = vcs_cls(start_path, f)
-        return Post(text_file, vcs)
+        extra_data = vcs_cls(start_path, f).data()
+        return Post(f, extra_data))
     
     return [make_post(f) for f in find_files(posts_path, extensions)] 
 

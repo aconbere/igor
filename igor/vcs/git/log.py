@@ -30,16 +30,13 @@ class Actor(object):
 class Log(object):
     stdout = PIPE
 
-    def __init__(self, git_dir, filename):
+    def __init__(self, git_dir):
         self.git_dir = git_dir
-        self.filename = filename
-        self.headers = {}
-        self.comment = None
 
-    def call(self):
+    def call(self, filename):
         git_dir_opt = "--git-dir=%s" % path.join(self.git_dir, ".git")
         cmd = ["git", git_dir_opt, "log", "--all", "--diff-filter=A",
-              "--pretty=raw", "--", self.filename]
+              "--pretty=raw", "--", filename]
         p = Popen(cmd, stdout = self.stdout)
         p.wait()
 
@@ -49,9 +46,9 @@ class Log(object):
         else:
             out = p.stdout.read()
             headers, comment = self.sections(out)
-            self.headers = self.retreive_headers(headers)
-            self.comment = "\n".join(comment).strip()
-        return self
+            headers = self.retreive_headers(headers)
+            comment = "\n".join(comment).strip()
+        return(headers, comment)
 
     @classmethod
     def grammer(cls):

@@ -33,9 +33,19 @@ class Document(object):
 class TextFile(object):
     def __init__(self, file_path):
         self.file_path = path.abspath(file_path)
-        _, self.filename = path.split(file_path)
-        _, self.ext = path.splitext(file_path)
-        self.headers, self.title, self.body = self.parse(self.read())
+        self._headers, self._title, self._body = self.parse(self.read(self.file_path))
+
+    def file_path(self):
+        return self.file_path
+
+    def headers(self):
+        return self._headers
+
+    def title(self):
+        return self._title
+
+    def body(self):
+        return self._body
 
     def pop_section(self, lines):
         lines.reverse()
@@ -61,10 +71,10 @@ class TextFile(object):
 
     def parse_headers(self, header):
         headers = yaml.load(header) or {}
-        published_on = headers.get("published_on")
+        published_date = headers.get("published_date")
 
-        if published_on:
-            headers['published_on'] = self.parse_time(published_on)
+        if published_date:
+            headers['published_date'] = self.parse_time(published_date)
         return headers
 
     def parse(self, contents):
@@ -84,77 +94,81 @@ class TextFile(object):
 
         return (headers, title, "\n".join(rest))
 
-    def read(self, force=False):
+    def read(self, file_path, force=False):
         if not self._cached_contents or force:
-            with open(self.ref, 'r') as f:
+            with open(file_path, 'r') as f:
                 return f.read()
         else:
             return self._cached_contents
 
     def write(self):
         with open(self.file_path, 'w') as f:
-            header_content = yaml.dump(self.headers, default_flow_style=False)
+            header_content = yaml.dump(self.headers(), default_flow_style=False)
             contents = "%s\n%s\n\n%s" % (header_content,
-                                         self.title,
-                                         self.raw_body)
+                                         self.title(),
+                                         self.body())
             f.write(contents)
         return self
+
+def make_post(file_path, project_path, vcs_type=None):
+    vcs_type = vcs_type or vcs.type(project_path)
+    vcs = vcs.get(vcs_type)
+    
 
 
 class Post(Document):
     """
-    This class represents a document that will become a post in our blog. As
-    such it makes certain assumptions about the kind of file it's been handed.
-    It assumes that the file is formatted such that it has a header, title and
-    body seperated by two newline characters, and at the current point in time
-    it assumes that the file is part of a git project.
+    This class represents a document that will become a post in our blog. 
     """
     template = "post.html"
     out_file = "index.html"
     _summary_cached = None
     _markup_cached = None
 
-    def __init__(self, text_file, vcs):
-        self.text_file = text_file
-        self.vcs = vcs
-        super(Post, self).__init__(self.slug())
+    def __init__(self, file_path, extra_data={}):
+        Document.__init__(self.slug())
+        self.text_file = TextFile(file_path)
+        self.headers = self.text_file.headers
+        self.filename, self.ext = path.splitext(self.text_file.file_path)
 
     def title(self):
-        return self.text_file.headers.get('title') or self.text_file.title
+        return self.headers.get('title') or self.text_file.title
 
     def slug(self):
-        title, _ = path.splitext(filename)
-        return self.text_file.headers.get('slug') or slugify(self.title) or slugify(title)
+        return self.headers.get('slug') or slugify(self.title()) or slugify(self.filename)
 
     def body(self):
+        return self.text_file.body()
+
+    def markup(self):
         if not self._markup_cached:
-            return markup(self.text_file.ext)(self.text_file.body)
+            return markup(self.ext)(self.body())
         else:
             return self._markup_cached
 
     def summary(self, length):
         if not self._summary_cached:
-            return markup(self.text_file.ext)("\n".join(self.text_file.body.splitlines()[:length]))
+            return markup(self.ext)("\n".join(self.body().splitlines()[:length]))
         else:
             return self._summary_cached
     
     def published_date(self):
-        header_published_date = self.text_file.headers.get('published_on')
-        return header_published_date or self.vcs.published_date()
+        header_published_date = self.headers.get('published_date')
+        return header_published_date or self.extra_data['published_date'] or datetime.now()
 
     def author(self):
         headers_author = self.text_file.headers.get('author')
-        return header_author or self.vcs.author()
+        return header_author or self.extra_data['author'] or ""
 
     def author_email(self):
         header_email = self.text_file.headers.get('email')
-        return header_email or self.vcs.author_email()
+        return header_email or self.extra_data['author_email'] = ""
 
     def publish_directory(self, date_format = "%Y/%m/%d"):
         return path.join(self.published_date().strftime(date_format), self.slug())
 
     def __cmp__(self, p2):
-        return cmp(p2.published_on, self.published_on)
+        return cmp(p2.published_date(), self.published_date())
 
 class Collection(Document):
     def __init__(self, posts):
@@ -183,9 +197,9 @@ class Archive(Collection):
         org = {}
 
         for post in posts:
-            year = post.published_on.year
-            month = post.published_on.month
-            day = post.published_on.day
+            year = post.published_date().year
+            month = post.published_date().month
+            day = post.published_date().day
 
             if org.has_key(year):
                 if org[year].has_key(month):

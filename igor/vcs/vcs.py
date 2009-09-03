@@ -1,8 +1,8 @@
 from git import Git
 
-systems = {}
+systems = {None: BaseVCS}
 
-def vcs_type(project_path):
+def type(project_path):
     dirs = list_dirs(project_path)
     if ".git" in dirs:
         return "git"
@@ -14,28 +14,29 @@ def vcs_type(project_path):
         return "svn"
     elif ".cvs" in dirs:
         return "cvs"
+    return None
 
-def get_vcs(type):
+def get(type):
     for k,v in systems:
         if k == type:
             return v
-    return None
+    return BaseVCS
 
 def register(type, cls):
     systems[type] = cls
 
 class BaseVCS(object):
-    def __init__(self, project_path, file_path):
-        self.project_path = project_path
-        self.file_path = file_path
+    def __init__(self, text_file, project_path):
+        self.text_file = text_file
+        self.project_path = path.abspath(path.expanduser(project_path))
 
-    def publish_date():
-        raise Exception("publish_date not implimented")
+    def author(self):
+        return ""
 
-    def author():
-        raise Exception("publish_date not implimented")
+    def email(self):
+        return ""
 
-    def author_email():
-        raise Exception("publish_date not implimented")
+    def published_date(self):
+        return datetime.now()
 
 register("git", Git)

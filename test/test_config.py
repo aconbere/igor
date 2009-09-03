@@ -1,13 +1,14 @@
 import sys
 import os
+from pkg_resources import resource_filename
 
 sys.path.append(".")
 
 from igor.config import Config
 
 def test_config():
-    source = "./examples/init"
-    destination = "~/blog"
+    source = "./igor_extras/initial_project"
+    destination = "/tmp/igor_unit_tests"
     c = Config(source, destination).data()
 
     assert(c['author'] == "John Doe")
