@@ -138,16 +138,16 @@ class Post(Document):
     
     def published_date(self):
         header_published_date = self.headers.get('published_date')
-        return header_published_date or self.extra_data['published_date'] or \
+        return header_published_date or self.extra_data.get('published_date') or \
                datetime.now()
 
     def author(self):
-        headers_author = self.text_file.headers.get('author')
-        return header_author or self.extra_data['author'] or ""
+        header_author = self.text_file.headers.get('author')
+        return header_author or self.extra_data.get('author') or ""
 
     def author_email(self):
         header_email = self.text_file.headers.get('email')
-        return header_email or self.extra_data['author_email'] or ""
+        return header_email or self.extra_data.get('author_email') or ""
 
     def publish_directory(self, date_format = "%Y/%m/%d"):
         return path.join(self.published_date().strftime(date_format),

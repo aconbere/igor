@@ -5,7 +5,7 @@ from datetime import datetime
 
 systems = {}
 
-def type(project_path):
+def project_type(project_path):
     dirs = list_dirs(project_path)
     if ".git" in dirs:
         return "git"
@@ -19,18 +19,18 @@ def type(project_path):
         return "cvs"
     return None
 
-def get(type):
+def get(project_type):
     for k,v in systems.iteritems():
-        if k == type:
+        if k == project_type:
             return v
     return NullVCS
 
-def register(type, cls):
-    systems[type] = cls
+def register(project_type, cls):
+    systems[project_type] = cls
 
 class NullVCS(object):
-    def __init__(self, text_file, project_path):
-        self.text_file = text_file
+    def __init__(self, project_path, file_path):
+        self.file_path = file_path
         self.project_path = path.abspath(path.expanduser(project_path))
 
     def author(self):

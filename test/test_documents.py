@@ -1,14 +1,10 @@
 import sys
-import os
+from os import path
 
 sys.path.append(".")
 
-from igor.documents import Document, Post, HomePage, HeaderParser,\
+from igor.documents import Document, Post, HomePage, TextFile,\
                            find_document
-from igor.utils import slugify
-
-test_project = "./igor_extras/initial_project"
-test_file = path.join(test_project, "_posts/welcome.txt")
 
 def test_document():
     d = Document("slug")
@@ -18,30 +14,30 @@ def test_document():
 def test_find_document():
     ds = [Document("a"), Document("slug"), Document("slug"),
           Document("b"), Document("c")]
-    d = find_document([p], "slug")
-    assert(d.slug = "slug")
+    d = find_document(ds, "slug")
+    assert(d.slug == "slug")
 
-def test_text_file():
-    t = TextFile(test_file)
+def test_text_file(file):
+    t = TextFile(file)
     assert(isinstance(t.headers, dict))
     assert(t.title)
     assert(t.body)
 
-def test_text_file_pop_section():
-    t = TextFile(test_file)
+def test_text_file_pop_section(file):
+    t = TextFile(file)
     top, rest = t.pop_section("this is the first section\n\nthis is the second\n\n".splitlines())
     assert(top == "this is the first section")
 
-def test_text_file_parse():
+def test_text_file_parse(file):
     content = "this: 'is a header'\n\nwith a title\n\nand content"
-    t = TextFile(test_file)
+    t = TextFile(file)
     headers, title, body = t.parse(content)
     assert(headers == {'this': 'is a header'})
     assert(title == "with a title")
     assert(body == "and content")
 
-def test_post():
-    p = Post(TextFile(test_file))
+def test_post(file):
+    p = Post(file)
     assert(p.title)
     assert(p.slug)
     assert(p.filename)
@@ -49,12 +45,11 @@ def test_post():
     assert(p.markup())
     assert(p.summary(1))
     assert(p.published_date())
-    assert(p.author())
-    assert(p.author_email())
+    assert(p.author() == "")
+    assert(p.author_email() == "")
 
-def test_home_page():
-    f = "./examples/init/_posts/welcome.txt"
-    p = Post(f, "./examples/init")
+def test_home_page(file):
+    p = Post(file)
     h = HomePage([p])
     assert(h)
     assert(isinstance(h.headers, dict))

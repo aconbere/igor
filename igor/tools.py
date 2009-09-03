@@ -1,6 +1,8 @@
 from __future__ import with_statement
 
 from os import walk, path, makedirs, removedirs
+from pkg_resources import resource_filename
+import yaml
 
 from shutil import copytree, rmtree
 from documents import HomePage, Post, Feed, Archive, Document
@@ -34,7 +36,7 @@ def make_posts(start_path, prefix, extensions=[".txt"]):
     and returns each file to the Post class
     """
     posts_path = path.join(start_path, prefix)
-    vcs_cls = vcs.get(vcs.type(start_path))
+    vcs_cls = vcs.get(vcs.project_type(start_path))
 
     def make_post(f):
         extra_data = vcs_cls(start_path, f).data()
@@ -67,4 +69,15 @@ def publish(source, destination=""):
     publisher = Publisher(documents, config['publish_dir'], config['templates_dir'], config)
     publisher.publish()
     copy_supporting_files(config['source'], config['destination'])
+    return True
+
+def init(destination):
+    init_path = resource_filename("igor_extras",
+                                                "initial_project")
+    copytree(init_path, destination)
+
+    with open(path.join(destination, "_config.yaml"), 'w') as f:
+        yaml_config = yaml.dump(Config.defaults,
+                                default_flow_style=False)
+        f.write(yaml_config)
     return True

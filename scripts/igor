@@ -16,6 +16,7 @@ from igor import version
 from igor import tools
 from igor import markup
 from igor.config import Config
+from igor.tools import init
 
 parser = OptionParser(
     usage = "igor COMMAND [OPTIONS]",
@@ -91,15 +92,8 @@ class InitCommand(Command):
             sys.exit(1)
 
         print("Initializing new igor project: %s" % out_path)
+        init(out_path)
 
-        init_path = pkg_resources.resource_filename("igor_extras",
-                                                    "initial_project")
-        copytree(init_path, out_path)
-
-        with open(path.join(out_path, "_config.yaml"), 'w') as f:
-            yaml_config = yaml.dump(Config.defaults,
-                                    default_flow_style=False)
-            f.write(yaml_config)
 register(InitCommand.name, InitCommand)
 
 class PublishCommand(Command):

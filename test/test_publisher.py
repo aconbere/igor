@@ -1,17 +1,20 @@
 import sys
 from os import path
+from shutil import rmtree
 
 sys.path.append(".")
 
 from igor.publisher import Publisher
 from igor.documents import Post
 
-test_dest = "/tmp/igor.test"
-test_template_dir = "./examples/init/_templates"
-test_context = {} 
+def test_publisher(project):
+    context = {}
+    destination = "/tmp/blog.test"
+    file = path.join(project, "_posts/welcome.txt")
+    template_dir = path.join(project, "_templates")
 
-def test_publisher():
-    post = Post("./examples/init/_posts/welcome.txt", "./examples/init")
-    p = Publisher([post], test_dest, test_template_dir, test_context)
+    post = Post(file)
+    p = Publisher([post], destination, template_dir, context)
     assert(p.publish())
-    assert(path.exists(path.join(test_dest, post.publish_directory())))
+    assert(path.exists(path.join(destination, post.publish_directory())))
+    rmtree(destination)

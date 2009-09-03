@@ -1,1 +1,1 @@
-from vcs import type, get, NullVCS
+from vcs import project_type, get, NullVCS

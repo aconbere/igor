@@ -1,5 +1,6 @@
 import sys
 import os
+from os import path
 sys.path.append(".")
 
 from igor.vcs.git.log import Log, Actor
@@ -15,7 +16,7 @@ def test_log_parsing():
         first run at the parser
     """
 
-    log = Log("fake/dir", "fake_file")
+    log = Log("fake/dir")
     headers, comment = log.sections(test_git_log)
     hs = log.retreive_headers(headers)
     check_data = {
@@ -34,10 +35,10 @@ def test_log_parsing():
     assert([(k, str(v)) for k,v in hs.iteritems()] == [(k,str(v)) for k,v in check_data.iteritems()])
     assert("\n".join(comment).strip() == "first run at the parser")
 
-def test_log_retrieval():
+def test_log_retrieval(project):
     curdir = os.path.abspath(os.curdir)
-    l = Log("examples/init", "_posts/welcome.txt")
-    l.call()
+    l = Log(project)
+    headers, comment = l.call("_posts/welcome.txt")
     test_headers = {
                     "commit": Ref("commit",
                                   "4906ae03a875febcdc1fbd6b3d1d8d6f83ff309d"),
@@ -48,7 +49,7 @@ def test_log_retrieval():
                                        "aconbere@gmail.com", "1248138252",
                                        "1000")
                    }
-    assert(l.comment)
+    assert(comment)
     header_keys = ["commit", "committer", "tree", "author"]
-    assert([k for k,v in l.headers.iteritems()] == header_keys)
+    assert([k for k,v in headers.iteritems()] == header_keys)
     

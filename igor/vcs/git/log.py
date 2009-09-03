@@ -41,14 +41,14 @@ class Log(object):
         p.wait()
 
         if p.returncode != 0:
-            print("freakout!")
+            raise Exception("Not a git repository")
 
         else:
             out = p.stdout.read()
             headers, comment = self.sections(out)
             headers = self.retreive_headers(headers)
             comment = "\n".join(comment).strip()
-        return(headers, comment)
+            return(headers, comment)
 
     @classmethod
     def grammer(cls):

@@ -1,6 +1,4 @@
 import sys
-import os
-
 sys.path.append(".")
 
 from igor.utils import hidden, slugify

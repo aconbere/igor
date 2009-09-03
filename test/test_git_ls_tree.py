@@ -4,6 +4,8 @@ sys.path.append(".")
 
 from igor.git.ls_tree import ListTree, ListElement
 
+test_project = "/tmp/igor.test"
+
 def test_list_item_parsing():
     test_element = ListElement("100644", "blob", "ddec4c671efebd5b61b219d2de49c828f6a4d956", "_gitignore")
     l = ListElement.from_string("100644 blob ddec4c671efebd5b61b219d2de49c828f6a4d956    _gitignore")
@@ -16,7 +18,7 @@ def test_list_parsing():
 100644 blob 33436dc95ca1755a459a4dd9f7992b45008f3837    example.txt
     """
 
-    l = ListTree("examples/init/")
+    l = ListTree(test_project)
     elements = l.parse_list(test_list)
     assert_data = [
         ListElement("100644", "blob", "902edab1599d6bcb08854e004362a6af2889ffbb", "_config.yaml"),
@@ -25,7 +27,7 @@ def test_list_parsing():
         ]
     assert([str(s) for s in elements] == [str(s) for s in assert_data])
 
-def test_list_retrieval():
-    l = ListTree("examples/init")
+def test_list_retrieval(project):
+    l = ListTree(project)
     l.call()
     assert(len(l.elements) > 0)

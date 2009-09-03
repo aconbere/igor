@@ -1,14 +1,13 @@
 import sys
 import os
+from os import path
 sys.path.append(".")
 
 from igor.vcs.git import Git
 
-test_project = "./igor_extras/initial_project"
-test_file = path.join(test_project, "_posts/welcome.txt")
-
-def test_git():
-    g = Git(test_project, test_file)
+def test_git(project):
+    file = path.join(project, "_posts/welcome.txt")
+    g = Git(project, file)
     assert(g.author_email())
     assert(g.published_date())
     assert(g.author())
