@@ -1,0 +1,3 @@
+Welcome to your Igor blog
+
+to start using igor, add any text file to /your/blog/_posts/ or edit this one.

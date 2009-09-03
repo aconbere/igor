@@ -3,6 +3,8 @@ from __future__ import with_statement
 
 import sys
 import yaml
+import pkg_resources
+from shutil import copytree
 
 from os import path, makedirs
 from optparse import OptionParser
@@ -29,17 +31,21 @@ parser.add_option(
 
 _commands = {}
 
+def register(name, cls):
+    _commands[name] = cls
+
 class Command(object):
     name = None
     usage = None
 
     def __init__(self):
         assert self.name
+        assert self.usage
+
         self.parser = OptionParser(
             usage=self.usage,
             prog='%s %s' % (sys.argv[0], self.name),
             version=parser.version)
-        _commands[self.name] = self
 
     def main(self, complete_args, args, initial_options):
         options, args = self.parser.parse_args(args)
@@ -67,102 +73,12 @@ class HelpCommand(Command):
         commands.sort(key=lambda x: x.name)
         for command in commands:
             print '  %s: %s' % (command.name, command.summary)
-
-HelpCommand()
+register(HelpCommand.name, HelpCommand)
 
 class InitCommand(Command):
     name = "init"
     usage = "%prog [OPTIONS] INITIAL_REPOSITORY"
     summary = "Initialize a directory for use as an Igor project"
-
-    standard_directories = ["_posts",
-                            "_templates",
-                            "media",
-                            "media/css",
-                            "media/js",
-                            "media/img",]
-    files = {
-        "_config.yaml": yaml.dump(Config.defaults, default_flow_style=False),
-        "_posts/welcome.txt": """\
-Welcome to your Igor blog
-
-to start using igor, add any text file to /your/blog/_posts/ or edit this one.""",
-
-        "_templates/post.html": """\
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-    "http://www.w3.org/TR/html4/strict.dtd">
-
-<html>
-<head>
-        <title>{{ doc.title }}</title>
-</head>
-
-<body>
-    <div id="content">
-        <h1>{{ doc.title }}</h1>
-        <p>{{ doc.published_on }}</p>
-        {{ doc.body }}
-    </div>
-</body>
-
-</html>""",
-
-        "_templates/main.html": """\
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-    "http://www.w3.org/TR/html4/strict.dtd">
-
-<html>
-<head>
-        <title>{{ title }}</title>
-</head>
-
-<body>
-    <div id="content">
-        {% for post in posts %}
-        <div id="post">
-            <h2><a href="{{ link_to(post.slug) }}">{{ post.title }}</a></h2>
-            <p>{{ post.published_on }}</p>
-            {{ post.content }}
-        </div>
-        {% endfor %}
-    </div>
-</body>
-
-</html>""",
-        "_templates/main.atom": """\
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <title>{{ blog_title }} - Feed</title>
-    <link href="{{ blog_url }}"/>
-
-    <updated>{{ now()|rfc_date }}</updated>
-
-    <author>
-        <name>{{ author }}</name>
-        <email>{{ email }}</email>
-    </author>
-
-    <id>{{ blog_url }}</id>
-    <link rel="self" href="{{ blog_url }}feed.atom" />
-
-    {% for post in doc.posts %}
-    <entry>
-        <title><![CDATA[{{ post.title }}]]></title>
-        <link rel="alternate" href="{{ link_to(post.slug) }}"/>
-        <id>{{ tag_uri(post) }}</id>
-        <updated>{{ post.published_on|rfc_date }}</updated>
-        <published>{{ post.published_on|rfc_date }}</published>
-        <summary type="html"><![CDATA[{{ post.summary(summary_length) }}]]></summary>
-        <content type="html"><![CDATA[{{ post.body }}]]></content>
-    </entry>
-    {% endfor %}
-</feed>
-""",
-        "_templates/archive.html": """\
-""",
-"media/css/base.css": "# add css here",
-"media/js/base.js": "# add js here",
-    }
 
     def run(self, options, args):
         if not args:
@@ -175,16 +91,16 @@ to start using igor, add any text file to /your/blog/_posts/ or edit this one.""
             sys.exit(1)
 
         print("Initializing new igor project: %s" % out_path)
-        makedirs(out_path)
 
-        for directory in self.standard_directories:
-            makedirs(path.join(out_path, directory))
+        init_path = pkg_resources.resource_filename("igor_extras",
+                                                    "initial_project")
+        copytree(init_path, out_path)
 
-        for file, content in self.files.iteritems():
-            with open(path.join(out_path, file), 'w') as f:
-                f.write(content)
-
-InitCommand()
+        with open(path.join(out_path, "_config.yaml"), 'w') as f:
+            yaml_config = yaml.dump(Config.defaults,
+                                    default_flow_style=False)
+            f.write(content)
+register(InitCommand.name, InitCommand)
 
 class PublishCommand(Command):
     name = "publish"
@@ -201,21 +117,24 @@ class PublishCommand(Command):
         if len(args) >= 2:
             destination  = args[1]
         tools.publish(source, destination)
-PublishCommand()
+register(PublishCommand.name, PublishCommand)
 
 
 def main(initial_args = None):
     if initial_args is None:
         initial_args = sys.argv[1:]
+
     options, args = parser.parse_args(initial_args)
+
     if options.help and not args:
         args = ['help']
-    if not args:
-        parser.error("You must give a command")
+
     command = args[0].lower()
+
     if command not in _commands:
         parser.error("No command by the name")
-    command = _commands[command]
+
+    command = _commands[command]()
     return command.main(initial_args, args[1:], options)
         
 if __name__ == "__main__":

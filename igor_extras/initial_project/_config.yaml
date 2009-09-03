@@ -1,0 +1,10 @@
+author: John Doe
+blog_title: Welcome to Igor
+blog_url: http://example.com/
+email: jdoe@example.com
+media_url: http://media.example.com/
+publish_directory: /tmp/igor
+publish_prefix: ""
+summary_length: 10
+posts_prefix: _posts
+templates_prefix: _templates

@@ -1,0 +1,21 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+        <title>{{ title }}</title>
+</head>
+
+<body>
+    <div id="content">
+        {% for post in posts %}
+        <div id="post">
+            <h2><a href="{{ link_to(post.slug) }}">{{ post.title }}</a></h2>
+            <p>{{ post.published_on }}</p>
+            {{ post.content }}
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>

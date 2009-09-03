@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>{{ blog_title }} - Feed</title>
+    <link href="{{ blog_url }}"/>
+
+    <updated>{{ now()|rfc_date }}</updated>
+
+    <author>
+        <name>{{ author }}</name>
+        <email>{{ email }}</email>
+    </author>
+
+    <id>{{ blog_url }}</id>
+    <link rel="self" href="{{ blog_url }}feed.atom" />
+
+    {% for post in doc.posts %}
+    <entry>
+        <title><![CDATA[{{ post.title }}]]></title>
+        <link rel="alternate" href="{{ link_to(post.slug) }}"/>
+        <id>{{ tag_uri(post) }}</id>
+        <updated>{{ post.published_on|rfc_date }}</updated>
+        <published>{{ post.published_on|rfc_date }}</published>
+        <summary type="html"><![CDATA[{{ post.summary(summary_length) }}]]></summary>
+        <content type="html"><![CDATA[{{ post.body }}]]></content>
+    </entry>
+    {% endfor %}
+</feed>
