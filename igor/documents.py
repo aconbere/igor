@@ -175,7 +175,7 @@ class Feed(Collection):
 
 class Archive(Collection):
     template = "archive.html"
-    out_file = "arvhive.html"
+    out_file = "archive.html"
     slug = "archive"
 
     def organize_by_date(self, posts):

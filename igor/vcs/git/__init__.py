@@ -8,7 +8,6 @@ class Git(object):
         self.file_path = file_path
         self.relpath = relpath(self.file_path, self.project_path)
         self.headers, self.comment = Log(self.project_path).call(self.relpath)
-        print(self.headers)
 
     def published_date(self):
         return self.headers['author'].datetime
