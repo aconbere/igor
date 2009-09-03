@@ -6,9 +6,11 @@ sys.path.append(".")
 from igor.tools import find_files, make_posts, publish
 from igor.documents import Document
 
+test_project = "./igor_extras/initial_project"
+
 def test_find_files():
     extensions = [".txt", ".mkd"]
-    files = list(find_files(path.abspath("./examples/init/_posts"), extensions=extensions))
+    files = list(find_files(path.abspath(test_project), extensions=extensions))
     assert(len(files) >= 1)
     for file in files:
         name, ext = path.splitext(file)
@@ -16,15 +18,18 @@ def test_find_files():
         assert(ext in extensions)
 
 def test_make_posts():
-    ps = list(make_posts("./examples/init/",
+    ps = list(make_posts(test_project,
               "_posts",
               extensions = [".txt", ".mkd"]))
     assert(len(ps) >= 1)
 
 def test_publish():
     from shutil import rmtree
-    rmtree("/tmp/igor.test")
-    published = publish("./examples/init", "/tmp/igor.test")
+    try:
+        rmtree("/tmp/igor.test")
+    except:
+        pass
+    published = publish(test_project, "/tmp/igor.test")
     assert(published)
     assert(path.exists("/tmp/igor.test"))
     assert(path.exists("/tmp/igor.test/index.html"))

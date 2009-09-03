@@ -32,6 +32,7 @@ class Document(object):
 
 class TextFile(object):
     def __init__(self, file_path):
+        self._cached_contents = None
         self.file_path = path.abspath(file_path)
         self.headers, self.title, self.body = self.parse(self.read(self.file_path))
 
@@ -115,12 +116,13 @@ class Post(Document):
 
     def __init__(self, file_path, extra_data={}):
         self.text_file = TextFile(file_path)
+        self.extra_data = extra_data
         self.headers = self.text_file.headers
         self.filename, self.ext = path.splitext(self.text_file.file_path)
         self.title = self.headers.get('title') or self.text_file.title
-        self.slug = self.headers.get('slug') or slugify(self.title()) or \
+        self.slug = self.headers.get('slug') or slugify(self.title) or \
                                                 slugify(self.filename)
-        Document.__init__(self.slug)
+        super(Post, self).__init__(self.slug)
 
     def markup(self):
         if not self._markup_cached:
@@ -145,11 +147,11 @@ class Post(Document):
 
     def author_email(self):
         header_email = self.text_file.headers.get('email')
-        return header_email or self.extra_data['author_email'] = ""
+        return header_email or self.extra_data['author_email'] or ""
 
     def publish_directory(self, date_format = "%Y/%m/%d"):
         return path.join(self.published_date().strftime(date_format),
-                         self.slug())
+                         self.slug)
 
     def __cmp__(self, p2):
         return cmp(p2.published_date(), self.published_date())

@@ -18,8 +18,8 @@
         <title><![CDATA[{{ post.title }}]]></title>
         <link rel="alternate" href="{{ link_to(post.slug) }}"/>
         <id>{{ tag_uri(post) }}</id>
-        <updated>{{ post.published_on|rfc_date }}</updated>
-        <published>{{ post.published_on|rfc_date }}</published>
+        <updated>{{ post.published_date()|rfc_date }}</updated>
+        <published>{{ post.published_date()|rfc_date }}</published>
         <summary type="html"><![CDATA[{{ post.summary(summary_length) }}]]></summary>
         <content type="html"><![CDATA[{{ post.body }}]]></content>
     </entry>

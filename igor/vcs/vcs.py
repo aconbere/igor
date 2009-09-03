@@ -1,4 +1,7 @@
+from igor.utils import list_dirs
 from git import Git
+from os import path
+from datetime import datetime
 
 systems = {}
 
@@ -17,10 +20,10 @@ def type(project_path):
     return None
 
 def get(type):
-    for k,v in systems:
+    for k,v in systems.iteritems():
         if k == type:
             return v
-    return BaseVCS
+    return NullVCS
 
 def register(type, cls):
     systems[type] = cls
@@ -33,10 +36,15 @@ class NullVCS(object):
     def author(self):
         return ""
 
-    def email(self):
+    def author_email(self):
         return ""
 
     def published_date(self):
         return datetime.now()
+
+    def data(self):
+        return {'author': self.author(),
+                'author_email': self.author_email(),
+                'published_date': self.published_date()}
 register("none", NullVCS)
 register("git", Git)

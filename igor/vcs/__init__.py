@@ -1,1 +1,1 @@
-from vcs import type, get
+from vcs import type, get, NullVCS

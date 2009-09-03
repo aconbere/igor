@@ -11,7 +11,7 @@
         {% for post in posts %}
         <div id="post">
             <h2><a href="{{ link_to(post.slug) }}">{{ post.title }}</a></h2>
-            <p>{{ post.published_on }}</p>
+            <p>{{ post.published_date() }}</p>
             {{ post.content }}
         </div>
         {% endfor %}

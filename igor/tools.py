@@ -8,6 +8,7 @@ from config import Config
 from publisher import Publisher
 from utils import hidden, relpath, list_dirs, list_files, copy_tree, copy_file
 import markup
+import vcs
 
 import template_tools
 
@@ -33,11 +34,11 @@ def make_posts(start_path, prefix, extensions=[".txt"]):
     and returns each file to the Post class
     """
     posts_path = path.join(start_path, prefix)
-    vcs_cls = get_vcs(vcs_type(start_path))
+    vcs_cls = vcs.get(vcs.type(start_path))
 
     def make_post(f):
         extra_data = vcs_cls(start_path, f).data()
-        return Post(f, extra_data))
+        return Post(f, extra_data)
     
     return [make_post(f) for f in find_files(posts_path, extensions)] 
 
