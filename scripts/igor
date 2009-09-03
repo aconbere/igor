@@ -99,7 +99,7 @@ class InitCommand(Command):
         with open(path.join(out_path, "_config.yaml"), 'w') as f:
             yaml_config = yaml.dump(Config.defaults,
                                     default_flow_style=False)
-            f.write(content)
+            f.write(yaml_config)
 register(InitCommand.name, InitCommand)
 
 class PublishCommand(Command):
