@@ -54,4 +54,6 @@ And you could run this script yourself every time your make an update, and eithe
 
 ##TODO##
 
-* archive links
+    * improve archive
+    * solve plugable problems (tag clouds)
+    * How can we publish more efficiently?
