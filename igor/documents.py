@@ -175,12 +175,15 @@ class Feed(Collection):
 
 class Archive(Collection):
     template = "archive.html"
-    out_file = "archive.html"
+    out_file = "index.html"
     slug = "archive"
 
     def __init__(self, posts):
         super(Archive, self).__init__(posts)
         self.posts = self.organize_by_date(self.posts)
+
+    def publish_directory(self):
+        return "archive/"
 
     def organize_by_date(self, posts):
         # org[<year>][<month>][<day>][<post>]
