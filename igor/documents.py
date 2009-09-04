@@ -28,7 +28,7 @@ class Document(object):
         return ""
 
     def __repr__(self):
-        return "<%s: %s %s>" % (self.type, self.id, self.ref)
+        return "<%s: %s %s>" % (self.type, self.slug)
 
 class TextFile(object):
     def __init__(self, file_path):
@@ -117,12 +117,13 @@ class Post(Document):
     def __init__(self, file_path, extra_data={}):
         self.text_file = TextFile(file_path)
         self.extra_data = extra_data
-        self.headers = self.text_file.headers
         self.filename, self.ext = path.splitext(self.text_file.file_path)
-        self.title = self.headers.get('title') or self.text_file.title
-        self.slug = self.headers.get('slug') or slugify(self.title) or \
-                                                slugify(self.filename)
+        self.title = self.text_file.headers.get('title') or self.text_file.title
+        self.slug = self.text_file.headers.get('slug') or slugify(self.title) or \
+                                                          slugify(self.filename)
         super(Post, self).__init__(self.slug)
+
+        self.headers = self.text_file.headers
 
     def markup(self):
         if not self._markup_cached:
