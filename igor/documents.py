@@ -178,8 +178,12 @@ class Archive(Collection):
     out_file = "archive.html"
     slug = "archive"
 
+    def __init__(self, posts):
+        super(Archive, self).__init__(posts)
+        self.posts = self.organize_by_date(self.posts)
+
     def organize_by_date(self, posts):
-        # org[<year>][<month>][<day>]
+        # org[<year>][<month>][<day>][<post>]
         org = {}
 
         for post in posts:
