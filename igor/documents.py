@@ -121,6 +121,9 @@ class Post(Document):
         self.title = self.text_file.headers.get('title') or self.text_file.title
         self.slug = self.text_file.headers.get('slug') or slugify(self.title) or \
                                                           slugify(self.filename)
+        self.body = self.markup()
+        self.summary = self.markup_summary()
+
         super(Post, self).__init__(self.slug)
 
         self.headers = self.text_file.headers
@@ -131,7 +134,7 @@ class Post(Document):
         else:
             return self._markup_cached
 
-    def summary(self, length):
+    def markup_summary(self, length):
         if not self._summary_cached:
             return markup(self.ext)("\n".join(self.text_file.body.splitlines()[:length]))
         else:
