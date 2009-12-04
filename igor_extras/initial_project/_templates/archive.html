@@ -17,7 +17,7 @@
                     <li><ol>
                     {% for post in posts %}
                         <li>
-                            <span>{{ post.published_date() }}</span>
+                            <span>{{ post.date() }}</span>
                             <a href="{{ link_to(post.slug) }}">{{ post.title }}</a>
                         </li>
                     {% endfor %}

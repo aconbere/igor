@@ -45,7 +45,7 @@ def test_post(file):
     assert(p.ext)
     assert(p.markup())
     assert(p.summary(1))
-    assert(p.published_date())
+    assert(p.date())
     assert(p.author() == "")
     assert(p.author_email() == "")
 

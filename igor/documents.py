@@ -66,10 +66,10 @@ class TextFile(object):
             headers = {"title": headers}
             return headers
 
-        published_date = headers.get("published_date")
+        date = headers.get("date")
 
-        if published_date:
-            headers['published_date'] = self.parse_time(published_date)
+        if date:
+            headers['date'] = self.parse_time(date)
 
         return headers
 
@@ -140,9 +140,9 @@ class Post(Document):
         else:
             return self._summary_cached
     
-    def published_date(self):
-        header_published_date = self.headers.get('published_date')
-        return header_published_date or self.extra_data.get('published_date') or \
+    def date(self):
+        header_date = self.headers.get('date')
+        return header_date or self.extra_data.get('date') or \
                datetime.now()
 
     def author(self):
@@ -154,11 +154,11 @@ class Post(Document):
         return header_email or self.extra_data.get('author_email') or ""
 
     def publish_directory(self, date_format = "%Y/%m/%d"):
-        return path.join(self.published_date().strftime(date_format),
+        return path.join(self.date().strftime(date_format),
                          self.slug)
 
     def __cmp__(self, p2):
-        return cmp(p2.published_date(), self.published_date())
+        return cmp(p2.date(), self.date())
 
 class Collection(Document):
     def __init__(self, posts):
@@ -194,9 +194,9 @@ class Archive(Collection):
         org = {}
 
         for post in posts:
-            year = post.published_date().year
-            month = post.published_date().month
-            day = post.published_date().day
+            year = post.date().year
+            month = post.date().month
+            day = post.date().day
 
             if org.has_key(year):
                 if org[year].has_key(month):

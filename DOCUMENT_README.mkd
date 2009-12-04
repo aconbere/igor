@@ -1,6 +1,14 @@
 Documents are defined with a simple scheme (fake BNF)
 
-header ::= <yaml> "\n\n" | <string> "\n\n"
-content ::= <string>
+    header ::= <yaml> "\n\n" | <string> "\n\n"
+    content ::= <string>
 
-document ::= <header> <content>
+    document ::= <header> <content>
+
+Headers can contain any data, but keys that are looked for in particular are
+
+* title
+* date
+* author
+* email
+* slug
