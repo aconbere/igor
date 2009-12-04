@@ -29,11 +29,11 @@ def test_text_file_pop_section(file):
     assert(top == "this is the first section")
 
 def test_text_file_parse(file):
-    content = "this: 'is a header'\n\nwith a title\n\nand content"
+    content = "this: 'is a header'\ntitle: with a title\n\nand content"
     t = TextFile(file)
-    headers, title, body = t.parse(content)
-    assert(headers == {'this': 'is a header'})
-    assert(title == "with a title")
+    headers, body = t.parse(content)
+    title = headers.get("title")
+    assert(headers == {'this': 'is a header', 'title': "with a title"})
     assert(body == "and content")
 
 def test_post(file):

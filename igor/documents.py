@@ -34,7 +34,8 @@ class TextFile(object):
     def __init__(self, file_path):
         self._cached_contents = None
         self.file_path = path.abspath(file_path)
-        self.headers, self.title, self.body = self.parse(self.read(self.file_path))
+        self.headers, self.body = self.parse(self.read(self.file_path))
+        self.title = self.headers.get("title") or ""
 
     def pop_section(self, lines):
         lines.reverse()
@@ -60,28 +61,30 @@ class TextFile(object):
 
     def parse_headers(self, header):
         headers = yaml.load(header) or {}
+
+        if headers.__class__ == str:
+            headers = {"title": headers}
+            return headers
+
         published_date = headers.get("published_date")
 
         if published_date:
             headers['published_date'] = self.parse_time(published_date)
+
         return headers
 
     def parse(self, contents):
-        headers = {}
+        headers = {"title": ""}
         lines = contents.splitlines()
 
         top, rest = self.pop_section(lines)
 
         if not rest:
-            return (headers, "", "\n".join(top))
-
-        if ":" in top:
-            headers = self.parse_headers(top)
-            title, rest = self.pop_section(rest)
+            rest = top
         else:
-            title = top
+            headers = self.parse_headers(top)
 
-        return (headers, title, "\n".join(rest))
+        return (headers, "\n".join(rest))
 
     def read(self, file_path, force=False):
         if not self._cached_contents or force:
@@ -94,7 +97,6 @@ class TextFile(object):
         with open(self.file_path, 'w') as f:
             header_content = yaml.dump(self.headers(), default_flow_style=False)
             contents = "%s\n%s\n\n%s" % (header_content,
-                                         self.title,
                                          self.body)
             f.write(contents)
         return self
@@ -118,11 +120,10 @@ class Post(Document):
         self.text_file = TextFile(file_path)
         self.extra_data = extra_data
         self.filename, self.ext = path.splitext(self.text_file.file_path)
-        self.title = self.text_file.headers.get('title') or self.text_file.title
+        self.title = self.text_file.headers.get('title')
         self.slug = self.text_file.headers.get('slug') or slugify(self.title) or \
                                                           slugify(self.filename)
         self.body = self.markup()
-        self.summary = self.markup_summary()
 
         super(Post, self).__init__(self.slug)
 
@@ -134,7 +135,7 @@ class Post(Document):
         else:
             return self._markup_cached
 
-    def markup_summary(self, length):
+    def summary(self, length):
         if not self._summary_cached:
             return markup(self.ext)("\n".join(self.text_file.body.splitlines()[:length]))
         else:
