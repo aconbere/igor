@@ -5,8 +5,8 @@ from datetime import datetime
 from uuid import uuid4
 
 import yaml
-from git.log import Log
 
+from vcs.git.log import Log
 from markup import markup
 from utils import slugify, relpath
 
