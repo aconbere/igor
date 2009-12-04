@@ -1,0 +1,762 @@
+Downloading/unpacking py
+  Getting page http://pypi.python.org/simple/py
+  URLs to search for versions for py:
+  * http://pypi.python.org/simple/py/
+  Getting page http://pypi.python.org/simple/py/
+  Getting page http://codespeak.net/py
+  Skipping page http://codespeak.net/download/py/py-0.9.0.tar.gz (from http://pypi.python.org/simple/py/) because of Content-Type: application/x-gzip
+  Getting page http://pypi.python.org/simple/py/XXX
+  Could not fetch URL http://pypi.python.org/simple/py/XXX (from http://pypi.python.org/simple/py/): HTTP Error 404: Not Found
+  Will skip URL http://pypi.python.org/simple/py/XXX when looking for download links for py
+  Getting page http://pylib.org
+  Getting page http://codespeak.net/py/0.9.2/download.html
+  Skipping page http://codespeak.net/download/py/py-0.8.0-alpha2.tar.gz (from http://pypi.python.org/simple/py/) because of Content-Type: application/x-gzip
+  Analyzing links from page http://pypi.python.org/simple/py/
+    Skipping link http://pypi.python.org/packages/2.5/p/py/py-0.9.2-py2.5-win32.egg#md5=afc5e92b1e20475be0f2fe805479de6d (from http://pypi.python.org/simple/py/); unknown archive format: .egg
+    Found link http://pypi.python.org/packages/source/p/py/py-1.0.0.tar.gz#md5=3223ff8fcaefd060be13262e367794ce (from http://pypi.python.org/simple/py/), version: 1.0.0
+    Found link http://pypi.python.org/packages/source/p/py/py-1.1.1.tar.gz#md5=4d0b5eaf9af09b7682fb07d4c5a2fd45 (from http://pypi.python.org/simple/py/), version: 1.1.1
+    Found link http://pypi.python.org/packages/source/p/py/py-0.9.2.zip#md5=8447b2ba4c7b4062fcd08aab3377f040 (from http://pypi.python.org/simple/py/), version: 0.9.2
+    Found link http://pypi.python.org/packages/source/p/py/py-0.9.1.tar.gz#md5=daab8d9a814eab31809d973370d23600 (from http://pypi.python.org/simple/py/), version: 0.9.1
+    Skipping link http://pypi.python.org/packages/2.4/p/py/py-0.9.2-py2.4-win32.egg#md5=4eac7f97b8efed2271cc0c63c8796f23 (from http://pypi.python.org/simple/py/); unknown archive format: .egg
+    Found link http://pypi.python.org/packages/source/p/py/py-1.1.0.tar.gz#md5=fb5d1fcf3173d9c4dce70cfc8888e359 (from http://pypi.python.org/simple/py/), version: 1.1.0
+    Found link http://pypi.python.org/packages/source/p/py/py-1.0.2.tar.gz#md5=4d2e9878b0113159fae2f3ed0cfc081d (from http://pypi.python.org/simple/py/), version: 1.0.2
+    Found link http://pypi.python.org/packages/source/p/py/py-0.9.2.tar.gz#md5=2c996d78867f6ad64dc5aabf1185aaf7 (from http://pypi.python.org/simple/py/), version: 0.9.2
+    Found link http://pypi.python.org/packages/source/p/py/py-1.0.1.tar.gz#md5=d64444015bac78e0c73ac285f9423750 (from http://pypi.python.org/simple/py/), version: 1.0.1
+    Skipping link http://codespeak.net/py (from http://pypi.python.org/simple/py/); not a file
+    Found link http://codespeak.net/download/py/py-0.9.0.tar.gz (from http://pypi.python.org/simple/py/), version: 0.9.0
+    Skipping link http://pypi.python.org/simple/py/XXX (from http://pypi.python.org/simple/py/); not a file
+    Skipping link http://pylib.org (from http://pypi.python.org/simple/py/); not a file
+    Skipping link http://codespeak.net/py/0.9.2/download.html (from http://pypi.python.org/simple/py/); unknown archive format: .html
+    Found link http://codespeak.net/download/py/py-0.8.0-alpha2.tar.gz (from http://pypi.python.org/simple/py/), version: 0.8.0-alpha2
+    Skipping link http://pylib.org/code.html (from http://pypi.python.org/simple/py/); unknown archive format: .html
+    Skipping link http://pylib.org/contact.html (from http://pypi.python.org/simple/py/); unknown archive format: .html
+    Skipping link http://pylib.org/execnet.html (from http://pypi.python.org/simple/py/); unknown archive format: .html
+    Skipping link http://pylib.org/greenlet.html (from http://pypi.python.org/simple/py/); unknown archive format: .html
+    Skipping link http://pylib.org/path.html (from http://pypi.python.org/simple/py/); unknown archive format: .html
+    Skipping link http://pylib.org/test.html (from http://pypi.python.org/simple/py/); unknown archive format: .html
+  Analyzing links from page http://codespeak.net/py/
+    Skipping link http://codespeak.net/py/dist/ (from http://codespeak.net/py/); not a file
+  Analyzing links from page http://codespeak.net/py/
+    Skipping link http://codespeak.net/py/dist/ (from http://codespeak.net/py/); not a file
+  Analyzing links from page http://codespeak.net/py/dist/
+    Skipping link http://codespeak.net/py/dist/style.css (from http://codespeak.net/py/dist/); unknown archive format: .css
+    Skipping link http://pylib.org (from http://codespeak.net/py/dist/); not a file
+    Skipping link http://codespeak.net/py/dist/announce/release-1.1.1.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/install.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/contact.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/changelog.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/faq.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/index.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/quickstart.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/features.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/plugin/index.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/funcargs.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/customize.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/talks.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/index.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/path.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/code.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/bin.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/xml.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/io.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/log.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/misc.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://pypi.python.org/pypi/py/ (from http://codespeak.net/py/dist/); not a file
+  Analyzing links from page http://codespeak.net/py/0.9.2/download.html
+    Skipping link http://codespeak.net/py/0.9.2/style.css (from http://codespeak.net/py/0.9.2/download.html); unknown archive format: .css
+    Skipping link http://codespeak.net (from http://codespeak.net/py/0.9.2/download.html); not a file
+    Skipping link http://codespeak.net/py/0.9.2/index.html (from http://codespeak.net/py/0.9.2/download.html); unknown archive format: .html
+    Skipping link http://codespeak.net/py/0.9.2/apigen/api/index.html (from http://codespeak.net/py/0.9.2/download.html); unknown archive format: .html
+    Skipping link http://codespeak.net/py/0.9.2/apigen/source/index.html (from http://codespeak.net/py/0.9.2/download.html); unknown archive format: .html
+    Skipping link http://codespeak.net/py/0.9.2/contact.html (from http://codespeak.net/py/0.9.2/download.html); unknown archive format: .html
+    Skipping link http://codespeak.net/py/0.9.2/download.html (from http://codespeak.net/py/0.9.2/download.html); unknown archive format: .html
+    Skipping link http://pypi.python.org/pypi/setuptools (from http://codespeak.net/py/0.9.2/download.html); not a file
+    Skipping link http://codespeak.net/svn/py/build/winpathclean.py (from http://codespeak.net/py/0.9.2/download.html); unknown archive format: .py
+    Skipping link http://pypi.python.org/pypi/py/ (from http://codespeak.net/py/0.9.2/download.html); not a file
+  Analyzing links from page http://codespeak.net/py/dist/
+    Skipping link http://codespeak.net/py/dist/style.css (from http://codespeak.net/py/dist/); unknown archive format: .css
+    Skipping link http://pylib.org (from http://codespeak.net/py/dist/); not a file
+    Skipping link http://codespeak.net/py/dist/announce/release-1.1.1.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/install.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/contact.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/changelog.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/faq.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/index.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/quickstart.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/features.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/plugin/index.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/funcargs.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/customize.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/talks.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/index.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/path.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/code.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/bin.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/xml.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/io.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/log.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/misc.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://pypi.python.org/pypi/py/ (from http://codespeak.net/py/dist/); not a file
+  Analyzing links from page http://codespeak.net/py/dist/
+    Skipping link http://codespeak.net/py/dist/style.css (from http://codespeak.net/py/dist/); unknown archive format: .css
+    Skipping link http://pylib.org (from http://codespeak.net/py/dist/); not a file
+    Skipping link http://codespeak.net/py/dist/announce/release-1.1.1.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/install.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/contact.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/changelog.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/faq.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/index.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/quickstart.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/features.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/plugin/index.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/funcargs.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/customize.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/talks.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/index.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/path.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/code.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/bin.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/xml.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/io.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/log.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/misc.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://pypi.python.org/pypi/py/ (from http://codespeak.net/py/dist/); not a file
+  Analyzing links from page http://codespeak.net/py/dist/
+    Skipping link http://codespeak.net/py/dist/style.css (from http://codespeak.net/py/dist/); unknown archive format: .css
+    Skipping link http://pylib.org (from http://codespeak.net/py/dist/); not a file
+    Skipping link http://codespeak.net/py/dist/announce/release-1.1.1.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/install.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/contact.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/changelog.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/faq.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/index.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/quickstart.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/features.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/plugin/index.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/funcargs.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/customize.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/talks.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/index.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/path.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/code.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/bin.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/xml.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/io.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/log.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/misc.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://pypi.python.org/pypi/py/ (from http://codespeak.net/py/dist/); not a file
+  Analyzing links from page http://codespeak.net/py/dist/
+    Skipping link http://codespeak.net/py/dist/style.css (from http://codespeak.net/py/dist/); unknown archive format: .css
+    Skipping link http://pylib.org (from http://codespeak.net/py/dist/); not a file
+    Skipping link http://codespeak.net/py/dist/announce/release-1.1.1.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/install.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/contact.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/changelog.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/faq.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/index.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/quickstart.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/features.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/plugin/index.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/funcargs.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/customize.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/talks.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/index.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/path.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/code.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/bin.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/xml.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/io.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/log.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/misc.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://pypi.python.org/pypi/py/ (from http://codespeak.net/py/dist/); not a file
+  Analyzing links from page http://codespeak.net/py/
+    Skipping link http://codespeak.net/py/dist/ (from http://codespeak.net/py/); not a file
+  Analyzing links from page http://codespeak.net/py/dist/
+    Skipping link http://codespeak.net/py/dist/style.css (from http://codespeak.net/py/dist/); unknown archive format: .css
+    Skipping link http://pylib.org (from http://codespeak.net/py/dist/); not a file
+    Skipping link http://codespeak.net/py/dist/announce/release-1.1.1.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/install.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/contact.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/changelog.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/faq.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/index.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/quickstart.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/features.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/plugin/index.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/funcargs.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/customize.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/test/talks.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/index.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/path.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/code.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/bin.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/xml.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/io.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/log.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://codespeak.net/py/dist/misc.html (from http://codespeak.net/py/dist/); unknown archive format: .html
+    Skipping link http://pypi.python.org/pypi/py/ (from http://codespeak.net/py/dist/); not a file
+  Using version 1.1.1 (newest of versions: 1.1.1, 1.1.0, 1.0.2, 1.0.1, 1.0.0, 0.9.2, 0.9.2, 0.9.1, 0.9.0, 0.8.0-alpha2)
+  Downloading from URL http://pypi.python.org/packages/source/p/py/py-1.1.1.tar.gz#md5=4d0b5eaf9af09b7682fb07d4c5a2fd45 (from http://pypi.python.org/simple/py/)
+Exception:
+Traceback (most recent call last):
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 295, in main
+    self.run(options, args)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 479, in run
+    requirement_set.install_files(finder, force_root_egg_info=self.bundle)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 1968, in install_files
+    self.unpack_url(url, location, self.is_download)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 2133, in unpack_url
+    self.unpack_file(temp_location, location, content_type, link)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 2174, in unpack_file
+    self.untar_file(filename, location)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 2221, in untar_file
+    os.makedirs(location)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/os.py", line 157, in makedirs
+    mkdir(name, mode)
+OSError: [Errno 13] Permission denied: '/Users/aconbere/Projects/python/igor/build/py'
+------------------------------------------------------------
+/opt/local/Library/Frameworks/Python.framework/Versions/2.6/bin/pip run on Fri Dec  4 09:43:59 2009
+Downloading/unpacking yaml
+  Getting page http://pypi.python.org/simple/yaml
+  Could not fetch URL http://pypi.python.org/simple/yaml: HTTP Error 404: Not Found
+  Will skip URL http://pypi.python.org/simple/yaml when looking for download links for yaml
+  Getting page http://pypi.python.org/simple/
+  URLs to search for versions for yaml:
+  * http://pypi.python.org/simple/yaml/
+  Getting page http://pypi.python.org/simple/yaml/
+  Could not fetch URL http://pypi.python.org/simple/yaml/: HTTP Error 404: Not Found
+  Will skip URL http://pypi.python.org/simple/yaml/ when looking for download links for yaml
+  Could not find any downloads that satisfy the requirement yaml
+No distributions at all found for yaml
+Exception information:
+Traceback (most recent call last):
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 295, in main
+    self.run(options, args)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 479, in run
+    requirement_set.install_files(finder, force_root_egg_info=self.bundle)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 1961, in install_files
+    url = finder.find_requirement(req_to_install, upgrade=self.upgrade)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 1146, in find_requirement
+    raise DistributionNotFound('No distributions at all found for %s' % req)
+DistributionNotFound: No distributions at all found for yaml
+------------------------------------------------------------
+/opt/local/Library/Frameworks/Python.framework/Versions/2.6/bin/pip run on Fri Dec  4 09:44:13 2009
+Downloading/unpacking yaml
+  Getting page http://pypi.python.org/simple/yaml
+  Could not fetch URL http://pypi.python.org/simple/yaml: HTTP Error 404: Not Found
+  Will skip URL http://pypi.python.org/simple/yaml when looking for download links for yaml
+  Getting page http://pypi.python.org/simple/
+  URLs to search for versions for yaml:
+  * http://pypi.python.org/simple/yaml/
+  Getting page http://pypi.python.org/simple/yaml/
+  Could not fetch URL http://pypi.python.org/simple/yaml/: HTTP Error 404: Not Found
+  Will skip URL http://pypi.python.org/simple/yaml/ when looking for download links for yaml
+  Could not find any downloads that satisfy the requirement yaml
+No distributions at all found for yaml
+Exception information:
+Traceback (most recent call last):
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 295, in main
+    self.run(options, args)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 479, in run
+    requirement_set.install_files(finder, force_root_egg_info=self.bundle)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 1961, in install_files
+    url = finder.find_requirement(req_to_install, upgrade=self.upgrade)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 1146, in find_requirement
+    raise DistributionNotFound('No distributions at all found for %s' % req)
+DistributionNotFound: No distributions at all found for yaml
+------------------------------------------------------------
+/opt/local/Library/Frameworks/Python.framework/Versions/2.6/bin/pip run on Fri Dec  4 09:44:44 2009
+Downloading/unpacking yaml
+  Getting page http://pypi.python.org/simple/yaml
+  Could not fetch URL http://pypi.python.org/simple/yaml: HTTP Error 404: Not Found
+  Will skip URL http://pypi.python.org/simple/yaml when looking for download links for yaml
+  Getting page http://pypi.python.org/simple/
+Exception:
+Traceback (most recent call last):
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 295, in main
+    self.run(options, args)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 479, in run
+    requirement_set.install_files(finder, force_root_egg_info=self.bundle)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 1961, in install_files
+    url = finder.find_requirement(req_to_install, upgrade=self.upgrade)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 1086, in find_requirement
+    url_name = self._find_url_name(Link(self.index_urls[0]), url_name, req) or req.url_name
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 1194, in _find_url_name
+    page = self._get_page(index_url, req)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 1311, in _get_page
+    return HTMLPage.get_page(link, req, cache=self.cache)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 2414, in get_page
+    resp = urllib2.urlopen(url)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/urllib2.py", line 124, in urlopen
+    return _opener.open(url, data, timeout)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/urllib2.py", line 383, in open
+    response = self._open(req, data)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/urllib2.py", line 401, in _open
+    '_open', req)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/urllib2.py", line 361, in _call_chain
+    result = func(*args)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/urllib2.py", line 1130, in http_open
+    return self.do_open(httplib.HTTPConnection, req)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/urllib2.py", line 1102, in do_open
+    h.request(req.get_method(), req.get_selector(), req.data, headers)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/httplib.py", line 874, in request
+    self._send_request(method, url, body, headers)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/httplib.py", line 911, in _send_request
+    self.endheaders()
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/httplib.py", line 868, in endheaders
+    self._send_output()
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/httplib.py", line 740, in _send_output
+    self.send(msg)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/httplib.py", line 699, in send
+    self.connect()
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/httplib.py", line 683, in connect
+    self.timeout)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/socket.py", line 505, in create_connection
+    sock.connect(sa)
+  File "<string>", line 1, in connect
+KeyboardInterrupt
+------------------------------------------------------------
+/opt/local/Library/Frameworks/Python.framework/Versions/2.6/bin/pip run on Fri Dec  4 09:49:36 2009
+Downloading/unpacking markdown
+  Getting page http://pypi.python.org/simple/markdown
+  URLs to search for versions for markdown:
+  * http://pypi.python.org/simple/markdown/
+  Getting page http://pypi.python.org/simple/markdown/
+  Getting page http://www.freewisdom.org/projects/python-markdown/
+  Skipping page http://downloads.sourceforge.net/python-markdown/markdown-1.6a.zip (from http://pypi.python.org/simple/Markdown) because of Content-Type: 
+  Getting page http://www.freewisdom.org/projects/python-markdown
+  Skipping page http://pypi.python.org/packages/source/M/Markdown/Markdown-2.0.3.tar.gz (from http://pypi.python.org/simple/Markdown) because of Content-Type: application/x-gzip
+  Skipping page http://pypi.python.org/packages/source/M/Markdown/Markdown-2.0.tar.gz (from http://pypi.python.org/simple/Markdown) because of Content-Type: application/x-gzip
+  Skipping page http://pypi.python.org/packages/source/M/Markdown/Markdown-2.0.1.tar.gz (from http://pypi.python.org/simple/Markdown) because of Content-Type: application/x-gzip
+  Getting page https://sourceforge.net/project/showfiles.php?group_id=153041
+  Skipping page http://pypi.python.org/packages/source/M/Markdown/Markdown-2.0.2.tar.gz (from http://pypi.python.org/simple/Markdown) because of Content-Type: application/x-gzip
+  Analyzing links from page http://pypi.python.org/simple/Markdown
+    Found link http://pypi.python.org/packages/source/M/Markdown/Markdown-2.0.2.tar.gz#md5=3b4ae6bbb241b5e31667b5044d3a6104 (from http://pypi.python.org/simple/Markdown), version: 2.0.2
+    Found link http://pypi.python.org/packages/source/M/Markdown/markdown-1.7.tar.gz#md5=4297ebcdedc92b4bc7bc9ecd01053565 (from http://pypi.python.org/simple/Markdown), version: 1.7
+    Found link http://pypi.python.org/packages/source/M/Markdown/Markdown-2.0.zip#md5=5dbf9bd2c3e03c8f454995ad8d5694e8 (from http://pypi.python.org/simple/Markdown), version: 2.0
+    Found link http://pypi.python.org/packages/source/M/Markdown/Markdown-2.0.1.zip#md5=cf948489ca763f4180245c62e23cd97b (from http://pypi.python.org/simple/Markdown), version: 2.0.1
+    Skipping link http://pypi.python.org/packages/any/M/Markdown/Markdown-2.0.2.win32.exe#md5=5e1afafbfffdbe0aacc0050c6c551475 (from http://pypi.python.org/simple/Markdown); unknown archive format: .exe
+    Found link http://pypi.python.org/packages/source/M/Markdown/Markdown-2.0.2.zip#md5=a8c8c4fd317ee7a06c9b9b7347b3872d (from http://pypi.python.org/simple/Markdown), version: 2.0.2
+    Skipping link http://pypi.python.org/packages/any/M/Markdown/Markdown-2.0.1.win32.exe#md5=aff3e3a57ae7debc6f6158a57b4b0a65 (from http://pypi.python.org/simple/Markdown); unknown archive format: .exe
+    Found link http://pypi.python.org/packages/source/M/Markdown/markdown-1.7.zip#md5=99b1721d723e8c64381fc023d23b202a (from http://pypi.python.org/simple/Markdown), version: 1.7
+    Skipping link http://pypi.python.org/packages/any/M/Markdown/Markdown-2.0.3.win32.exe#md5=def85b9bd03ce80815098f0dce8067ae (from http://pypi.python.org/simple/Markdown); unknown archive format: .exe
+    Found link http://pypi.python.org/packages/source/M/Markdown/Markdown-2.0.3.zip#md5=122418893e21e91109edbf6e082f830d (from http://pypi.python.org/simple/Markdown), version: 2.0.3
+    Found link http://pypi.python.org/packages/source/M/Markdown/Markdown-2.0.1.tar.gz#md5=bfdb2171faeb410d6099653da90b9bf7 (from http://pypi.python.org/simple/Markdown), version: 2.0.1
+    Skipping link http://pypi.python.org/packages/any/M/Markdown/Markdown-2.0.win32.exe#md5=106839ccef3b40f59ff03d7ad43346bb (from http://pypi.python.org/simple/Markdown); unknown archive format: .exe
+    Found link http://pypi.python.org/packages/source/M/Markdown/Markdown-2.0.tar.gz#md5=4db8d332f531de10370ebaf1d2615786 (from http://pypi.python.org/simple/Markdown), version: 2.0
+    Skipping link http://pypi.python.org/packages/any/M/Markdown/markdown-1.7.win32.exe#md5=a64e3615d973f21f8ca3cfb571e567ec (from http://pypi.python.org/simple/Markdown); unknown archive format: .exe
+    Found link http://pypi.python.org/packages/source/M/Markdown/Markdown-2.0.3.tar.gz#md5=751e8055be2433dfd1a82e0fb1b12f13 (from http://pypi.python.org/simple/Markdown), version: 2.0.3
+    Skipping link http://www.freewisdom.org/projects/python-markdown/ (from http://pypi.python.org/simple/Markdown); not a file
+    Found link http://downloads.sourceforge.net/python-markdown/markdown-1.6a.zip (from http://pypi.python.org/simple/Markdown), version: 1.6a
+    Skipping link http://www.freewisdom.org/projects/python-markdown (from http://pypi.python.org/simple/Markdown); not a file
+    Found link http://pypi.python.org/packages/source/M/Markdown/Markdown-2.0.3.tar.gz (from http://pypi.python.org/simple/Markdown), version: 2.0.3
+    Found link http://pypi.python.org/packages/source/M/Markdown/Markdown-2.0.tar.gz (from http://pypi.python.org/simple/Markdown), version: 2.0
+    Found link http://pypi.python.org/packages/source/M/Markdown/Markdown-2.0.1.tar.gz (from http://pypi.python.org/simple/Markdown), version: 2.0.1
+    Skipping link https://sourceforge.net/project/showfiles.php?group_id=153041 (from http://pypi.python.org/simple/Markdown); unknown archive format: .php
+    Found link http://pypi.python.org/packages/source/M/Markdown/Markdown-2.0.2.tar.gz (from http://pypi.python.org/simple/Markdown), version: 2.0.2
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Available_Extensions (from http://pypi.python.org/simple/Markdown); not a file
+  Analyzing links from page http://www.freewisdom.org/projects/python-markdown/
+    Skipping link http://www.freewisdom.org/cgi-bin/python-markdown.cgi?p=sputnik/style.css (from http://www.freewisdom.org/projects/python-markdown/); unknown archive format: .cgi
+    Skipping link http://www.freewisdom.org/cgi-bin/python-markdown.cgi?p=icons/sputnik.png (from http://www.freewisdom.org/projects/python-markdown/); unknown archive format: .cgi
+    Skipping link http://www.freewisdom.org/projects/python-markdown/history.rss (from http://www.freewisdom.org/projects/python-markdown/); unknown archive format: .rss
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Overview.rss (from http://www.freewisdom.org/projects/python-markdown/); unknown archive format: .rss
+    Skipping link http://www.freewisdom.org/projects/python-markdown/sputnik/login&amp;next=Overview (from http://www.freewisdom.org/projects/python-markdown/); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/sputnik/register (from http://www.freewisdom.org/projects/python-markdown/); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/ (from http://www.freewisdom.org/projects/python-markdown/); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Features (from http://www.freewisdom.org/projects/python-markdown/); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Credits (from http://www.freewisdom.org/projects/python-markdown/); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/License (from http://www.freewisdom.org/projects/python-markdown/); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/This_Wiki (from http://www.freewisdom.org/projects/python-markdown/); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/News (from http://www.freewisdom.org/projects/python-markdown/); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Releases (from http://www.freewisdom.org/projects/python-markdown/); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Change_Log (from http://www.freewisdom.org/projects/python-markdown/); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/_history (from http://www.freewisdom.org/projects/python-markdown/); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Installation (from http://www.freewisdom.org/projects/python-markdown/); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Command_Line (from http://www.freewisdom.org/projects/python-markdown/); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Using_as_a_Module (from http://www.freewisdom.org/projects/python-markdown/); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Integration (from http://www.freewisdom.org/projects/python-markdown/); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Reporting_Bugs (from http://www.freewisdom.org/projects/python-markdown/); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Mailing_List (from http://www.freewisdom.org/projects/python-markdown/); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Source_Code (from http://www.freewisdom.org/projects/python-markdown/); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Test_Suite (from http://www.freewisdom.org/projects/python-markdown/); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Extensions (from http://www.freewisdom.org/projects/python-markdown/); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Writing_Extensions (from http://www.freewisdom.org/projects/python-markdown/); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Available_Extensions (from http://www.freewisdom.org/projects/python-markdown/); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Related_Projects (from http://www.freewisdom.org/projects/python-markdown/); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Overview.history (from http://www.freewisdom.org/projects/python-markdown/); unknown archive format: .history
+    Skipping link http://daringfireball.net/projects/markdown/ (from http://www.freewisdom.org/projects/python-markdown/); not a file
+    Skipping link http://pypi.python.org/pypi/Markdown (from http://www.freewisdom.org/projects/python-markdown/); not a file
+    Skipping link http://spu.tnik.org/ (from http://www.freewisdom.org/projects/python-markdown/); not a file
+    Skipping link http://validator.w3.org/check?uri=referer (from http://www.freewisdom.org/projects/python-markdown/); not a file
+  Analyzing links from page http://www.freewisdom.org/projects/python-markdown
+    Skipping link http://www.freewisdom.org/cgi-bin/python-markdown.cgi?p=sputnik/style.css (from http://www.freewisdom.org/projects/python-markdown); unknown archive format: .cgi
+    Skipping link http://www.freewisdom.org/cgi-bin/python-markdown.cgi?p=icons/sputnik.png (from http://www.freewisdom.org/projects/python-markdown); unknown archive format: .cgi
+    Skipping link http://www.freewisdom.org/projects/python-markdown/history.rss (from http://www.freewisdom.org/projects/python-markdown); unknown archive format: .rss
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Overview.rss (from http://www.freewisdom.org/projects/python-markdown); unknown archive format: .rss
+    Skipping link http://www.freewisdom.org/projects/python-markdown/sputnik/login&amp;next=Overview (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/sputnik/register (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/ (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Features (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Credits (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/License (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/This_Wiki (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/News (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Releases (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Change_Log (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/_history (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Installation (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Command_Line (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Using_as_a_Module (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Integration (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Reporting_Bugs (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Mailing_List (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Source_Code (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Test_Suite (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Extensions (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Writing_Extensions (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Available_Extensions (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Related_Projects (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Overview.history (from http://www.freewisdom.org/projects/python-markdown); unknown archive format: .history
+    Skipping link http://daringfireball.net/projects/markdown/ (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://pypi.python.org/pypi/Markdown (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://spu.tnik.org/ (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://validator.w3.org/check?uri=referer (from http://www.freewisdom.org/projects/python-markdown); not a file
+  Analyzing links from page http://www.freewisdom.org/projects/python-markdown
+    Skipping link http://www.freewisdom.org/cgi-bin/python-markdown.cgi?p=sputnik/style.css (from http://www.freewisdom.org/projects/python-markdown); unknown archive format: .cgi
+    Skipping link http://www.freewisdom.org/cgi-bin/python-markdown.cgi?p=icons/sputnik.png (from http://www.freewisdom.org/projects/python-markdown); unknown archive format: .cgi
+    Skipping link http://www.freewisdom.org/projects/python-markdown/history.rss (from http://www.freewisdom.org/projects/python-markdown); unknown archive format: .rss
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Overview.rss (from http://www.freewisdom.org/projects/python-markdown); unknown archive format: .rss
+    Skipping link http://www.freewisdom.org/projects/python-markdown/sputnik/login&amp;next=Overview (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/sputnik/register (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/ (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Features (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Credits (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/License (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/This_Wiki (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/News (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Releases (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Change_Log (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/_history (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Installation (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Command_Line (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Using_as_a_Module (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Integration (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Reporting_Bugs (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Mailing_List (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Source_Code (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Test_Suite (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Extensions (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Writing_Extensions (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Available_Extensions (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Related_Projects (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Overview.history (from http://www.freewisdom.org/projects/python-markdown); unknown archive format: .history
+    Skipping link http://daringfireball.net/projects/markdown/ (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://pypi.python.org/pypi/Markdown (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://spu.tnik.org/ (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://validator.w3.org/check?uri=referer (from http://www.freewisdom.org/projects/python-markdown); not a file
+  Analyzing links from page http://www.freewisdom.org/projects/python-markdown
+    Skipping link http://www.freewisdom.org/cgi-bin/python-markdown.cgi?p=sputnik/style.css (from http://www.freewisdom.org/projects/python-markdown); unknown archive format: .cgi
+    Skipping link http://www.freewisdom.org/cgi-bin/python-markdown.cgi?p=icons/sputnik.png (from http://www.freewisdom.org/projects/python-markdown); unknown archive format: .cgi
+    Skipping link http://www.freewisdom.org/projects/python-markdown/history.rss (from http://www.freewisdom.org/projects/python-markdown); unknown archive format: .rss
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Overview.rss (from http://www.freewisdom.org/projects/python-markdown); unknown archive format: .rss
+    Skipping link http://www.freewisdom.org/projects/python-markdown/sputnik/login&amp;next=Overview (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/sputnik/register (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/ (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Features (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Credits (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/License (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/This_Wiki (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/News (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Releases (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Change_Log (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/_history (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Installation (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Command_Line (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Using_as_a_Module (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Integration (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Reporting_Bugs (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Mailing_List (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Source_Code (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Test_Suite (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Extensions (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Writing_Extensions (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Available_Extensions (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Related_Projects (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Overview.history (from http://www.freewisdom.org/projects/python-markdown); unknown archive format: .history
+    Skipping link http://daringfireball.net/projects/markdown/ (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://pypi.python.org/pypi/Markdown (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://spu.tnik.org/ (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://validator.w3.org/check?uri=referer (from http://www.freewisdom.org/projects/python-markdown); not a file
+  Analyzing links from page http://www.freewisdom.org/projects/python-markdown
+    Skipping link http://www.freewisdom.org/cgi-bin/python-markdown.cgi?p=sputnik/style.css (from http://www.freewisdom.org/projects/python-markdown); unknown archive format: .cgi
+    Skipping link http://www.freewisdom.org/cgi-bin/python-markdown.cgi?p=icons/sputnik.png (from http://www.freewisdom.org/projects/python-markdown); unknown archive format: .cgi
+    Skipping link http://www.freewisdom.org/projects/python-markdown/history.rss (from http://www.freewisdom.org/projects/python-markdown); unknown archive format: .rss
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Overview.rss (from http://www.freewisdom.org/projects/python-markdown); unknown archive format: .rss
+    Skipping link http://www.freewisdom.org/projects/python-markdown/sputnik/login&amp;next=Overview (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/sputnik/register (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/ (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Features (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Credits (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/License (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/This_Wiki (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/News (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Releases (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Change_Log (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/_history (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Installation (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Command_Line (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Using_as_a_Module (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Integration (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Reporting_Bugs (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Mailing_List (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Source_Code (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Test_Suite (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Extensions (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Writing_Extensions (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Available_Extensions (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Related_Projects (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Overview.history (from http://www.freewisdom.org/projects/python-markdown); unknown archive format: .history
+    Skipping link http://daringfireball.net/projects/markdown/ (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://pypi.python.org/pypi/Markdown (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://spu.tnik.org/ (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://validator.w3.org/check?uri=referer (from http://www.freewisdom.org/projects/python-markdown); not a file
+  Analyzing links from page http://sourceforge.net/projects/python-markdown/files/
+    Skipping link http://a.fsdn.com/con/img/favicon.ico (from http://sourceforge.net/projects/python-markdown/files/); unknown archive format: .ico
+    Skipping link http://a.fsdn.com/con/css/sf.min.css?1259778841 (from http://sourceforge.net/projects/python-markdown/files/); unknown archive format: .css
+    Skipping link https://sourceforge.net/account/login.php (from http://sourceforge.net/projects/python-markdown/files/); unknown archive format: .php
+    Skipping link http://sourceforge.net/account/registration/ (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/ (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/softwaremap/ (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/develop/ (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/register/ (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/community/ (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://p.sf.net/sourceforge/getsupport (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/about (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/ (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/users/qaramazov (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/users/waylanhl (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/files/ (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/support (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/develop (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/2.0.3/Markdown-2.0.3.zip/download (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/files/?sort=filename&amp;sortdir=asc (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/files/?sort=date&amp;sortdir=asc (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/2.0.3/Markdown-2.0.3.win32.exe/download (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/2.0.3/Markdown-2.0.3.tar.gz/download (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/api/file/index/project-id/153041/rss (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/api/file/index/project-id/153041/rss?path=%2Fmarkdown (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/ (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/api/file/index/project-id/153041/rss?path=%2Fmarkdown%2F2.0.3 (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/2.0.3/ (from http://sourceforge.net/projects/python-markdown/files/); unknown archive format: .3
+    Skipping link http://sourceforge.net/api/file/index/project-id/153041/rss?path=%2Fmarkdown%2F2.0.2 (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/2.0.2/ (from http://sourceforge.net/projects/python-markdown/files/); unknown archive format: .2
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/2.0.2/Markdown-2.0.2.zip/download (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/2.0.2/Markdown-2.0.2.win32.exe/download (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/2.0.2/Markdown-2.0.2.tar.gz/download (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/api/file/index/project-id/153041/rss?path=%2Fmarkdown%2F2.0.1 (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/2.0.1/ (from http://sourceforge.net/projects/python-markdown/files/); unknown archive format: .1
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/2.0.1/Markdown-2.0.1.zip/download (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/project/shownotes.php?release_id=683890 (from http://sourceforge.net/projects/python-markdown/files/); unknown archive format: .php
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/2.0.1/Markdown-2.0.1.win32.exe/download (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/2.0.1/Markdown-2.0.1.tar.gz/download (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/api/file/index/project-id/153041/rss?path=%2Fmarkdown%2F2.0 (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/2.0/ (from http://sourceforge.net/projects/python-markdown/files/); unknown archive format: .0
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/2.0/Markdown-2.0.zip/download (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/project/shownotes.php?release_id=674043 (from http://sourceforge.net/projects/python-markdown/files/); unknown archive format: .php
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/2.0/Markdown-2.0.win32.exe/download (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/2.0/Markdown-2.0.tar.gz/download (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/2.0/Markdown-2.0.py3.0.tar.gz/download (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/api/file/index/project-id/153041/rss?path=%2Fmarkdown%2F1.7 (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/1.7/ (from http://sourceforge.net/projects/python-markdown/files/); unknown archive format: .7
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/1.7/markdown-1.7.zip/download (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/project/shownotes.php?release_id=561378 (from http://sourceforge.net/projects/python-markdown/files/); unknown archive format: .php
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/1.7/markdown-1.7.win32.exe/download (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/1.7/markdown-1.7.tar.gz/download (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/1.7/python_markdown-1.7.rc1.zip/download (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/api/file/index/project-id/153041/rss?path=%2Fmarkdown%2F1.6b (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/1.6b/ (from http://sourceforge.net/projects/python-markdown/files/); unknown archive format: .6b
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/1.6b/markdown-1.6b.zip/download (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/project/shownotes.php?release_id=533142 (from http://sourceforge.net/projects/python-markdown/files/); unknown archive format: .php
+    Skipping link http://sourceforge.net/api/file/index/project-id/153041/rss?path=%2Fmarkdown%2F1.6a (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/1.6a/ (from http://sourceforge.net/projects/python-markdown/files/); unknown archive format: .6a
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/1.6a/markdown-1.6a.zip/download (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/api/file/index/project-id/153041/rss?path=%2Fmarkdown%2F1.6 (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/1.6/ (from http://sourceforge.net/projects/python-markdown/files/); unknown archive format: .6
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/1.6/markdown-1.6.zip/download (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/project/shownotes.php?release_id=454847 (from http://sourceforge.net/projects/python-markdown/files/); unknown archive format: .php
+    Skipping link http://sourceforge.net/api/file/index/project-id/153041/rss?path=%2Fmarkdown%2F1.5 (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/1.5/ (from http://sourceforge.net/projects/python-markdown/files/); unknown archive format: .5
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/1.5/markdown-1-5.py/download (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/project/shownotes.php?release_id=417161 (from http://sourceforge.net/projects/python-markdown/files/); unknown archive format: .php
+    Skipping link http://sourceforge.net/api/file/index/project-id/153041/rss?path=%2Fmarkdown%2F1.4 (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/1.4/ (from http://sourceforge.net/projects/python-markdown/files/); unknown archive format: .4
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/1.4/markdown-1-4.py/download (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/project/shownotes.php?release_id=404531 (from http://sourceforge.net/projects/python-markdown/files/); unknown archive format: .php
+    Skipping link http://sourceforge.net/api/file/index/project-id/153041/rss?path=%2Fmarkdown%2F1.3 (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/1.3/ (from http://sourceforge.net/projects/python-markdown/files/); unknown archive format: .3
+    Skipping link http://sourceforge.net/projects/python-markdown/files/markdown/1.3/markdown.py/download (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/support (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://geek.net/careers/ (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://geek.net/advertising/ (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/search/ (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/top/topalltime.php?type=downloads (from http://sourceforge.net/projects/python-markdown/files/); unknown archive format: .php
+    Skipping link http://sourceforge.net/top/mostactive.php (from http://sourceforge.net/projects/python-markdown/files/); unknown archive format: .php
+    Skipping link http://sourceforge.net/register-project/ (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/people/ (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/new/new_projects.php (from http://sourceforge.net/projects/python-markdown/files/); unknown archive format: .php
+    Skipping link http://sourceforge.net/community/blog/ (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://twitter.com/sourceforge (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/apps/trac/sourceforge/wiki/WikiStart (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/apps/trac/sourceforge/wiki/Support (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/apps/wordpress/sourceforge/ (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://sourceforge.net/feedback/ (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://geek.net (from http://sourceforge.net/projects/python-markdown/files/); not a file
+    Skipping link http://p.sf.net/sourceforge/terms (from http://sourceforge.net/projects/python-markdown/files/); not a file
+  Analyzing links from page http://www.freewisdom.org/projects/python-markdown
+    Skipping link http://www.freewisdom.org/cgi-bin/python-markdown.cgi?p=sputnik/style.css (from http://www.freewisdom.org/projects/python-markdown); unknown archive format: .cgi
+    Skipping link http://www.freewisdom.org/cgi-bin/python-markdown.cgi?p=icons/sputnik.png (from http://www.freewisdom.org/projects/python-markdown); unknown archive format: .cgi
+    Skipping link http://www.freewisdom.org/projects/python-markdown/history.rss (from http://www.freewisdom.org/projects/python-markdown); unknown archive format: .rss
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Overview.rss (from http://www.freewisdom.org/projects/python-markdown); unknown archive format: .rss
+    Skipping link http://www.freewisdom.org/projects/python-markdown/sputnik/login&amp;next=Overview (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/sputnik/register (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/ (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Features (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Credits (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/License (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/This_Wiki (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/News (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Releases (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Change_Log (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/_history (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Installation (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Command_Line (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Using_as_a_Module (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Integration (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Reporting_Bugs (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Mailing_List (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Source_Code (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Test_Suite (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Extensions (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Writing_Extensions (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Available_Extensions (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Related_Projects (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://www.freewisdom.org/projects/python-markdown/Overview.history (from http://www.freewisdom.org/projects/python-markdown); unknown archive format: .history
+    Skipping link http://daringfireball.net/projects/markdown/ (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://pypi.python.org/pypi/Markdown (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://spu.tnik.org/ (from http://www.freewisdom.org/projects/python-markdown); not a file
+    Skipping link http://validator.w3.org/check?uri=referer (from http://www.freewisdom.org/projects/python-markdown); not a file
+  Using version 2.0.3 (newest of versions: 2.0.3, 2.0.3, 2.0.3, 2.0.2, 2.0.2, 2.0.2, 2.0.1, 2.0.1, 2.0.1, 2.0, 2.0, 2.0, 1.7, 1.7, 1.6a)
+  Downloading from URL http://pypi.python.org/packages/source/M/Markdown/Markdown-2.0.3.zip#md5=122418893e21e91109edbf6e082f830d (from http://pypi.python.org/simple/Markdown)
+Exception:
+Traceback (most recent call last):
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 295, in main
+    self.run(options, args)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 479, in run
+    requirement_set.install_files(finder, force_root_egg_info=self.bundle)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 1968, in install_files
+    self.unpack_url(url, location, self.is_download)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 2133, in unpack_url
+    self.unpack_file(temp_location, location, content_type, link)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 2170, in unpack_file
+    self.unzip_file(filename, location, flatten=not filename.endswith('.pybundle'))
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 2191, in unzip_file
+    os.makedirs(location)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/os.py", line 157, in makedirs
+    mkdir(name, mode)
+OSError: [Errno 13] Permission denied: '/Users/aconbere/Projects/python/igor/build/markdown'
+------------------------------------------------------------
+/opt/local/Library/Frameworks/Python.framework/Versions/2.6/bin/pip run on Fri Dec  4 09:51:13 2009
+Downloading/unpacking textile
+  Getting page http://pypi.python.org/simple/textile
+  URLs to search for versions for textile:
+  * http://pypi.python.org/simple/textile/
+  Getting page http://pypi.python.org/simple/textile/
+  Getting page http://dealmeida.net/projects/textile/
+  Could not fetch URL http://dealmeida.net/projects/textile/ (from http://pypi.python.org/simple/textile/): HTTP Error 404: Not Found
+  Will skip URL http://dealmeida.net/projects/textile/ when looking for download links for textile
+  Skipping page http://dealmeida.net/code/textile-2.0.1.tar.gz (from http://pypi.python.org/simple/textile/) because of Content-Type: 
+  Getting page http://dealmeida.net/projects/textile/
+  Could not fetch URL http://dealmeida.net/projects/textile/ (from http://pypi.python.org/simple/textile/): HTTP Error 404: Not Found
+  Will skip URL http://dealmeida.net/projects/textile/ when looking for download links for textile
+  Skipping page http://dealmeida.net/code/textile-2.0.8.tar.gz (from http://pypi.python.org/simple/textile/) because of Content-Type: 
+  Skipping page http://dealmeida.net/code/textile-2.0.6.tar.gz (from http://pypi.python.org/simple/textile/) because of Content-Type: 
+  Skipping page http://dealmeida.net/code/textile-2.0.9.tar.gz (from http://pypi.python.org/simple/textile/) because of Content-Type: 
+  Getting page http://loopcore.com/python-textile/
+  Skipping page http://dealmeida.net/code/textile-2.0.2.tar.gz (from http://pypi.python.org/simple/textile/) because of Content-Type: 
+  Skipping page http://dealmeida.net/code/textile-2.0.5.tar.gz (from http://pypi.python.org/simple/textile/) because of Content-Type: 
+  Skipping page http://dealmeida.net/code/textile-2.0.7.tar.gz (from http://pypi.python.org/simple/textile/) because of Content-Type: 
+  Skipping page http://dealmeida.net/code/textile-2.tar.gz (from http://pypi.python.org/simple/textile/) because of Content-Type: 
+  Skipping page http://dealmeida.net/code/textile-2.0.3.tar.gz (from http://pypi.python.org/simple/textile/) because of Content-Type: 
+  Skipping page http://dom.eav.free.fr/python/textile-mirror-2.0.10.tar.gz (from http://pypi.python.org/simple/textile/) because of Content-Type: 
+  Skipping page http://dealmeida.net/code/textile-2.0.4.tar.gz (from http://pypi.python.org/simple/textile/) because of Content-Type: 
+  Skipping page http://cheeseshop.python.org/packages/source/t/textile/textile-2.0.11.tar.gz (from http://pypi.python.org/simple/textile/) because of Content-Type: 
+  Analyzing links from page http://pypi.python.org/simple/textile/
+    Found link http://pypi.python.org/packages/source/t/textile/textile-2.1.3.tar.gz#md5=07ec3c6d5e47763376894dfe60466a18 (from http://pypi.python.org/simple/textile/), version: 2.1.3
+    Found link http://pypi.python.org/packages/source/t/textile/textile-2.1.1.tar.gz#md5=9ca9f363ec9b7c041e51ee2f6b3edd77 (from http://pypi.python.org/simple/textile/), version: 2.1.1
+    Found link http://pypi.python.org/packages/source/t/textile/textile-2.0.11.tar.gz#md5=3e14bca38c70e9dd74a635776f01175c (from http://pypi.python.org/simple/textile/), version: 2.0.11
+    Skipping link http://pypi.python.org/packages/2.4/t/textile/textile-2.0.11-py2.4.egg#md5=f3ab84e6833a96c20cbdae62515924dd (from http://pypi.python.org/simple/textile/); unknown archive format: .egg
+    Found link http://pypi.python.org/packages/source/t/textile/textile-2.1.0.tar.gz#md5=3d14a1ae32181bc9d626eb174136a585 (from http://pypi.python.org/simple/textile/), version: 2.1.0
+    Found link http://pypi.python.org/packages/source/t/textile/textile-2.1.2.tar.gz#md5=876687aa33221a8a302f938123fb6c63 (from http://pypi.python.org/simple/textile/), version: 2.1.2
+    Skipping link http://dealmeida.net/projects/textile/ (from http://pypi.python.org/simple/textile/); not a file
+    Found link http://dealmeida.net/code/textile-2.0.1.tar.gz (from http://pypi.python.org/simple/textile/), version: 2.0.1
+    Found link http://dealmeida.net/code/textile-2.0.8.tar.gz (from http://pypi.python.org/simple/textile/), version: 2.0.8
+    Found link http://dealmeida.net/code/textile-2.0.6.tar.gz (from http://pypi.python.org/simple/textile/), version: 2.0.6
+    Found link http://dealmeida.net/code/textile-2.0.9.tar.gz (from http://pypi.python.org/simple/textile/), version: 2.0.9
+    Skipping link http://loopcore.com/python-textile/ (from http://pypi.python.org/simple/textile/); not a file
+    Found link http://dealmeida.net/code/textile-2.0.2.tar.gz (from http://pypi.python.org/simple/textile/), version: 2.0.2
+    Found link http://dealmeida.net/code/textile-2.0.5.tar.gz (from http://pypi.python.org/simple/textile/), version: 2.0.5
+    Found link http://dealmeida.net/code/textile-2.0.7.tar.gz (from http://pypi.python.org/simple/textile/), version: 2.0.7
+    Found link http://dealmeida.net/code/textile-2.tar.gz (from http://pypi.python.org/simple/textile/), version: 2
+    Found link http://dealmeida.net/code/textile-2.0.3.tar.gz (from http://pypi.python.org/simple/textile/), version: 2.0.3
+    Found link http://dom.eav.free.fr/python/textile-mirror-2.0.10.tar.gz (from http://pypi.python.org/simple/textile/), version: mirror-2.0.10
+    Found link http://dealmeida.net/code/textile-2.0.4.tar.gz (from http://pypi.python.org/simple/textile/), version: 2.0.4
+    Found link http://cheeseshop.python.org/packages/source/t/textile/textile-2.0.11.tar.gz (from http://pypi.python.org/simple/textile/), version: 2.0.11
+  Analyzing links from page http://loopcore.com/python-textile/
+    Skipping link http://loopcore.com/styles/reset.css (from http://loopcore.com/python-textile/); unknown archive format: .css
+    Skipping link http://loopcore.com/styles/typography.css (from http://loopcore.com/python-textile/); unknown archive format: .css
+    Skipping link http://loopcore.com/styles/layout.css (from http://loopcore.com/python-textile/); unknown archive format: .css
+    Skipping link http://github.com/jsamsa/python-textile (from http://loopcore.com/python-textile/); not a file
+    Skipping link http://pypi.python.org/pypi/textile (from http://loopcore.com/python-textile/); not a file
+    Skipping link http://code.google.com/p/pytextile/issues/list (from http://loopcore.com/python-textile/); not a file
+  Analyzing links from page http://loopcore.com/python-textile/
+    Skipping link http://loopcore.com/styles/reset.css (from http://loopcore.com/python-textile/); unknown archive format: .css
+    Skipping link http://loopcore.com/styles/typography.css (from http://loopcore.com/python-textile/); unknown archive format: .css
+    Skipping link http://loopcore.com/styles/layout.css (from http://loopcore.com/python-textile/); unknown archive format: .css
+    Skipping link http://github.com/jsamsa/python-textile (from http://loopcore.com/python-textile/); not a file
+    Skipping link http://pypi.python.org/pypi/textile (from http://loopcore.com/python-textile/); not a file
+    Skipping link http://code.google.com/p/pytextile/issues/list (from http://loopcore.com/python-textile/); not a file
+  Analyzing links from page http://loopcore.com/python-textile/
+    Skipping link http://loopcore.com/styles/reset.css (from http://loopcore.com/python-textile/); unknown archive format: .css
+    Skipping link http://loopcore.com/styles/typography.css (from http://loopcore.com/python-textile/); unknown archive format: .css
+    Skipping link http://loopcore.com/styles/layout.css (from http://loopcore.com/python-textile/); unknown archive format: .css
+    Skipping link http://github.com/jsamsa/python-textile (from http://loopcore.com/python-textile/); not a file
+    Skipping link http://pypi.python.org/pypi/textile (from http://loopcore.com/python-textile/); not a file
+    Skipping link http://code.google.com/p/pytextile/issues/list (from http://loopcore.com/python-textile/); not a file
+  Analyzing links from page http://loopcore.com/python-textile/
+    Skipping link http://loopcore.com/styles/reset.css (from http://loopcore.com/python-textile/); unknown archive format: .css
+    Skipping link http://loopcore.com/styles/typography.css (from http://loopcore.com/python-textile/); unknown archive format: .css
+    Skipping link http://loopcore.com/styles/layout.css (from http://loopcore.com/python-textile/); unknown archive format: .css
+    Skipping link http://github.com/jsamsa/python-textile (from http://loopcore.com/python-textile/); not a file
+    Skipping link http://pypi.python.org/pypi/textile (from http://loopcore.com/python-textile/); not a file
+    Skipping link http://code.google.com/p/pytextile/issues/list (from http://loopcore.com/python-textile/); not a file
+  Using version 2.1.3 (newest of versions: 2.1.3, 2.1.2, 2.1.1, 2.1.0, 2.0.11, 2.0.11, 2.0.9, 2.0.8, 2.0.7, 2.0.6, 2.0.5, 2.0.4, 2.0.3, 2.0.2, 2.0.1, 2, mirror-2.0.10)
+  Downloading textile-2.1.3.tar.gz
+  Downloading from URL http://pypi.python.org/packages/source/t/textile/textile-2.1.3.tar.gz#md5=07ec3c6d5e47763376894dfe60466a18 (from http://pypi.python.org/simple/textile/)
+Exception:
+Traceback (most recent call last):
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 295, in main
+    self.run(options, args)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 479, in run
+    requirement_set.install_files(finder, force_root_egg_info=self.bundle)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 1968, in install_files
+    self.unpack_url(url, location, self.is_download)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 2133, in unpack_url
+    self.unpack_file(temp_location, location, content_type, link)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 2174, in unpack_file
+    self.untar_file(filename, location)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pip.py", line 2221, in untar_file
+    os.makedirs(location)
+  File "/opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/os.py", line 157, in makedirs
+    mkdir(name, mode)
+OSError: [Errno 13] Permission denied: '/Users/aconbere/Projects/python/igor/build/textile'

@@ -1,0 +1,6 @@
+Documents are defined with a simple scheme (fake BNF)
+
+header ::= <yaml> "\n\n" | <string> "\n\n"
+content ::= <string>
+
+document ::= <header> <content>

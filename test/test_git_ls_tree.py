@@ -2,7 +2,7 @@ import sys
 import os
 sys.path.append(".")
 
-from igor.git.ls_tree import ListTree, ListElement
+from igor.vcs.git.ls_tree import ListTree, ListElement
 
 test_project = "/tmp/igor.test"
 
