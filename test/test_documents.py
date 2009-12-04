@@ -25,8 +25,9 @@ def test_text_file(file):
 
 def test_text_file_pop_section(file):
     t = TextFile(file)
-    top, rest = t.pop_section("this is the first section\n\nthis is the second\n\n".splitlines())
-    assert(top == "this is the first section")
+    top, rest = t.pop_section("this is\nthe first section\n\nthis is the second\n\n".splitlines())
+    assert(top == "this is\nthe first section")
+    assert(rest == ["this is the second", ""])
 
 def test_text_file_parse(file):
     content = "this: 'is a header'\ntitle: with a title\n\nand content"
