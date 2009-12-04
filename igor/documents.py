@@ -28,7 +28,7 @@ class Document(object):
         return ""
 
     def __repr__(self):
-        return "<%s: %s %s>" % (self.type, self.slug)
+        return "<%s: %s>" % (self.type, self.slug)
 
 class TextFile(object):
     def __init__(self, file_path):
