@@ -118,15 +118,14 @@ class Post(Document):
 
     def __init__(self, file_path, extra_data={}):
         self.text_file = TextFile(file_path)
+        self.title = self.text_file.title
         self.extra_data = extra_data
         self.filename, self.ext = path.splitext(self.text_file.file_path)
-        self.title = self.text_file.headers.get('title')
         self.slug = self.text_file.headers.get('slug') or slugify(self.title) or \
                                                           slugify(self.filename)
         self.body = self.markup()
 
         super(Post, self).__init__(self.slug)
-
         self.headers = self.text_file.headers
 
     def markup(self):
